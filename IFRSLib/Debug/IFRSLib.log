@@ -1,34 +1,31 @@
-﻿  main.c
-  ifrs_struct.c
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1222): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1224): warning C4020: '__rBTInsertFixesGuidelines' : too many actual parameters
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1238): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1242): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1243): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1245): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1246): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1247): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1254): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1258): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1259): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1261): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1262): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1263): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1271): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1273): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1278): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1287): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1295): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1296): warning C4133: 'function' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1297): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1299): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1300): warning C4133: 'function' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1301): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1312): warning C4020: '__rBTInsertFixesGuidelines' : too many actual parameters
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1315): warning C4029: declared formal parameter list different from definition
-  ifrs_io.c
-  Generating Code...
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1171): warning C4716: '__rBTClear' : must return a value
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1336): warning C4716: '__rBTRemoveNode' : must return a value
-c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1341): warning C4716: '__rBTRemove' : must return a value
-  IFRSLib.vcxproj -> c:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\Debug\IFRSLib.exe
+﻿  ifrs_struct.c
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1363): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1365): warning C4020: '__rBTInsertFixesGuidelines' : too many actual parameters
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1379): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1383): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1384): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1386): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1387): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1388): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1395): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1399): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1400): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1402): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1403): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1404): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1412): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1414): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1419): warning C4133: 'return' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1428): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1436): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1437): warning C4133: 'function' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1438): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1440): warning C4133: '==' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1441): warning C4133: 'function' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1442): warning C4133: '=' : incompatible types - from 'RBTNode *' to 'RBTNode *'
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1453): warning C4020: '__rBTInsertFixesGuidelines' : too many actual parameters
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1456): warning C4029: declared formal parameter list different from definition
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1312): warning C4716: '__rBTClear' : must return a value
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1477): warning C4716: '__rBTRemoveNode' : must return a value
+c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.c(1482): warning C4716: '__rBTRemove' : must return a value
+  IFRSLib.vcxproj -> C:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\Debug\IFRSLib.exe
