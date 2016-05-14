@@ -4,12 +4,16 @@
 #include "ifrs_io.h"
 #include "ifrs_struct.h"
 
-/*
-*   ESTRUTURA DE DADOS
-*   Funções de auxílio em estrutura de dados.
-*
-*/
+//
+// Data Structure functions
+//
 
+//
+// Obs.: bool is an int defined.
+// #define bool int
+//
+
+// DEPRECATED, FULLY DOCUMENTED
 #pragma region Stack (Array implementation)
 //
 // StackArray
@@ -19,7 +23,7 @@
 //
 //	Using:
 //	StackArray stack = newStackArray();
-//	stack.isEmpty(&stack);
+//	bool response = stack.isEmpty(&stack);
 //
 //	IMPUT: 
 //	StackArray *localStack as self indicator.
@@ -28,7 +32,7 @@
 //	TRUE / FALSE as response
 //	
 //	Description:
-//	Returns the current state of the stack, if it is empty or not.
+//	Returns the current state of stack, if it's empty or not.
 bool __stackAEmpty(StackArray *localStack) {
 	if (localStack->top == 0) return TRUE;
 	else return FALSE;
@@ -38,7 +42,7 @@ bool __stackAEmpty(StackArray *localStack) {
 //
 //	Using:
 //	StackArray stack = newStackArray();
-//	stack.isFull(&stack);
+//	bool response = stack.isFull(&stack);
 //
 //	IMPUT: 
 //	StackArray *localStack as self indicator.
@@ -47,7 +51,7 @@ bool __stackAEmpty(StackArray *localStack) {
 //	TRUE / FALSE as response
 //	
 //	Description:
-//	Returns the current state of the stack, if it is full or not.
+//	Returns the current state of stack, if it's full or not.
 bool __stackAFull(StackArray *localStack) {
 	if (localStack->top >= MAX_STACK_LEN) return TRUE;
 	else return FALSE;
@@ -57,7 +61,7 @@ bool __stackAFull(StackArray *localStack) {
 //
 //	Using:
 //	StackArray stack = newStackArray();
-//	stack.push(&stack, 20);
+//	bool response = stack.push(&stack, 20);
 //
 //	IMPUT: 
 //	StackArray *localStack as self indicator.
@@ -67,7 +71,7 @@ bool __stackAFull(StackArray *localStack) {
 //	TRUE / FALSE as response
 //	
 //	Description:
-//	Inserts a value to the stack and returns the result of insertion.
+//	Inserts a value to stack and returns the insertion result.
 bool __stackAPush(StackArray *localStack, int value) {
 	if (__stackAFull(localStack) == TRUE) {
 		printf("\nERRO: Stack Overflow\n");
@@ -86,7 +90,7 @@ bool __stackAPush(StackArray *localStack, int value) {
 //	Using:
 //	StackArray stack = newStackArray();
 //	... 
-//	stack.pop(&stack);
+//	int response = stack.pop(&stack);
 //
 //	IMPUT: 
 //	StackArray *localStack as self indicator.
@@ -95,7 +99,7 @@ bool __stackAPush(StackArray *localStack, int value) {
 //	Last inserted value in the stack. (FILO)
 //	
 //	Description:
-//	Pops a value from the stack and returns it
+//	Pops a value from stack and returns it
 int __stackAPop(StackArray *localStack) {
 	if (__stackAEmpty(localStack) == TRUE) {
 		printf("\nERRO: Stack Underflow\n");
@@ -116,7 +120,7 @@ int __stackAPop(StackArray *localStack) {
 //	Using:
 //	StackArray stack = newStackArray();
 //	... 
-//	stack.getValue(&stack);
+//	int response = stack.getValue(&stack);
 //
 //	IMPUT: 
 //	StackArray *localStack as self indicator.
@@ -125,7 +129,7 @@ int __stackAPop(StackArray *localStack) {
 //	Last inserted value in the stack. (FILO)
 //	
 //	Description:
-//	Returns the last inserted value in the stack.
+//	Returns the last inserted value in stack.
 int __stackALastItem(StackArray *localStack) {
 	return localStack->stackArray[localStack->top];
 }
@@ -142,7 +146,7 @@ int __stackALastItem(StackArray *localStack) {
 //	StackArray localStack as a newly built structure.
 //	
 //	Description:
-//	Constructor function of the structure.
+//	Construction function of structure.
 StackArray newStackArray() {
 	StackArray localStack;
 	localStack.top = 0;
@@ -159,16 +163,18 @@ StackArray newStackArray() {
 
 #pragma endregion
 
+// IMPLEMENTING
 #pragma region Stack (Linked Node implementation)
 	// TODO
 #pragma endregion
 
+// DEPRECATED, FULLY DOCUMENTED
 #pragma region Queue (Array implementation)
 //	__queueAEmpty(QueueArray self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
-//	queue.isEmpty(&queue);
+//	bool response = queue.isEmpty(&queue);
 //
 //	IMPUT: 
 //	QueueArray *queueLocal as self indicator.
@@ -177,7 +183,7 @@ StackArray newStackArray() {
 //	TRUE / FALSE as response
 //	
 //	Description:
-//	Returns the current state of the queue, if it is empty or not.
+//	Returns the current state of queue, if it's empty or not.
 bool __queueAEmpty(QueueArray *queueLocal) {
 	if (queueLocal->front == queueLocal->back) return TRUE;
 	else return FALSE;
@@ -187,7 +193,7 @@ bool __queueAEmpty(QueueArray *queueLocal) {
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
-//	queue.isFull(&queue);
+//	bool response = queue.isFull(&queue);
 //
 //	IMPUT: 
 //	QueueArray *queueLocal as self indicator.
@@ -196,7 +202,7 @@ bool __queueAEmpty(QueueArray *queueLocal) {
 //	TRUE / FALSE as response
 //	
 //	Description:
-//	Returns the current state of the queue, if it is full or not.
+//	Returns the current state of queue, if it is full or not.
 bool __queueAFull(QueueArray *queueLocal) {
 	if ((queueLocal->front - queueLocal->back == 1) || ((queueLocal->back == MAX_QUEUE_LEN - 1) && (queueLocal->front == 0)))
 		return TRUE;
@@ -208,7 +214,7 @@ bool __queueAFull(QueueArray *queueLocal) {
 //	Using:
 //	QueueArray queue = newQueueArray();
 //	... 
-//	queue.dequeue(&queue);
+//	int response = queue.dequeue(&queue);
 //
 //	IMPUT: 
 //	QueueArray *queueLocal as self indicator.
@@ -217,7 +223,7 @@ bool __queueAFull(QueueArray *queueLocal) {
 //	First inserted value in the queue. (FIFO)
 //	
 //	Description:
-//	Dequeue a value from the queue and returns it.
+//	Dequeue a value from queue and returns it.
 int __dequeueA(QueueArray *queueLocal) {
 	if (__queueAEmpty(queueLocal) != 1) {
 		int value = queueLocal->queueArray[queueLocal->front];
@@ -236,17 +242,17 @@ int __dequeueA(QueueArray *queueLocal) {
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
-//	queue.enqueue(&queue, 20);
+//	bool response = queue.enqueue(&queue, 20);
 //
 //	IMPUT: 
 //	QueueArray *queueLocal as self indicator.
 //	int value as value to enqueue.
-//
-//	OUTUP:
-//	First inserted value in the queue. (FIFO)
 //	
+//	OUTPUT:
+//	TRUE / FALSE as response
+//
 //	Description:
-//	Dequeue a value from the queue and returns it.
+//	Enqueue a value to queue and returns the insertion result.
 bool __enqueueA(QueueArray *queueLocal, int value) {
 	if (__queueAFull(queueLocal) != 1) {
 		queueLocal->queueArray[queueLocal->back] = value;
@@ -266,7 +272,29 @@ bool __enqueueA(QueueArray *queueLocal, int value) {
 //	Using:
 //	QueueArray queue = newQueueArray();
 //	... 
-//	queue.lastItem(&queue);
+//	int response = queue.lastItem(&queue);
+//
+//	IMPUT: 
+//	QueueArray *queueLocal as self indicator.
+//
+//	OUTUP:
+//	Last inserted value in the queue. (FIFO)
+//	
+//	Description:
+//  Returns the last inserted value
+int __queueALastItem(QueueArray *queueLocal) {
+	if (queueLocal->back == 0) 
+		return queueLocal->queueArray[MAX_QUEUE_LEN - 1];
+	else 
+		return queueLocal->queueArray[queueLocal->back - 1];
+}
+
+//	__queueAFirstItem(QueueArray self);
+//
+//	Using:
+//	QueueArray queue = newQueueArray();
+//	... 
+//	int response = queue.firstItem(&queue);
 //
 //	IMPUT: 
 //	QueueArray *queueLocal as self indicator.
@@ -275,21 +303,24 @@ bool __enqueueA(QueueArray *queueLocal, int value) {
 //	First inserted value in the queue. (FIFO)
 //	
 //	Description:
-//  Returns the last inserted value and returns it
-int __queueALastItem(QueueArray *queueLocal) {
-	if (queueLocal->back == 0) {
-		return queueLocal->queueArray[MAX_QUEUE_LEN - 1];
-	}
-	else {
-		return queueLocal->queueArray[queueLocal->back - 1];
-	}
-
-}
-
+//  Returns the first inserted value
 int __queueAFirstItem(QueueArray *queueLocal) {
 	return queueLocal->queueArray[queueLocal->front];
 }
 
+//	newQueueArray(void);
+//
+//	Using:
+//	QueueArray queue = newQueueArray();
+//
+//	IMPUT: 
+//	Nothing
+//
+//	OUTUP:
+//	QueueArray queueLocal as a newly built structure.
+//	
+//	Description:
+//	Construction function of structure.
 QueueArray newQueueArray() {
 	QueueArray queueLocal;
 	queueLocal.front = 0;
@@ -305,40 +336,75 @@ QueueArray newQueueArray() {
 
 #pragma endregion
 
+// IMPLEMENTING
 #pragma region Queue (Linked Node implementation)
 // TODO
 #pragma endregion
 
+// DEPRECATED, FULLY DOCUMENTED
 #pragma region Ordered List (Array implementation)
 
-int __oListIsEmpty(OrderedList *OList) {
-	if (OList->endIndex == 0) {
-		return TRUE;
-	}
+//	__oListIsAEmpty(OrderedList self);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//	bool response = list.isEmpty(&list);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//
+//	OUTPUT:
+//	TRUE / FALSE as response
+//	
+//	Description:
+//	Returns the current state of list, if it's empty or not.
+bool __oListIsEmpty(OrderedList *OList) {
+	if (OList->endIndex == 0) return TRUE;
 	return FALSE;
 }
 
-int __oListIsFull(OrderedList *OList) {
-	if (OList->endIndex == MAX_ORDERED_LIST_LEN) {
-		return TRUE;
-	}
+//	__oListIsFull(OrderedList self);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//	bool response = list.isFull(&list);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//
+//	OUTPUT:
+//	TRUE / FALSE as response
+//	
+//	Description:
+//	Returns the current state of list, if it's full or not.
+bool __oListIsFull(OrderedList *OList) {
+	if (OList->endIndex == MAX_ORDERED_LIST_LEN) return TRUE;
 	return FALSE;
 }
 
+//	__oListInsert(OrderedList self, int value);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//	bool response = list.insert(&list, 20);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//	int value as item to be added in the list
+//
+//	OUTPUT:
+//	TRUE / FALSE as response
+//	
+//	Description:
+//	Inserts a new item in the list, returns a response about insertion.
 bool __oListInsert(OrderedList *OList, int value) {
 	if (__oListIsFull(OList) == FALSE) {
 		int i, j;
-		for (i = 0; i < OList->endIndex; i++) {
-			if (OList->orderedListArray[i] > value) {
-				break;
-			}
-		}
-		if (OList->endIndex > 0) {
-			for (j = OList->endIndex; j > i; j--) {
+		for (i = 0; i < OList->endIndex; i++)
+			if (OList->orderedListArray[i] > value) break;
+		if (OList->endIndex > 0)
+			for (j = OList->endIndex; j > i; j--)
 				OList->orderedListArray[j] = OList->orderedListArray[j - 1];
-			}
-		}
-
 		OList->orderedListArray[i] = value;
 		OList->endIndex++;
 		return TRUE;
@@ -346,44 +412,71 @@ bool __oListInsert(OrderedList *OList, int value) {
 	return FALSE;
 }
 
+//	__oListRemove(OrderedList self, int value);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//	...
+//	bool response = list.remove(&list, 20);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//	int value as item to be removed in the list
+//
+//	OUTPUT:
+//	TRUE / FALSE as response
+//	
+//	Description:
+//	Removes an item in the list, returns a response about the remotion
 bool __oListRemove(OrderedList *OList, int value) {
 	if (__oListIsEmpty(OList) == FALSE) {
 		int i, j;
 		bool breaked = FALSE;
-		for (i = 0; i < OList->endIndex; i++) {
+		// Search value in the list.
+		for (i = 0; i < OList->endIndex; i++)
 			if (OList->orderedListArray[i] == value) {
 				breaked = TRUE;
 				break;
 			}
-		}
 
+		// Reorders values in the list.
 		for (j = i; j < OList->endIndex; j++) {
-			if (j + 1 < MAX_ORDERED_LIST_LEN) {
+			if (j + 1 < MAX_ORDERED_LIST_LEN)
 				OList->orderedListArray[j] = OList->orderedListArray[j + 1];
-			}
-			else {
+			else
 				OList->orderedListArray[j] = 0;
-			}
 		}
 
-		if (breaked == TRUE) {
-			OList->endIndex--;
-		}
+		if (breaked == TRUE) OList->endIndex--;
 		return TRUE;
 	}
 	return FALSE;
 }
 
+//	__oListRemoveAtIndex(OrderedList self, int index);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//  ...
+//	bool response = list.removeAtIndex(&list, 3);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//	int index as item reference to be removed in the list
+//
+//	OUTPUT:
+//	TRUE / FALSE as response
+//	
+//	Description:
+//	Removes an item in the list, returns a response about the remotion
 bool __oListRemoveAtIndex(OrderedList *OList, int index) {
 	int i = 0;
 	if ((__oListIsEmpty(OList) == FALSE) && (index < OList->endIndex) && (index >= 0)) {
 		for (i = index; i < OList->endIndex; i++) {
-			if (i + 1 < MAX_ORDERED_LIST_LEN) {
+			if (i + 1 < MAX_ORDERED_LIST_LEN)
 				OList->orderedListArray[i] = OList->orderedListArray[i + 1];
-			}
-			else {
+			else
 				OList->orderedListArray[i] = 0;
-			}
 		}
 		OList->endIndex--;
 		return TRUE;
@@ -391,25 +484,98 @@ bool __oListRemoveAtIndex(OrderedList *OList, int index) {
 	return FALSE;
 }
 
+//	__oListGetItem(OrderedList self, int index);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//  ...
+//	int response = list.getItem(&list, 3);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//	int index as item reference 
+//
+//	OUTPUT:
+//  List item at the index as integer.	
+//	
+//	Description:
+//	Returns an item in the list
 int __oListGetItem(OrderedList *OList, int index) {
-	if (index < OList->endIndex && index >= 0) {
+	if (index < OList->endIndex && index >= 0)
 		return OList->orderedListArray[index];
-	}
 	return FALSE;
 }
 
+//	__oListLastItem(OrderedList self);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//  ...
+//	int response = list.lastItem(&list);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//
+//	OUTPUT:
+//  Last list item as integer.	
+//	
+//	Description:
+//	Returns a last item in the list.
 int __oListLastItem(OrderedList *OList) {
 	return OList->orderedListArray[OList->endIndex - 1];
 }
 
+//	__oListFirstItem(OrderedList self);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//  ...
+//	int response = list.firstItem(&list);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//
+//	OUTPUT:
+//  First list item as integer.	
+//	
+//	Description:
+//	Returns a first item in the list.
 int __oListFirtItem(OrderedList *OList) {
 	return OList->orderedListArray[0];
 }
 
+//	__oListItemAmout(OrderedList self);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//  ...
+//	int response = list.itemAmout(&list);
+//
+//	IMPUT: 
+//	OrderedList *OList as self indicator.
+//
+//	OUTPUT:
+//  Item amout as integer.	
+//	
+//	Description:
+//  Returns the amount of items in the list.
 int __oListItemAmout(OrderedList *OList) {
 	return OList->endIndex;
 }
 
+//	newOrderedList(void);
+//
+//	Using:
+//	OrderedList list = newOrderedList();
+//
+//	IMPUT: 
+//	Nothing
+//
+//	OUTUP:
+//	OrderedList OListLocal as a newly built structure.
+//	
+//	Description:
+//	Construction function of structure.
 OrderedList newOrderedList() {
 	OrderedList OListLocal;
 	OListLocal.endIndex = 0;
@@ -427,6 +593,7 @@ OrderedList newOrderedList() {
 
 #pragma endregion
 
+// DOCUMENTING, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Linked Node implementation)
 
 bool __oLListIsEmpty(OrderedLinkedList *OLList) {
@@ -580,6 +747,7 @@ OrderedLinkedList newOrderedLinkedList() {
 
 #pragma endregion
 
+// DOCUMENTING, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Doubly Linked Node implementation)
 
 DNode* __oDLListFind(OrderedDoublyLinkedList *ODLList, int value) {
@@ -712,6 +880,7 @@ OrderedDoublyLinkedList newOrderedDoublyLinkedList() {
 
 #pragma endregion
 
+// DOCUMENTING, NEW FEATURES CAN BE ADDED
 #pragma region Binary Tree
 
 TNode* __bTSearchLowerValue(TNode* pointerNode) {
@@ -906,6 +1075,7 @@ BinaryTree newBinaryTree() {
 
 #pragma endregion
 
+// IMPLEMENTING
 #pragma region Red-Black Tree
 // Definitions
 void __rBTInsertFixesGuidelines(RBTNode *pointerNode);

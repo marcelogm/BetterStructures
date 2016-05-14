@@ -8,8 +8,7 @@
 #define MAX_LEN 255
 
 int main(){
-	/*
-	short a;
+	/*short a;
 	int b;
 	long c;
 	float d;
@@ -65,7 +64,7 @@ int main(){
 	printStringArray("Valores do array:\n",
 		"Elemento do array:\n",
 		3, j);
-
+	
 	//---- PSEUDO OBJETOS ----//
 
 	printf("\n\n\n PSEUDO OBJETOS \n\n\n");
@@ -104,14 +103,14 @@ int main(){
 	printf("SUBSTRING: %s\n", strA.subString((void *)&strA, 0, 5));
 	printf("UPPERCASE: %s\n", strA.upperCase((void *)&strA));
 	printf("LOWERCASE: %s\n", strA.lowerCase((void *)&strA));
-
+	*/
 	//---- ESTRUTURAS ----//
 
 	printf("\n\n\n ESTRUTURAS DE DADOS \n\n\n");
 
 	printf("\nSTACK\n\n");
 
-	Stack stk = newStack();
+	StackArray stk = newStackArray();
 
 	printf("15 enviado para a Pilha\n");
 	stk.push((void *)&stk, 15);
@@ -131,7 +130,7 @@ int main(){
 
 	printf("\nQUEUE\n\n");
 
-	Queue que = newQueue();
+	QueueArray que = newQueueArray();
 
 	printf("4 enviado para a Fila\n");
 	que.enqueue((void *)&que, 4);
@@ -151,7 +150,7 @@ int main(){
 		puts("A Fila nao esta cheia.");
 	}
 
-	printf("\nODERED LIST\n\n");
+	printf("\nORDERED LIST\n\n");
 
 	OrderedList OList = newOrderedList();
 
@@ -182,7 +181,7 @@ int main(){
 		puts("A Lista Ordenada nao esta cheia.");
 	}
 
-	printf("\nODERED LINKED LIST\n\n");
+	printf("\nORDERED LINKED LIST\n\n");
 
 	OrderedLinkedList OLList = newOrderedLinkedList();
 
@@ -213,7 +212,7 @@ int main(){
 		puts("A Lista Encadeada Ordenada esta vazia.");
 	}
 
-	printf("\nODERED DOUBLY LINKED LIST\n\n");
+	printf("\nORDERED DOUBLY LINKED LIST\n\n");
 
 	OrderedDoublyLinkedList ODLList = newOrderedDoublyLinkedList();
 
@@ -280,17 +279,8 @@ int main(){
 	if (BTree.isEmpty((void *)&BTree) == TRUE) {
 		puts("A Arvore Binaria esta vazia.");
 	}
-	*/
 
-	RedBlackTree RBTree = newRedBlackTree();
-
-	srand(23);
-	unsigned long i = 0;
-	for (i = 0; i < 100000; i++) {
-		int value = (rand() % 500);
-		RBTree.insert(&RBTree, value);
-	}
-	RBTree.printInOrder(&RBTree);
+	system("pause");
 	return 0;
 }
 

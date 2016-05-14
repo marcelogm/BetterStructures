@@ -1,6 +1,11 @@
+//
+// DEPRECATED DOCUMENTATION AND IMPLEMENTATION
+// NEW FEATURES WILL BE ADD
+//
+
 /*
 * IFRS - Osório
-* Autores : John R. (johnreis) / Marcelo M. (marcelogm)
+* Marcelo M. (marcelogm)
 * LIB de auxílio para valores primitivos,
 * ponteiros e estruturas simples
 * de gravação e leitura.
@@ -9,7 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ifrslib.h"
+#include "ifrs_io.h"
+#include "ifrs_struct.h"
 
 /*
 * FUNÇÕES PARA ENTRADA DE DADOS
