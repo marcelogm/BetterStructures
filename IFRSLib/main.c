@@ -4,6 +4,8 @@
 #include "ifrs_io.h"
 #include "ifrs_struct.h"
 #include <windows.h>
+// New
+#include <stdbool.h>
 
 #define MAX_LEN 255
 

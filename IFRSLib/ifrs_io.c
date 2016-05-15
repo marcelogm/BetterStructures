@@ -16,6 +16,7 @@
 #include <string.h>
 #include "ifrs_io.h"
 #include "ifrs_struct.h"
+#include <stdbool.h>
 
 /*
 * FUNÇÕES PARA ENTRADA DE DADOS
@@ -35,32 +36,32 @@
 */
 
 void readShort1(short *variableAddress) {
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("\n%hi", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readShort2(short *variableAddress, char headerMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%hi", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readShort3(short *variableAddress, char headerMessage[], char errorMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%hi", variableAddress);
 		clStdin;
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 /*
@@ -71,32 +72,32 @@ void readShort3(short *variableAddress, char headerMessage[], char errorMessage[
 */
 
 void readInt1(int *variableAddress) {
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("\n%d", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readInt2(int *variableAddress, char headerMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%d", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readInt3(int *variableAddress, char headerMessage[], char errorMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%d", variableAddress);
 		clStdin;
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 
 }
 
@@ -109,32 +110,32 @@ void readInt3(int *variableAddress, char headerMessage[], char errorMessage[]) {
 */
 
 void readLong1(long *variableAddress) {
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("\n%ld", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readLong2(long *variableAddress, char headerMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%ld", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readLong3(long *variableAddress, char headerMessage[], char errorMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%ld", variableAddress);
 		clStdin;
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 /*
@@ -146,32 +147,32 @@ void readLong3(long *variableAddress, char headerMessage[], char errorMessage[])
 */
 
 void readFloat1(float *variableAddress) {
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("%f", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readFloat2(float *variableAddress, char headerMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("%f", variableAddress);
 		clStdin;
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 void readFloat3(float *variableAddress, char headerMessage[], char errorMessage[]) {
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("%f", variableAddress);
 		clStdin;
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 }
 
 /*
@@ -182,32 +183,32 @@ void readFloat3(float *variableAddress, char headerMessage[], char errorMessage[
 */
 
 void readDouble1(double *variableAddress) {
-	int ret;
+	bool ret;
 	ret = scanf_function("\n%lf", variableAddress);
 	clStdin;
-	if (ret != TRUE) {
+	if (ret != true) {
 		readDouble1(variableAddress);
 	}
 }
 
 void readDouble2(double *variableAddress, char headerMessage[]) {
-	int ret;
+	bool ret;
 	printf("%s", headerMessage);
 	ret = scanf_function("\n%lf", variableAddress);
 	clStdin;
 
-	if (ret != TRUE) {
+	if (ret != true) {
 		readDouble2(variableAddress, headerMessage);
 	}
 }
 
 void readDouble3(double *variableAddress, char headerMessage[], char errorMessage[]) {
-	int ret;
+	bool ret;
 	printf("%s", headerMessage);
 	ret = scanf_function("\n%lf", variableAddress);
 	clStdin;
 
-	if (ret != TRUE) {
+	if (ret != true) {
 		printf("%s", errorMessage);
 		readDouble3(variableAddress, headerMessage, errorMessage);
 	}
@@ -285,16 +286,17 @@ void readString3(char variable[], int stringLength, char headerMessage[]) {
 
 int readIntRet(char headerMessage[],
 	char errorMessage[]) {
-	int value, ret;
+	int value;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%d", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 
@@ -309,16 +311,16 @@ int readIntRet(char headerMessage[],
 long readLongRet(char headerMessage[],
 	char errorMessage[]) {
 	long value;
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("\n%ld", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 
@@ -333,16 +335,16 @@ long readLongRet(char headerMessage[],
 float readFloatRet(char headerMessage[],
 	char errorMessage[]) {
 	float value;
-	int ret;
+	bool ret;
 	do {
 		printf("%s", headerMessage);
 		ret = scanf_function("%f", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("%s", errorMessage);
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 
@@ -565,38 +567,38 @@ int __readIntToPointer() {
 		ret = scanf_function("%d", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("ERRO: Value entered is NaN.\nTry again.\n");
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 
 long __readLongToPointer() {
 	long value;
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("%ld", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("ERRO: Value entered is NaN.\nTry again.\n");
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 
 float __readFloatToPointer() {
 	float value;
-	int ret;
+	bool ret;
 	do {
 		ret = scanf_function("%f", &value);
 		clStdin;
 
-		if (ret != TRUE) {
+		if (ret != true) {
 			printf("ERRO: Value entered is NaN.\nTry again.\n");
 		}
-	} while (ret != TRUE);
+	} while (ret != true);
 	return value;
 }
 

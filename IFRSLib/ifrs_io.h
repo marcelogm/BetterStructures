@@ -12,10 +12,6 @@
 	#endif
 #endif
 
-#define TRUE 1
-#define FALSE 0
-#define bool int
-
 #define DEFAULT_STRING_LEN 1024
 
 #define ID(x) x
