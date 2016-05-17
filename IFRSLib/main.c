@@ -10,7 +10,7 @@
 #define MAX_LEN 255
 
 int main(){
-	/*short a;
+	short a;
 	int b;
 	long c;
 	float d;
@@ -105,7 +105,7 @@ int main(){
 	printf("SUBSTRING: %s\n", strA.subString((void *)&strA, 0, 5));
 	printf("UPPERCASE: %s\n", strA.upperCase((void *)&strA));
 	printf("LOWERCASE: %s\n", strA.lowerCase((void *)&strA));
-	*/
+	
 	//---- ESTRUTURAS ----//
 
 	printf("\n\n\n ESTRUTURAS DE DADOS \n\n\n");

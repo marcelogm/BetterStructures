@@ -1,0 +1,7 @@
+﻿  main.c
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdbool.h(15): warning C4005: 'bool': macro redefinition
+  c:\users\marce\documents\visual studio 2015\projects\ifrslib\ifrslib\ifrs_struct.h(18): note: see previous definition of 'bool'
+main.c(288): warning C4133: 'function': incompatible types - from 'RedBlackTree *' to 'RedBlackTree *'
+main.c(291): warning C4133: 'function': incompatible types - from 'RedBlackTree *' to 'RedBlackTree *'
+  IFRSLib.vcxproj -> C:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\x64\Release\IFRSLib.exe
+  IFRSLib.vcxproj -> C:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\x64\Release\IFRSLib.pdb (Full PDB)

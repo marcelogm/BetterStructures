@@ -1234,6 +1234,7 @@ bool __bTIsEmpty(BinaryTree *BTree) {
 
 void __bTFreeNode(TNode * pointerNode, int *null) {
 	free(pointerNode);
+	pointerNode = NULL;
 }
 
 void __bTPrintNode(TNode * pointerNode, int *null) {
@@ -1382,7 +1383,7 @@ BinaryTree newBinaryTree() {
 // IMPLEMENTING
 #pragma region Red-Black Tree
 // Definitions
-void __rBTInsertFixesGuidelines(RBTNode *pointerNode);
+void __rBTInsertFixesGuidelines(RBTNode *pointerNode, RBTNode **root);
 RBTNode* __rBTNodeBrother(RBTNode* pointerNode);
 RBTNode* __rBTNodeGrandfather(RBTNode* pointerNode);
 
@@ -1404,6 +1405,7 @@ int __rBTHeight(RedBlackTree *BTree) {
 
 void __rBTFreeNode(RBTNode * pointerNode, int *null) {
 	free(pointerNode);
+	pointerNode = NULL;
 }
 
 void __rBTPrintNode(RBTNode * pointerNode, int *null) {
@@ -1521,9 +1523,10 @@ RBTNode* __rBTNewNode(int value) {
 }
 
 void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value) {
-	RBTNode* tempNode = __rBTNewNode(value);
+	//RBTNode* tempNode = __rBTNewNode(value); aloca um node a cada execução recursiva
 	if (*endPointerNode == NULL) {
-		tempNode->parent = parentPoiterNode;
+		RBTNode* tempNode = __rBTNewNode(value);  
+		tempNode->parent = (void *)parentPoiterNode;
 		*endPointerNode = tempNode;
 		__rBTInsertFixesGuidelines((*endPointerNode), &(*root));
 	}
@@ -1539,32 +1542,32 @@ void __rBTNodeRotateLeft(RBTNode* pointerNode, RBTNode** root) {
 	RBTNode* temp = (RBTNode*)pointerNode->right;
 	pointerNode->right = temp->left;
 	if (temp->left != NULL)
-		((RBTNode*)temp->left)->parent = pointerNode;
+		((RBTNode*)temp->left)->parent = (void *)pointerNode;
 	temp->parent = pointerNode->parent;
 	if (pointerNode->parent == NULL) *root = temp;
 	else
-		if (pointerNode == ((RBTNode*)pointerNode->parent)->left)
-			((RBTNode*)pointerNode->parent)->left = temp;
+		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
+			((RBTNode*)pointerNode->parent)->left = (void *)temp;
 		else
-			((RBTNode*)pointerNode->parent)->right = temp;
-	temp->left = pointerNode;
-	pointerNode->parent = temp;
+			((RBTNode*)pointerNode->parent)->right = (void *)temp;
+	temp->left = (void *)pointerNode;
+	pointerNode->parent = (void *)temp;
 }
 
 void __rBTNodeRotateRight(RBTNode* pointerNode, RBTNode** root) {
 	RBTNode* temp = (RBTNode*)pointerNode->left;
 	pointerNode->left = temp->right;
 	if (temp->right != NULL)
-		((RBTNode*)temp->right)->parent = pointerNode;
+		((RBTNode*)temp->right)->parent = (void *)pointerNode;
 	temp->parent = pointerNode->parent;
 	if (pointerNode->parent == NULL) *root = temp;
 	else
-		if (pointerNode == ((RBTNode*)pointerNode->parent)->left)
-			((RBTNode*)pointerNode->parent)->left = temp;
+		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
+			((RBTNode*)pointerNode->parent)->left = (void *)temp;
 		else
-			((RBTNode*)pointerNode->parent)->right = temp;
-	temp->right = pointerNode;
-	pointerNode->parent = temp;
+			((RBTNode*)pointerNode->parent)->right = (void *)temp;
+	temp->right = (void *)pointerNode;
+	pointerNode->parent = (void *)temp;
 }
 
 RBTNode* __rBTNodeUncle(RBTNode* pointerNode) {
@@ -1572,23 +1575,23 @@ RBTNode* __rBTNodeUncle(RBTNode* pointerNode) {
 	if (grand == NULL)
 		return NULL;
 	if (pointerNode->parent == grand->left)
-		return grand->right;
+		return (void *)grand->right;
 	else
-		return grand->left;
+		return (void *)grand->left;
 }
 
 RBTNode* __rBTNodeGrandfather(RBTNode* pointerNode) {
 	if ((pointerNode != NULL) && (pointerNode->parent != NULL))
-		return ((RBTNode*)pointerNode->parent)->parent;
+		return (void *)((RBTNode*)pointerNode->parent)->parent;
 	else
-		return (void*)NULL;
+		return (void *)NULL;
 }
 
 void __rBTFixesCaseFive(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode * grand = __rBTNodeGrandfather(pointerNode);
 	((RBTNode*)pointerNode->parent)->color = black;
 	grand->color = red;
-	if ((pointerNode == ((RBTNode*)pointerNode->parent)->left))// && (pointerNode->parent == grand->left))
+	if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)// && (pointerNode->parent == grand->left))
 		__rBTNodeRotateRight(grand, &(*root));
 	else
 		__rBTNodeRotateLeft(grand, &(*root));
@@ -1596,13 +1599,15 @@ void __rBTFixesCaseFive(RBTNode* pointerNode, RBTNode **root) {
 
 void __rBTFixesCaseFour(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode *grand = __rBTNodeGrandfather(pointerNode);
-	if ((pointerNode == ((RBTNode *)pointerNode->parent)->right) && (pointerNode->parent == grand->left)) {
-		__rBTNodeRotateLeft(pointerNode->parent, &(*root));
-		pointerNode = pointerNode->left;
+	if (((void *)pointerNode == (void *)((RBTNode *)pointerNode->parent)->right) && 
+		((void *)pointerNode->parent == (void *)grand->left)) {
+		__rBTNodeRotateLeft((void *)pointerNode->parent, &(*root));
+		pointerNode = (void *)pointerNode->left;
 	}
-	else if ((pointerNode == ((RBTNode *)pointerNode->parent)->left) && (pointerNode->parent == grand->right)) {
-		__rBTNodeRotateRight(pointerNode->parent, &(*root));
-		pointerNode = pointerNode->right;
+	else if (((void *)pointerNode == (void*)((RBTNode *)pointerNode->parent)->left) && 
+		((void *)pointerNode->parent == (void *)grand->right)) {
+		__rBTNodeRotateRight((void *)pointerNode->parent, &(*root));
+		pointerNode = (void *)pointerNode->right;
 	}
 	__rBTFixesCaseFive(pointerNode, &(*root));
 }
@@ -1613,7 +1618,7 @@ void __rBTFixesCaseThree(RBTNode* pointerNode, RBTNode **root) {
 	uncle->color = black;
 	grand = __rBTNodeGrandfather(pointerNode);
 	grand->color = red;
-	__rBTInsertFixesGuidelines(grand, &(*root));
+	__rBTInsertFixesGuidelines(grand, (void*)&(*root));
 }
 
 void __rBTInsertFixesGuidelines(RBTNode *pointerNode, RBTNode **root) {

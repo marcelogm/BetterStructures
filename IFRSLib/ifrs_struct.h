@@ -12,11 +12,7 @@
 	#endif
 #endif
 
-/*
-#define TRUE 1
-#define FALSE 0
-#define bool int
-*/
+#include <stdbool.h>
 
 #define MAX_STACK_LEN 10
 
