@@ -18,9 +18,9 @@
 // DEFINITIONS
 bool __stackAEmpty(StackArray *self);				// ===> stack.isEmpty(&stack);
 bool __stackAFull(StackArray *self);				// ===> stack.isFull(&stack);
-bool __stackAPush(StackArray *self, int value);	// ===> stack.push(&stack, 20);
+bool __stackAPush(StackArray *self, int value);			// ===> stack.push(&stack, 20);
 int __stackAPop(StackArray *self);				// ===> stack.pop(&stack);
-int __stackALastItem(StackArray *self);			// ===> stack.getValue(&stack); CAN CHANGE
+int __stackALastItem(StackArray *self);				// ===> stack.getValue(&stack); CAN CHANGE
 
 //	__stackAEmpty(StackArray *self);
 //
@@ -178,12 +178,12 @@ StackArray newStackArray() {
 //
 
 // DEFINITIONS
-bool __queueAEmpty(QueueArray *self);				// ===> queue.isEmpty(&queue);
-bool __queueAFull(QueueArray *self);				// ===> queue.isFull(&queue);
+bool __queueAEmpty(QueueArray *self);					// ===> queue.isEmpty(&queue);
+bool __queueAFull(QueueArray *self);					// ===> queue.isFull(&queue);
 int __dequeueA(QueueArray *self);					// ===> queue.dequeue(&queue);
-bool __enqueueA(QueueArray *self, int value);		// ===> queue.enqueue(&queue, 20);
-int __queueALastItem(QueueArray *self);			// ===> queue.lastItem(&queue);
-int __queueAFirstItem(QueueArray *self);			// ===> queue.firstItem(&queue);
+bool __enqueueA(QueueArray *self, int value);				// ===> queue.enqueue(&queue, 20);
+int __queueALastItem(QueueArray *self);					// ===> queue.lastItem(&queue);
+int __queueAFirstItem(QueueArray *self);				// ===> queue.firstItem(&queue);
 
 //	__queueAEmpty(QueueArray *self);
 //
@@ -365,10 +365,10 @@ QueueArray newQueueArray() {
 // DEFINITIONS
 bool __oListIsEmpty(OrderedList *self);						// ===> list.isEmpty(&list);
 bool __oListIsFull(OrderedList *self);						// ===> list.isFull(&list);
-bool __oListInsert(OrderedList *self, int value);			// ===> list.insert(&list, 20);
-bool __oListRemove(OrderedList *self, int value);			// ===> list.remove(&list, 20);
-bool __oListRemoveAtIndex(OrderedList *self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oListGetItem(OrderedList *self, int index);			// ===> list.getItem(&list, 3);
+bool __oListInsert(OrderedList *self, int value);				// ===> list.insert(&list, 20);
+bool __oListRemove(OrderedList *self, int value);				// ===> list.remove(&list, 20);
+bool __oListRemoveAtIndex(OrderedList *self, int index);			// ===> list.removeAtIndex(&list, 3);
+int __oListGetItem(OrderedList *self, int index);				// ===> list.getItem(&list, 3);
 int __oListLastItem(OrderedList *self);						// ===> list.lastItem(&list);
 int __oListFirtItem(OrderedList *self);						// ===> list.firstItem(&list);
 int __oListItemAmout(OrderedList *self);					// ===> list.itemAmout(&list);
@@ -630,10 +630,10 @@ OrderedList newOrderedList() {
 
 // DEFINITIONS
 bool __oLListIsEmpty(OrderedLinkedList *self);						// ===> list.isEmpty(&list);
-void __oLListInsert(OrderedLinkedList * self, int value);			// ===> list.insert(&list, 20);
-bool __oLListRemove(OrderedLinkedList * self, int value);			// ===>	list.remove(&list, 20);
-bool __oLListRemoveAtIndex(OrderedLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oLListGetItem(OrderedLinkedList * self, int index);			// ===> list.getItem(&list, 3);
+void __oLListInsert(OrderedLinkedList * self, int value);				// ===> list.insert(&list, 20);
+bool __oLListRemove(OrderedLinkedList * self, int value);				// ===>	list.remove(&list, 20);
+bool __oLListRemoveAtIndex(OrderedLinkedList * self, int index);			// ===> list.removeAtIndex(&list, 3);
+int __oLListGetItem(OrderedLinkedList * self, int index);				// ===> list.getItem(&list, 3);
 int __oLListLastItem(OrderedLinkedList * self);						// ===> list.lastItem(&list);
 int __oLListFirstItem(OrderedLinkedList * self);					// ===> list.firstItem(&list);
 int __oLListItemAmout(OrderedLinkedList * self);					// ===> list.itemAmout(&list);
@@ -940,17 +940,17 @@ OrderedLinkedList newOrderedLinkedList() {
 //
 
 // DEFINITIONS
-void __oDLListInsert(OrderedDoublyLinkedList * self, int value);		// ===> list.insert(&list, 20);
-bool __oDLListRemove(OrderedDoublyLinkedList * self, int value);		// ===> list.remove(&list, 20);
-bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oDLListGetItem(OrderedDoublyLinkedList * self, int index);		// ===> list.getItem(&list, 3);
+void __oDLListInsert(OrderedDoublyLinkedList * self, int value);			// ===> list.insert(&list, 20);
+bool __oDLListRemove(OrderedDoublyLinkedList * self, int value);			// ===> list.remove(&list, 20);
+bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);			// ===> list.removeAtIndex(&list, 3);
+int __oDLListGetItem(OrderedDoublyLinkedList * self, int index);			// ===> list.getItem(&list, 3);
 int __oDLListLastItem(OrderedDoublyLinkedList * self);					// ===> list.lastItem(&list);
 int __oDLListFirstItem(OrderedDoublyLinkedList * self);					// ===> list.firstItem(&list);
 bool __oDLListIsEmpty(OrderedDoublyLinkedList * self);					// ===> list.isEmpty(&list);
 int __oDLListItemAmout(OrderedDoublyLinkedList * self);					// ===> list.itemAmout(&list);
 void __oDLListClear(OrderedDoublyLinkedList * self);					// ===> list.clear(&list);
 
-DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);			// ===> INTERNAL USE
+DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);				// ===> INTERNAL USE
 
 //  LIBRARY INTERNAL USE
 //	__oDLListFind(OrderedDoublyLinkedList * self, int value);
@@ -1246,31 +1246,31 @@ OrderedDoublyLinkedList newOrderedDoublyLinkedList() {
 // DEFINITIONS
 #define callbackForTNode void (*function)(struct TNode*, int *counter)
 
-TNode * __bTSearchLowerValue(TNode * pointerNode);									// ===> INTERNAL USE
-TNode * __bTSearchHighValue(TNode* pointerNode);									// 
-int __bTHeightNode(TNode *pointerNode);												//
-void __bTFreeNode(TNode * pointerNode, int *null);									//
-void __bTPrintNode(TNode * pointerNode, int *null);									//
-void __bTCounter(TNode *null, int *counter);										//
+TNode * __bTSearchLowerValue(TNode * pointerNode);						// ===> INTERNAL USE
+TNode * __bTSearchHighValue(TNode* pointerNode);						// 
+int __bTHeightNode(TNode *pointerNode);								//
+void __bTFreeNode(TNode * pointerNode, int *null);						//
+void __bTPrintNode(TNode * pointerNode, int *null);						//
+void __bTCounter(TNode *null, int *counter);							//
 void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
 void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
 void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
-void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);	//
-void __bTInsertNode(TNode** pointerNode, int value);								//
-TNode* __bTRemoveNode(TNode** pointerNode, int value);								//
+void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);		//
+void __bTInsertNode(TNode** pointerNode, int value);						//
+TNode* __bTRemoveNode(TNode** pointerNode, int value);						//
 
 int __bTLowerValue(BinaryTree *self);				// ===> tree.lowerValue(&tree);
 int __bTHighValue(BinaryTree *self);				// ===> tree.higherValue(&tree);
-int __bTHeight(BinaryTree *self);					// ===> tree.height(&tree);
-bool __bTIsEmpty(BinaryTree *self);					// ===> tree.isEmpty(&tree);
-void __bTClear(BinaryTree *self);					// ===> tree.clear(&tree);
+int __bTHeight(BinaryTree *self);				// ===> tree.height(&tree);
+bool __bTIsEmpty(BinaryTree *self);				// ===> tree.isEmpty(&tree);
+void __bTClear(BinaryTree *self);				// ===> tree.clear(&tree);
 void __bTPrintInPreOrder(BinaryTree *self);			// ===> tree.printInPreOrder(&tree);
-void __bTPrintInPostOrder(BinaryTree *self);		// ===> tree.printInPostOrder(&tree);
+void __bTPrintInPostOrder(BinaryTree *self);			// ===> tree.printInPostOrder(&tree);
 void __bTPrintInOrder(BinaryTree *self);			// ===> tree.printInOrder(&tree);
 void __bTPrintPerLevel(BinaryTree *self);			// ===> tree.printPerLevel(&tree);
 int __bTItemAmout(BinaryTree *self);				// ===> tree.itemAmount(&tree);
-void __bTInsert(BinaryTree *self, int value);		// ===> tree.insert(&tree, 20);
-bool __bTRemove(BinaryTree *self, int value);		// ===> tree.remove(&tree, 20);
+void __bTInsert(BinaryTree *self, int value);			// ===> tree.insert(&tree, 20);
+bool __bTRemove(BinaryTree *self, int value);			// ===> tree.remove(&tree, 20);
 
 // INTERNAL USE SECTION
 
@@ -1962,7 +1962,7 @@ RBTNode* __rBTNewNode(int value) {
 }
 
 void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value) {
-	//RBTNode* tempNode = __rBTNewNode(value); aloca um node a cada execução recursiva
+	//RBTNode* tempNode = __rBTNewNode(value); aloca um node a cada execuÃ§Ã£o recursiva
 	if (*endPointerNode == NULL) {
 		RBTNode* tempNode = __rBTNewNode(value);
 		tempNode->parent = (void *)parentPoiterNode;
