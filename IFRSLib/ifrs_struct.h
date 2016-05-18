@@ -1,15 +1,15 @@
 #ifdef __MINGW32__
-	#define scanf_function scanf
-	#define clStdin fflush(stdin)
+#define scanf_function scanf
+#define clStdin fflush(stdin)
 #else
-	#ifdef _MSC_VER
-		#define scanf_function scanf_s
-		#define clStdin fflush(stdin)
-	#else
-		#include <stdio_ext.h>
-		#define scanf_function scanf
-		#define clStdin __fpurge(stdin)
-	#endif
+#ifdef _MSC_VER
+#define scanf_function scanf_s
+#define clStdin fflush(stdin)
+#else
+#include <stdio_ext.h>
+#define scanf_function scanf
+#define clStdin __fpurge(stdin)
+#endif
 #endif
 
 #include <stdbool.h>

@@ -1,1 +1,4 @@
-﻿
+﻿  program.c
+program.c(15): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+program.c(32): warning C4133: 'function': incompatible types - from 'Teste *' to 'Teste *'
+program.c(32): warning C4020: 'value': too many actual parameters

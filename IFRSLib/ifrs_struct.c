@@ -9,64 +9,65 @@
 // Data Structure functions
 //
 
-//
-// Obs.: bool is an int defined.
-// #define bool int
-//
-
 // DEPRECATED, FULLY DOCUMENTED
 #pragma region Stack (Array implementation)
 //
 // StackArray
 //
 
-//	__stackAEmpty(StackArray self);
+// DEFINITIONS
+bool __stackAEmpty(StackArray *self);				// ===> stack.isEmpty(&stack);
+bool __stackAFull(StackArray *self);				// ===> stack.isFull(&stack);
+bool __stackAPush(StackArray *self, int value);	// ===> stack.push(&stack, 20);
+int __stackAPop(StackArray *self);				// ===> stack.pop(&stack);
+int __stackALastItem(StackArray *self);			// ===> stack.getValue(&stack); CAN CHANGE
+
+//	__stackAEmpty(StackArray *self);
 //
 //	Using:
 //	StackArray stack = newStackArray();
 //	bool response = stack.isEmpty(&stack);
 //
 //	INPUT: 
-//	StackArray *localStack as self indicator.
+//	StackArray *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of stack, if it's empty or not.
-
-bool __stackAEmpty(StackArray *localStack) {
-	if (localStack->top == 0) return true;
+bool __stackAEmpty(StackArray *self) {
+	if (self->top == 0) return true;
 	else return false;
 }
 
-//	__stackAFull(StackArray self);
+//	__stackAFull(StackArray *self);
 //
 //	Using:
 //	StackArray stack = newStackArray();
 //	bool response = stack.isFull(&stack);
 //
 //	INPUT: 
-//	StackArray *localStack as self indicator.
+//	StackArray *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of stack, if it's full or not.
-bool __stackAFull(StackArray *localStack) {
-	if (localStack->top >= MAX_STACK_LEN) return true;
+bool __stackAFull(StackArray *self) {
+	if (self->top >= MAX_STACK_LEN) return true;
 	else return false;
 }
 
-//	__stackAPush(StackArray self, int value);
+//	__stackAPush(StackArray *self, int value);
 //
 //	Using:
 //	StackArray stack = newStackArray();
 //	bool response = stack.push(&stack, 20);
 //
 //	INPUT: 
-//	StackArray *localStack as self indicator.
+//	StackArray *self as self indicator.
 //	int value as variable to be inserted in the stack.
 //
 //	OUTPUT:
@@ -74,20 +75,20 @@ bool __stackAFull(StackArray *localStack) {
 //	
 //	Description:
 //	Inserts a value to stack and returns the insertion result.
-bool __stackAPush(StackArray *localStack, int value) {
-	if (__stackAFull(localStack) == true) {
+bool __stackAPush(StackArray *self, int value) {
+	if (__stackAFull(self) == true) {
 		printf("\nERRO: Stack Overflow\n");
 		system("pause");
 		return false;
 	}
 	else {
-		localStack->top++;
-		localStack->stackArray[localStack->top] = value;
+		self->top++;
+		self->stackArray[self->top] = value;
 		return true;
 	}
 }
 
-//	__stackAPop(StackArray self);
+//	__stackAPop(StackArray *self);
 //
 //	Using:
 //	StackArray stack = newStackArray();
@@ -95,29 +96,29 @@ bool __stackAPush(StackArray *localStack, int value) {
 //	int response = stack.pop(&stack);
 //
 //	INPUT: 
-//	StackArray *localStack as self indicator.
+//	StackArray *self as self indicator.
 //
 //	OUTPUT:
 //	Last inserted value in the stack. (FILO)
 //	
 //	Description:
 //	Pops a value from stack and returns it
-int __stackAPop(StackArray *localStack) {
-	if (__stackAEmpty(localStack) == true) {
+int __stackAPop(StackArray *self) {
+	if (__stackAEmpty(self) == true) {
 		printf("\nERRO: Stack Underflow\n");
 		system("pause");
-		return localStack->stackArray[localStack->top];
+		return self->stackArray[self->top];
 	}
 	else {
 		int temp = 0;
-		temp = localStack->stackArray[localStack->top];
-		localStack->stackArray[localStack->top] = 0;
-		localStack->top--;
+		temp = self->stackArray[self->top];
+		self->stackArray[self->top] = 0;
+		self->top--;
 		return temp;
 	}
 }
 
-//	__stackALastItem(StackArray self);
+//	__stackALastItem(StackArray *self);
 //
 //	Using:
 //	StackArray stack = newStackArray();
@@ -125,15 +126,15 @@ int __stackAPop(StackArray *localStack) {
 //	int response = stack.getValue(&stack);
 //
 //	INPUT: 
-//	StackArray *localStack as self indicator.
+//	StackArray *self as self indicator.
 //
 //	OUTPUT:
 //	Last inserted value in the stack. (FILO)
 //	
 //	Description:
 //	Returns the last inserted value in stack.
-int __stackALastItem(StackArray *localStack) {
-	return localStack->stackArray[localStack->top];
+int __stackALastItem(StackArray *self) {
+	return self->stackArray[self->top];
 }
 
 //	newStackArray(void);
@@ -145,22 +146,22 @@ int __stackALastItem(StackArray *localStack) {
 //	Nothing
 //
 //	OUTUP:
-//	StackArray localStack as a newly built structure.
+//	StackArray self as a newly built structure.
 //	
 //	Description:
 //	Construction function of structure.
 StackArray newStackArray() {
-	StackArray localStack;
-	localStack.top = 0;
-	localStack.stackArray[localStack.top] = -1;
-	localStack.push = (void *)&__stackAPush;
-	localStack.pop = (void *)&__stackAPop;
+	StackArray self;
+	self.top = 0;
+	self.stackArray[self.top] = -1;
+	self.push = (void *)&__stackAPush;
+	self.pop = (void *)&__stackAPop;
 	// To be changed soon
-	localStack.getValue = (void *)&__stackALastItem;
+	self.getValue = (void *)&__stackALastItem;
 	// End to be
-	localStack.isEmpty = (void *)&__stackAEmpty;
-	localStack.isFull = (void *)&__stackAFull;
-	return localStack;
+	self.isEmpty = (void *)&__stackAEmpty;
+	self.isFull = (void *)&__stackAFull;
+	return self;
 }
 
 #pragma endregion
@@ -172,46 +173,58 @@ StackArray newStackArray() {
 
 // DEPRECATED, FULLY DOCUMENTED
 #pragma region Queue (Array implementation)
-//	__queueAEmpty(QueueArray self);
+//
+// QueueArray
+//
+
+// DEFINITIONS
+bool __queueAEmpty(QueueArray *self);				// ===> queue.isEmpty(&queue);
+bool __queueAFull(QueueArray *self);				// ===> queue.isFull(&queue);
+int __dequeueA(QueueArray *self);					// ===> queue.dequeue(&queue);
+bool __enqueueA(QueueArray *self, int value);		// ===> queue.enqueue(&queue, 20);
+int __queueALastItem(QueueArray *self);			// ===> queue.lastItem(&queue);
+int __queueAFirstItem(QueueArray *self);			// ===> queue.firstItem(&queue);
+
+//	__queueAEmpty(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
 //	bool response = queue.isEmpty(&queue);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of queue, if it's empty or not.
-bool __queueAEmpty(QueueArray *queueLocal) {
-	if (queueLocal->front == queueLocal->back) return true;
+bool __queueAEmpty(QueueArray *self) {
+	if (self->front == self->back) return true;
 	else return false;
 }
 
-//	__queueAFull(QueueArray self);
+//	__queueAFull(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
 //	bool response = queue.isFull(&queue);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of queue, if it is full or not.
-bool __queueAFull(QueueArray *queueLocal) {
-	if ((queueLocal->front - queueLocal->back == 1) || ((queueLocal->back == MAX_QUEUE_LEN - 1) && (queueLocal->front == 0)))
+bool __queueAFull(QueueArray *self) {
+	if ((self->front - self->back == 1) || ((self->back == MAX_QUEUE_LEN - 1) && (self->front == 0)))
 		return true;
 	return false;
 }
 
-//	__dequeueA(QueueArray self);
+//	__dequeueA(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
@@ -219,18 +232,18 @@ bool __queueAFull(QueueArray *queueLocal) {
 //	int response = queue.dequeue(&queue);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //
 //	OUTPUT:
 //	First inserted value in the queue. (FIFO)
 //	
 //	Description:
 //	Dequeue a value from queue and returns it.
-int __dequeueA(QueueArray *queueLocal) {
-	if (__queueAEmpty(queueLocal) != 1) {
-		int value = queueLocal->queueArray[queueLocal->front];
-		if (queueLocal->front == MAX_QUEUE_LEN - 1)	queueLocal->front = 0;
-		else queueLocal->front++;
+int __dequeueA(QueueArray *self) {
+	if (__queueAEmpty(self) != 1) {
+		int value = self->queueArray[self->front];
+		if (self->front == MAX_QUEUE_LEN - 1)	self->front = 0;
+		else self->front++;
 		return value;
 	}
 	else {
@@ -240,14 +253,14 @@ int __dequeueA(QueueArray *queueLocal) {
 	}
 }
 
-//	__enqueueA(QueueArray self);
+//	__enqueueA(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
 //	bool response = queue.enqueue(&queue, 20);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //	int value as value to enqueue.
 //	
 //	OUTPUT:
@@ -255,11 +268,11 @@ int __dequeueA(QueueArray *queueLocal) {
 //
 //	Description:
 //	Enqueue a value to queue and returns the insertion result.
-bool __enqueueA(QueueArray *queueLocal, int value) {
-	if (__queueAFull(queueLocal) != 1) {
-		queueLocal->queueArray[queueLocal->back] = value;
-		if (queueLocal->back == MAX_QUEUE_LEN - 1) queueLocal->back = 0;
-		else queueLocal->back++;
+bool __enqueueA(QueueArray *self, int value) {
+	if (__queueAFull(self) != 1) {
+		self->queueArray[self->back] = value;
+		if (self->back == MAX_QUEUE_LEN - 1) self->back = 0;
+		else self->back++;
 		return true;
 	}
 	else {
@@ -269,7 +282,7 @@ bool __enqueueA(QueueArray *queueLocal, int value) {
 	}
 }
 
-//	__queueALastItem(QueueArray self);
+//	__queueALastItem(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
@@ -277,21 +290,21 @@ bool __enqueueA(QueueArray *queueLocal, int value) {
 //	int response = queue.lastItem(&queue);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //
 //	OUTUP:
 //	Last inserted value in the queue. (FIFO)
 //	
 //	Description:
 //  Returns the last inserted value
-int __queueALastItem(QueueArray *queueLocal) {
-	if (queueLocal->back == 0) 
-		return queueLocal->queueArray[MAX_QUEUE_LEN - 1];
-	else 
-		return queueLocal->queueArray[queueLocal->back - 1];
+int __queueALastItem(QueueArray *self) {
+	if (self->back == 0)
+		return self->queueArray[MAX_QUEUE_LEN - 1];
+	else
+		return self->queueArray[self->back - 1];
 }
 
-//	__queueAFirstItem(QueueArray self);
+//	__queueAFirstItem(QueueArray *self);
 //
 //	Using:
 //	QueueArray queue = newQueueArray();
@@ -299,15 +312,15 @@ int __queueALastItem(QueueArray *queueLocal) {
 //	int response = queue.firstItem(&queue);
 //
 //	INPUT: 
-//	QueueArray *queueLocal as self indicator.
+//	QueueArray *self as self indicator.
 //
 //	OUTUP:
 //	First inserted value in the queue. (FIFO)
 //	
 //	Description:
 //  Returns the first inserted value
-int __queueAFirstItem(QueueArray *queueLocal) {
-	return queueLocal->queueArray[queueLocal->front];
+int __queueAFirstItem(QueueArray *self) {
+	return self->queueArray[self->front];
 }
 
 //	newQueueArray(void);
@@ -319,21 +332,21 @@ int __queueAFirstItem(QueueArray *queueLocal) {
 //	Nothing
 //
 //	OUTUP:
-//	QueueArray queueLocal as a newly built structure.
+//	QueueArray self as a newly built structure.
 //	
 //	Description:
 //	Construction function of structure.
 QueueArray newQueueArray() {
-	QueueArray queueLocal;
-	queueLocal.front = 0;
-	queueLocal.back = 0;
-	queueLocal.enqueue = (void *)&__enqueueA;
-	queueLocal.dequeue = (void *)&__dequeueA;
-	queueLocal.lastItem = (void *)&__queueALastItem;
-	queueLocal.firstItem = (void *)&__queueAFirstItem;
-	queueLocal.isEmpty = (void *)&__queueAEmpty;
-	queueLocal.isFull = (void *)&__queueAFull;
-	return queueLocal;
+	QueueArray self;
+	self.front = 0;
+	self.back = 0;
+	self.enqueue = (void *)&__enqueueA;
+	self.dequeue = (void *)&__dequeueA;
+	self.lastItem = (void *)&__queueALastItem;
+	self.firstItem = (void *)&__queueAFirstItem;
+	self.isEmpty = (void *)&__queueAEmpty;
+	self.isFull = (void *)&__queueAFull;
+	return self;
 }
 
 #pragma endregion
@@ -345,53 +358,67 @@ QueueArray newQueueArray() {
 
 // DEPRECATED, FULLY DOCUMENTED
 #pragma region Ordered List (Array implementation)
+//
+// OrderedList
+//
 
-//	__oListIsAEmpty(OrderedList self);
+// DEFINITIONS
+bool __oListIsEmpty(OrderedList *self);						// ===> list.isEmpty(&list);
+bool __oListIsFull(OrderedList *self);						// ===> list.isFull(&list);
+bool __oListInsert(OrderedList *self, int value);			// ===> list.insert(&list, 20);
+bool __oListRemove(OrderedList *self, int value);			// ===> list.remove(&list, 20);
+bool __oListRemoveAtIndex(OrderedList *self, int index);	// ===> list.removeAtIndex(&list, 3);
+int __oListGetItem(OrderedList *self, int index);			// ===> list.getItem(&list, 3);
+int __oListLastItem(OrderedList *self);						// ===> list.lastItem(&list);
+int __oListFirtItem(OrderedList *self);						// ===> list.firstItem(&list);
+int __oListItemAmout(OrderedList *self);					// ===> list.itemAmout(&list);
+
+//	__oListIsAEmpty(OrderedList *self);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
 //	bool response = list.isEmpty(&list);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of list, if it's empty or not.
-bool __oListIsEmpty(OrderedList *OList) {
-	if (OList->endIndex == 0) return true;
+bool __oListIsEmpty(OrderedList *self) {
+	if (self->endIndex == 0) return true;
 	return false;
 }
 
-//	__oListIsFull(OrderedList self);
+//	__oListIsFull(OrderedList *self);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
 //	bool response = list.isFull(&list);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of list, if it's full or not.
-bool __oListIsFull(OrderedList *OList) {
-	if (OList->endIndex == MAX_ORDERED_LIST_LEN) return true;
+bool __oListIsFull(OrderedList *self) {
+	if (self->endIndex == MAX_ORDERED_LIST_LEN) return true;
 	return false;
 }
 
-//	__oListInsert(OrderedList self, int value);
+//	__oListInsert(OrderedList *self, int value);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
 //	bool response = list.insert(&list, 20);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //	int value as item to be added in the list
 //
 //	OUTPUT:
@@ -399,22 +426,22 @@ bool __oListIsFull(OrderedList *OList) {
 //	
 //	Description:
 //	Inserts a new item in the list, returns a response about insertion.
-bool __oListInsert(OrderedList *OList, int value) {
-	if (__oListIsFull(OList) == false) {
+bool __oListInsert(OrderedList *self, int value) {
+	if (__oListIsFull(self) == false) {
 		int i, j;
-		for (i = 0; i < OList->endIndex; i++)
-			if (OList->orderedListArray[i] > value) break;
-		if (OList->endIndex > 0)
-			for (j = OList->endIndex; j > i; j--)
-				OList->orderedListArray[j] = OList->orderedListArray[j - 1];
-		OList->orderedListArray[i] = value;
-		OList->endIndex++;
+		for (i = 0; i < self->endIndex; i++)
+			if (self->orderedListArray[i] > value) break;
+		if (self->endIndex > 0)
+			for (j = self->endIndex; j > i; j--)
+				self->orderedListArray[j] = self->orderedListArray[j - 1];
+		self->orderedListArray[i] = value;
+		self->endIndex++;
 		return true;
 	}
 	return false;
 }
 
-//	__oListRemove(OrderedList self, int value);
+//	__oListRemove(OrderedList *self, int value);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -422,7 +449,7 @@ bool __oListInsert(OrderedList *OList, int value) {
 //	bool response = list.remove(&list, 20);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //	int value as item to be removed in the list
 //
 //	OUTPUT:
@@ -430,32 +457,32 @@ bool __oListInsert(OrderedList *OList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oListRemove(OrderedList *OList, int value) {
-	if (__oListIsEmpty(OList) == false) {
+bool __oListRemove(OrderedList *self, int value) {
+	if (__oListIsEmpty(self) == false) {
 		int i, j;
 		bool breaked = false;
 		// Search value in the list.
-		for (i = 0; i < OList->endIndex; i++)
-			if (OList->orderedListArray[i] == value) {
+		for (i = 0; i < self->endIndex; i++)
+			if (self->orderedListArray[i] == value) {
 				breaked = true;
 				break;
 			}
 
 		// Reorders values in the list.
-		for (j = i; j < OList->endIndex; j++) {
+		for (j = i; j < self->endIndex; j++) {
 			if (j + 1 < MAX_ORDERED_LIST_LEN)
-				OList->orderedListArray[j] = OList->orderedListArray[j + 1];
+				self->orderedListArray[j] = self->orderedListArray[j + 1];
 			else
-				OList->orderedListArray[j] = 0;
+				self->orderedListArray[j] = 0;
 		}
 
-		if (breaked == true) OList->endIndex--;
+		if (breaked == true) self->endIndex--;
 		return true;
 	}
 	return false;
 }
 
-//	__oListRemoveAtIndex(OrderedList self, int index);
+//	__oListRemoveAtIndex(OrderedList *self, int index);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -463,7 +490,7 @@ bool __oListRemove(OrderedList *OList, int value) {
 //	bool response = list.removeAtIndex(&list, 3);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //	int index as item's reference to be removed in the list
 //
 //	OUTPUT:
@@ -471,22 +498,22 @@ bool __oListRemove(OrderedList *OList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oListRemoveAtIndex(OrderedList *OList, int index) {
+bool __oListRemoveAtIndex(OrderedList *self, int index) {
 	int i = 0;
-	if ((__oListIsEmpty(OList) == false) && (index < OList->endIndex) && (index >= 0)) {
-		for (i = index; i < OList->endIndex; i++) {
+	if ((__oListIsEmpty(self) == false) && (index < self->endIndex) && (index >= 0)) {
+		for (i = index; i < self->endIndex; i++) {
 			if (i + 1 < MAX_ORDERED_LIST_LEN)
-				OList->orderedListArray[i] = OList->orderedListArray[i + 1];
+				self->orderedListArray[i] = self->orderedListArray[i + 1];
 			else
-				OList->orderedListArray[i] = 0;
+				self->orderedListArray[i] = 0;
 		}
-		OList->endIndex--;
+		self->endIndex--;
 		return true;
 	}
 	return false;
 }
 
-//	__oListGetItem(OrderedList self, int index);
+//	__oListGetItem(OrderedList *self, int index);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -494,7 +521,7 @@ bool __oListRemoveAtIndex(OrderedList *OList, int index) {
 //	int response = list.getItem(&list, 3);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //	int index as item's reference 
 //
 //	OUTPUT:
@@ -502,13 +529,13 @@ bool __oListRemoveAtIndex(OrderedList *OList, int index) {
 //	
 //	Description:
 //	Returns an item in the list
-int __oListGetItem(OrderedList *OList, int index) {
-	if (index < OList->endIndex && index >= 0)
-		return OList->orderedListArray[index];
+int __oListGetItem(OrderedList *self, int index) {
+	if (index < self->endIndex && index >= 0)
+		return self->orderedListArray[index];
 	return false;
 }
 
-//	__oListLastItem(OrderedList self);
+//	__oListLastItem(OrderedList *self);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -516,18 +543,18 @@ int __oListGetItem(OrderedList *OList, int index) {
 //	int response = list.lastItem(&list);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //
 //	OUTPUT:
 //  Last list item as integer.	
 //	
 //	Description:
 //	Returns a last item in the list.
-int __oListLastItem(OrderedList *OList) {
-	return OList->orderedListArray[OList->endIndex - 1];
+int __oListLastItem(OrderedList *self) {
+	return self->orderedListArray[self->endIndex - 1];
 }
 
-//	__oListFirstItem(OrderedList self);
+//	__oListFirstItem(OrderedList *self);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -535,18 +562,18 @@ int __oListLastItem(OrderedList *OList) {
 //	int response = list.firstItem(&list);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //
 //	OUTPUT:
 //  First list item as integer.	
 //	
 //	Description:
 //	Returns a first item in the list.
-int __oListFirtItem(OrderedList *OList) {
-	return OList->orderedListArray[0];
+int __oListFirtItem(OrderedList *self) {
+	return self->orderedListArray[0];
 }
 
-//	__oListItemAmout(OrderedList self);
+//	__oListItemAmout(OrderedList *self);
 //
 //	Using:
 //	OrderedList list = newOrderedList();
@@ -554,15 +581,15 @@ int __oListFirtItem(OrderedList *OList) {
 //	int response = list.itemAmout(&list);
 //
 //	INPUT: 
-//	OrderedList *OList as self indicator.
+//	OrderedList *self as self indicator.
 //
 //	OUTPUT:
 //  Item amout as integer.	
 //	
 //	Description:
 //  Returns the amount of items in the list.
-int __oListItemAmout(OrderedList *OList) {
-	return OList->endIndex;
+int __oListItemAmout(OrderedList *self) {
+	return self->endIndex;
 }
 
 //	newOrderedList(void);
@@ -574,73 +601,87 @@ int __oListItemAmout(OrderedList *OList) {
 //	Nothing
 //
 //	OUTUP:
-//	OrderedList OListLocal as a newly built structure.
+//	OrderedList self as a newly built structure.
 //	
 //	Description:
 //	Construction function of structure.
 OrderedList newOrderedList() {
-	OrderedList OListLocal;
-	OListLocal.endIndex = 0;
-	OListLocal.insert = (void *)&__oListInsert;
-	OListLocal.remove = (void *)&__oListRemove;
-	OListLocal.removeAtIndex = (void *)&__oListRemoveAtIndex;
-	OListLocal.getItem = (void *)&__oListGetItem;
-	OListLocal.lastItem = (void *)&__oListLastItem;
-	OListLocal.firstItem = (void *)&__oListFirtItem;
-	OListLocal.isEmpty = (void *)&__oListIsEmpty;
-	OListLocal.isFull = (void *)&__oListIsFull;
-	OListLocal.itemAmount = (void *)&__oListItemAmout;
-	return OListLocal;
+	OrderedList self;
+	self.endIndex = 0;
+	self.insert = (void *)&__oListInsert;
+	self.remove = (void *)&__oListRemove;
+	self.removeAtIndex = (void *)&__oListRemoveAtIndex;
+	self.getItem = (void *)&__oListGetItem;
+	self.lastItem = (void *)&__oListLastItem;
+	self.firstItem = (void *)&__oListFirtItem;
+	self.isEmpty = (void *)&__oListIsEmpty;
+	self.isFull = (void *)&__oListIsFull;
+	self.itemAmount = (void *)&__oListItemAmout;
+	return self;
 }
 
 #pragma endregion
 
 // FULLY DOCUMENTED, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Linked Node implementation)
+//
+// OrderedLinkedList
+//
 
-//	__oLListIsAEmpty(OrderedLinkedList self);
+// DEFINITIONS
+bool __oLListIsEmpty(OrderedLinkedList *self);						// ===> list.isEmpty(&list);
+void __oLListInsert(OrderedLinkedList * self, int value);			// ===> list.insert(&list, 20);
+bool __oLListRemove(OrderedLinkedList * self, int value);			// ===>	list.remove(&list, 20);
+bool __oLListRemoveAtIndex(OrderedLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
+int __oLListGetItem(OrderedLinkedList * self, int index);			// ===> list.getItem(&list, 3);
+int __oLListLastItem(OrderedLinkedList * self);						// ===> list.lastItem(&list);
+int __oLListFirstItem(OrderedLinkedList * self);					// ===> list.firstItem(&list);
+int __oLListItemAmout(OrderedLinkedList * self);					// ===> list.itemAmout(&list);
+void __oLListClear(OrderedLinkedList * self);						// ===> list.clear(&list);
+
+//	__oLListIsAEmpty(OrderedLinkedList *self);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
 //	bool response = list.isEmpty(&list);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of list, if it's empty or not.
-bool __oLListIsEmpty(OrderedLinkedList *OLList) {
-	if (OLList->start == NULL) return true;
+bool __oLListIsEmpty(OrderedLinkedList *self) {
+	if (self->start == NULL) return true;
 	return false;
 }
 
-//	__oLListInsert(OrderedLinkedList self, int value);
+//	__oLListInsert(OrderedLinkedList *self, int value);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
 //	bool response = list.insert(&list, 20);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //	int value as item to be added in the list
 //
 //	OUTPUT:
-//	true / false as response
+//	Nothing
 //	
 //	Description:
 //	Inserts a new item in the list, returns a response about insertion.
-void __oLListInsert(OrderedLinkedList *OLList, int value) {
+void __oLListInsert(OrderedLinkedList *self, int value) {
 	Node *prev, *next;
 	Node* temp = (Node*)malloc(sizeof(Node));
 	temp->data = value;
 	temp->next = NULL;
-	if (__oLListIsEmpty(OLList)) OLList->start = (void *)temp;
+	if (__oLListIsEmpty(self)) self->start = (void *)temp;
 	else {
 		prev = NULL;
-		next = (void *)OLList->start;
+		next = (void *)self->start;
 		// Search for a place to insert
 		while (next != NULL && next->data <= value) {
 			prev = (void *)next;
@@ -655,14 +696,14 @@ void __oLListInsert(OrderedLinkedList *OLList, int value) {
 			}
 			// Case: first item.
 			else {
-				temp->next = OLList->start;
-				OLList->start = (void *)temp;
+				temp->next = self->start;
+				self->start = (void *)temp;
 			}
 		}
 	}
 }
 
-//	__oLListRemove(OrderedLinkedList self, int value);
+//	__oLListRemove(OrderedLinkedList *self, int value);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -670,7 +711,7 @@ void __oLListInsert(OrderedLinkedList *OLList, int value) {
 //	bool response = list.remove(&list, 20);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //	int value as item to be removed in the list
 //
 //	OUTPUT:
@@ -678,14 +719,14 @@ void __oLListInsert(OrderedLinkedList *OLList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oLListRemove(OrderedLinkedList *OLList, int value) {
-	Node *current = (void *)OLList->start;
+bool __oLListRemove(OrderedLinkedList *self, int value) {
+	Node *current = (void *)self->start;
 	Node *prev = NULL;
 	while (current != NULL) {
 		if (current->data == value) {
 			// Delete
 			// Case: first item.
-			if (prev == NULL) OLList->start = (void *)current->next;
+			if (prev == NULL) self->start = (void *)current->next;
 			else prev->next = (void *)current->next;
 			free(current);
 			return true;
@@ -697,7 +738,7 @@ bool __oLListRemove(OrderedLinkedList *OLList, int value) {
 	return false;
 }
 
-//	__oLListRemoveAtIndex(OrderedLinkedList self, int index);
+//	__oLListRemoveAtIndex(OrderedLinkedList *self, int index);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -705,7 +746,7 @@ bool __oLListRemove(OrderedLinkedList *OLList, int value) {
 //	bool response = list.removeAtIndex(&list, 3);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //	int index as item's reference to be removed in the list
 //
 //	OUTPUT:
@@ -713,15 +754,15 @@ bool __oLListRemove(OrderedLinkedList *OLList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oLListRemoveAtIndex(OrderedLinkedList *OLList, int index) {
-	Node *current = (void *)OLList->start;
+bool __oLListRemoveAtIndex(OrderedLinkedList *self, int index) {
+	Node *current = (void *)self->start;
 	Node *prev = NULL;
 	int count = 0;
 	while (current->next != NULL) {
 		if (count == index) {
 			// Delete
 			// Case: first item.
-			if (prev == NULL) OLList->start = (void *)current->next;
+			if (prev == NULL) self->start = (void *)current->next;
 			else prev->next = (void *)current->next;
 			free(current);
 			return true;
@@ -734,7 +775,7 @@ bool __oLListRemoveAtIndex(OrderedLinkedList *OLList, int index) {
 	return false;
 }
 
-//	__oLListGetItem(OrderedLinkedList self, int index);
+//	__oLListGetItem(OrderedLinkedList *self, int index);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -742,7 +783,7 @@ bool __oLListRemoveAtIndex(OrderedLinkedList *OLList, int index) {
 //	int response = list.getItem(&list, 3);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //	int index as item's reference to be returned in the list
 //
 //	OUTPUT:
@@ -750,9 +791,9 @@ bool __oLListRemoveAtIndex(OrderedLinkedList *OLList, int index) {
 //	
 //	Description:
 //	Get an item in the list
-int __oLListGetItem(OrderedLinkedList *OLList, int index) {
-	if (__oLListIsEmpty(OLList) != true) {
-		Node *current = (void *)OLList->start;
+int __oLListGetItem(OrderedLinkedList *self, int index) {
+	if (__oLListIsEmpty(self) != true) {
+		Node *current = (void *)self->start;
 		int count = 0;
 		while (current != NULL) {
 			// Return an item
@@ -765,7 +806,7 @@ int __oLListGetItem(OrderedLinkedList *OLList, int index) {
 	return false;
 }
 
-//	__oLListLastItem(OrderedLinkedList self);
+//	__oLListLastItem(OrderedLinkedList *self);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -773,23 +814,23 @@ int __oLListGetItem(OrderedLinkedList *OLList, int index) {
 //	int response = list.lastItem(&list);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Last list item as integer.
 //	
 //	Description:
 //	Returns a last item in the list.
-int __oLListLastItem(OrderedLinkedList *OLList) {
-	if (__oLListIsEmpty(OLList) != true) {
-		Node *current = (void *)OLList->start;
+int __oLListLastItem(OrderedLinkedList *self) {
+	if (__oLListIsEmpty(self) != true) {
+		Node *current = (void *)self->start;
 		while (current->next != NULL) current = (void *)current->next;
 		return current->data;
 	}
 	return false;
 }
 
-//	__oLListFirstItem(OrderedLinkedList self);
+//	__oLListFirstItem(OrderedLinkedList *self);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -797,22 +838,22 @@ int __oLListLastItem(OrderedLinkedList *OLList) {
 //	int response = list.firstItem(&list);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  First list item as integer.	
 //	
 //	Description:
 //	Returns a first item in the list.
-int __oLListFirstItem(OrderedLinkedList *OLList) {
-	if (__oLListIsEmpty(OLList) != true) {
-		Node* current = (void *)OLList->start;
+int __oLListFirstItem(OrderedLinkedList *self) {
+	if (__oLListIsEmpty(self) != true) {
+		Node* current = (void *)self->start;
 		return current->data;
 	}
 	return false;
 }
 
-//	__oLListItemAmout(OrderedLinkedList self);
+//	__oLListItemAmout(OrderedLinkedList *self);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -820,16 +861,16 @@ int __oLListFirstItem(OrderedLinkedList *OLList) {
 //	int response = list.itemAmout(&list);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Item amout as integer.	
 //	
 //	Description:
 //  Returns the amount of items in the list.
-int __oLListItemAmout(OrderedLinkedList *OLList) {
+int __oLListItemAmout(OrderedLinkedList *self) {
 	int count = 0;
-	Node *current = (void *)OLList->start;
+	Node *current = (void *)self->start;
 	while (current != NULL) {
 		current = (void *)current->next;
 		count++;
@@ -837,7 +878,7 @@ int __oLListItemAmout(OrderedLinkedList *OLList) {
 	return count + 1;
 }
 
-//	__oLListClear(OrderedLinkedList self);
+//	__oLListClear(OrderedLinkedList *self);
 //
 //	Using:
 //	OrderedLinkedList list = newOrderedLinkedList();
@@ -845,21 +886,21 @@ int __oLListItemAmout(OrderedLinkedList *OLList) {
 //	list.clear(&list);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Nothing	
 //	
 //	Description:
 //  Clear the list completely, excluding all nodes.
-void __oLListClear(OrderedLinkedList *OLList) {
-	Node * current = (void *)OLList->start;
+void __oLListClear(OrderedLinkedList *self) {
+	Node * current = (void *)self->start;
 	while (current != NULL) {
 		DNode *temp = (void *)current->next;
 		free(current);
 		current = (void *)temp;
 	}
-	OLList->start = NULL;
+	self->start = NULL;
 }
 
 //	newOrderedLinkedList(void);
@@ -871,39 +912,51 @@ void __oLListClear(OrderedLinkedList *OLList) {
 //	Nothing
 //
 //	OUTUP:
-//	OrderedLinkedList OLList as a newly built structure.
+//	OrderedLinkedList self as a newly built structure.
 //	
 //	Description:
 //	Construction function of structure.
 OrderedLinkedList newOrderedLinkedList() {
-	OrderedLinkedList OLList;
-	OLList.start = NULL;
-	OLList.insert = (void *)&__oLListInsert;
-	OLList.remove = (void *)&__oLListRemove;
-	OLList.removeAtIndex = (void *)&__oLListRemoveAtIndex;
-	OLList.getItem = (void *)&__oLListGetItem;
-	OLList.isEmpty = (void *)&__oLListIsEmpty;
-	OLList.firstItem = (void *)&__oLListFirstItem;
-	OLList.lastItem = (void *)&__oLListLastItem;
-	OLList.itemAmount = (void *)&__oLListItemAmout;
-	OLList.clear = (void *)&__oLListClear;
-	return OLList;
+	OrderedLinkedList self;
+	self.start = NULL;
+	self.insert = (void *)&__oLListInsert;
+	self.remove = (void *)&__oLListRemove;
+	self.removeAtIndex = (void *)&__oLListRemoveAtIndex;
+	self.getItem = (void *)&__oLListGetItem;
+	self.isEmpty = (void *)&__oLListIsEmpty;
+	self.firstItem = (void *)&__oLListFirstItem;
+	self.lastItem = (void *)&__oLListLastItem;
+	self.itemAmount = (void *)&__oLListItemAmout;
+	self.clear = (void *)&__oLListClear;
+	return self;
 }
 
 #pragma endregion
 
-// DOCUMENTING, NEW FEATURES CAN BE ADDED
+// FULLY DOCUMENTED,, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Doubly Linked Node implementation)
+//
+// OrderedLinkedList
+//
+
+// DEFINITIONS
+void __oDLListInsert(OrderedDoublyLinkedList * self, int value);		// ===> list.insert(&list, 20);
+bool __oDLListRemove(OrderedDoublyLinkedList * self, int value);		// ===> list.remove(&list, 20);
+bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
+int __oDLListGetItem(OrderedDoublyLinkedList * self, int index);		// ===> list.getItem(&list, 3);
+int __oDLListLastItem(OrderedDoublyLinkedList * self);					// ===> list.lastItem(&list);
+int __oDLListFirstItem(OrderedDoublyLinkedList * self);					// ===> list.firstItem(&list);
+bool __oDLListIsEmpty(OrderedDoublyLinkedList * self);					// ===> list.isEmpty(&list);
+int __oDLListItemAmout(OrderedDoublyLinkedList * self);					// ===> list.itemAmout(&list);
+void __oDLListClear(OrderedDoublyLinkedList * self);					// ===> list.clear(&list);
+
+DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);			// ===> INTERNAL USE
 
 //  LIBRARY INTERNAL USE
-//	__oDLListFind(OrderedDoublyLinkedList self, int value);
-//
-//	Using:
-//	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
-//	DNode *temp = list.isEmpty(&list, 20);
+//	__oDLListFind(OrderedDoublyLinkedList * self, int value);
 //
 //	INPUT: 
-//	OrderedLinkedList *OLList as self indicator.
+//	OrderedLinkedList *self as self indicator.
 //  int value as reference to find a node.
 //
 //	OUTPUT:
@@ -911,22 +964,22 @@ OrderedLinkedList newOrderedLinkedList() {
 //	
 //	Description:
 //	Find a list item and return it.
-DNode* __oDLListFind(OrderedDoublyLinkedList *ODLList, int value) {
-	DNode *temp = (void *)ODLList->start;
+DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value) {
+	DNode *temp = (void *)self->start;
 	if (temp == NULL) return NULL;
 	while (temp->next != NULL && ((DNode*)temp->next)->data < value)
 		temp = (void *)temp->next;
 	return temp;
 }
 
-//	__oDLListInsert(OrderedDoublyLinkedList self, int value);
+//	__oDLListInsert(OrderedDoublyLinkedList * self, int value);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
 //	bool response = list.insert(&list, 20);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //	int value as item to be added in the list
 //
 //	OUTPUT:
@@ -934,14 +987,14 @@ DNode* __oDLListFind(OrderedDoublyLinkedList *ODLList, int value) {
 //	
 //	Description:
 //	Inserts a new item in the list, returns a response about insertion.
-void __oDLListInsert(OrderedDoublyLinkedList *ODLList, int value) {
-	DNode *prev = __oDLListFind(ODLList, value);
+void __oDLListInsert(OrderedDoublyLinkedList *self, int value) {
+	DNode *prev = __oDLListFind(self, value);
 	DNode *current = (DNode *)malloc(sizeof(DNode));
 	current->data = value;
 	if (prev == NULL || prev->data > value) {
 		// First item
-		current->next = ODLList->start;
-		ODLList->start = (void *)current;
+		current->next = self->start;
+		self->start = (void *)current;
 		if (current->next != NULL)
 			((DNode*)current->next)->previous = (void *)current;
 		current->previous = NULL;
@@ -955,7 +1008,7 @@ void __oDLListInsert(OrderedDoublyLinkedList *ODLList, int value) {
 	}
 }
 
-//	__oDLListRemove(OrderedDoublyLinkedList self, int value);
+//	__oDLListRemove(OrderedDoublyLinkedList * self, int value);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -963,7 +1016,7 @@ void __oDLListInsert(OrderedDoublyLinkedList *ODLList, int value) {
 //	bool response = list.remove(&list, 20);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //	int value as item to be removed in the list
 //
 //	OUTPUT:
@@ -971,20 +1024,20 @@ void __oDLListInsert(OrderedDoublyLinkedList *ODLList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oDLListRemove(OrderedDoublyLinkedList *ODLList, int value) {
-	DNode * current = (void *)ODLList->start;
+bool __oDLListRemove(OrderedDoublyLinkedList *self, int value) {
+	DNode * current = (void *)self->start;
 	while (current != NULL && current->data != value) {
 		current = (void *)current->next;
 	}
 	if (current == NULL) return false;
 	if (current->next != NULL) ((DNode *)current->next)->previous = current->previous;
 	if (current->previous != NULL) ((DNode *)current->previous)->next = current->next;
-	else ODLList->start = current->next;
+	else self->start = current->next;
 	free(current);
 	return true;
 }
 
-//	__oDLListRemoveAtIndex(OrderedDoublyLinkedList self, int index);
+//	__oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -992,7 +1045,7 @@ bool __oDLListRemove(OrderedDoublyLinkedList *ODLList, int value) {
 //	bool response = list.removeAtIndex(&list, 3);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *OLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //	int index as item's reference to be removed in the list
 //
 //	OUTPUT:
@@ -1000,8 +1053,8 @@ bool __oDLListRemove(OrderedDoublyLinkedList *ODLList, int value) {
 //	
 //	Description:
 //	Removes an item in the list, returns a response about the remotion
-bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList *ODLList, int index) {
-	DNode * current = (void *)ODLList->start;
+bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList *self, int index) {
+	DNode * current = (void *)self->start;
 	int count = 0;
 	while (current != NULL) {
 		if (count == index) break;
@@ -1011,12 +1064,12 @@ bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList *ODLList, int index) {
 	if (current == NULL) return false;
 	if (current->next != NULL) ((DNode *)current->next)->previous = current->previous;
 	if (current->previous != NULL) ((DNode *)current->previous)->next = current->next;
-	else ODLList->start = current->next;
+	else self->start = current->next;
 	free(current);
 	return true;
 }
 
-//	__oDLListGetItem(OrderedDoublyLinkedList self, int index);
+//	__oDLListGetItem(OrderedDoublyLinkedList * self, int index);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -1024,7 +1077,7 @@ bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList *ODLList, int index) {
 //	int response = list.getItem(&list, 3);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //	int index as item's reference to be returned in the list
 //
 //	OUTPUT:
@@ -1032,8 +1085,8 @@ bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList *ODLList, int index) {
 //	
 //	Description:
 //	Get an item in the list
-int __oDLListGetItem(OrderedDoublyLinkedList *ODLList, int index) {
-	DNode * current = (void *)ODLList->start;
+int __oDLListGetItem(OrderedDoublyLinkedList *self, int index) {
+	DNode * current = (void *)self->start;
 	int count = 0;
 	while (current != NULL) {
 		if (count == index) break;
@@ -1044,7 +1097,7 @@ int __oDLListGetItem(OrderedDoublyLinkedList *ODLList, int index) {
 	else return current->data;
 }
 
-//	__oDLListLastItem(OrderedDoublyLinkedList self);
+//	__oDLListLastItem(OrderedDoublyLinkedList * self);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -1052,21 +1105,21 @@ int __oDLListGetItem(OrderedDoublyLinkedList *ODLList, int index) {
 //	int response = list.lastItem(&list);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Last list item as integer.
 //	
 //	Description:
 //	Returns a last item in the list.
-int __oDLListLastItem(OrderedDoublyLinkedList *ODLList) {
-	if (ODLList->start == NULL) return false;
-	DNode * current = (void *)ODLList->start;
+int __oDLListLastItem(OrderedDoublyLinkedList *self) {
+	if (self->start == NULL) return false;
+	DNode * current = (void *)self->start;
 	while (current->next != NULL) current = (void *)current->next;
 	return current->data;
 }
 
-//	__oDLListFirstItem(OrderedDoublyLinkedList self);
+//	__oDLListFirstItem(OrderedDoublyLinkedList * self);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -1074,37 +1127,37 @@ int __oDLListLastItem(OrderedDoublyLinkedList *ODLList) {
 //	int response = list.firstItem(&list);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  First list item as integer.	
 //	
 //	Description:
 //	Returns a first item in the list.
-int __oDLListFirstItem(OrderedDoublyLinkedList *ODLList) {
-	if (ODLList->start == NULL) return false;
-	else return ((DNode *)ODLList->start)->data;
+int __oDLListFirstItem(OrderedDoublyLinkedList *self) {
+	if (self->start == NULL) return false;
+	else return ((DNode *)self->start)->data;
 }
 
-//	__oDLListIsAEmpty(OrderedDoublyLinkedList self);
+//	__oDLListIsAEmpty(OrderedDoublyLinkedList * self);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
 //	bool response = list.isEmpty(&list);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //	true / false as response
 //	
 //	Description:
 //	Returns the current state of list, if it's empty or not.
-bool __oDLListIsEmpty(OrderedDoublyLinkedList *ODLList) {
-	return (ODLList->start == NULL);
+bool __oDLListIsEmpty(OrderedDoublyLinkedList *self) {
+	return (self->start == NULL);
 }
 
-//	__oDLListItemAmout(OrderedDoublyLinkedList self);
+//	__oDLListItemAmout(OrderedDoublyLinkedList * self);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -1112,16 +1165,16 @@ bool __oDLListIsEmpty(OrderedDoublyLinkedList *ODLList) {
 //	int response = list.itemAmout(&list);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Item amout as integer.	
 //	
 //	Description:
 //  Returns the amount of items in the list.
-int __oDLListItemAmout(OrderedDoublyLinkedList *ODLList) {
+int __oDLListItemAmout(OrderedDoublyLinkedList *self) {
 	int count = 0;
-	DNode *current = (void *)ODLList->start;
+	DNode *current = (void *)self->start;
 	while (current != NULL) {
 		current = (void *)current->next;
 		count++;
@@ -1129,7 +1182,7 @@ int __oDLListItemAmout(OrderedDoublyLinkedList *ODLList) {
 	return count + 1;
 }
 
-//	__oDLListClear(OrderedDoublyLinkedList self);
+//	__oDLListClear(OrderedDoublyLinkedList * self);
 //
 //	Using:
 //	OrderedDoublyLinkedList list = newOrderedDoublyLinkedList();
@@ -1137,21 +1190,21 @@ int __oDLListItemAmout(OrderedDoublyLinkedList *ODLList) {
 //	list.clear(&list);
 //
 //	INPUT: 
-//	OrderedDoublyLinkedList *ODLList as self indicator.
+//	OrderedDoublyLinkedList *self as self indicator.
 //
 //	OUTPUT:
 //  Nothing	
 //	
 //	Description:
 //  Clear the list completely, excluding all nodes.
-void __oDLListClear(OrderedDoublyLinkedList *ODLList) {
-	DNode * current = (void *)ODLList->start;
+void __oDLListClear(OrderedDoublyLinkedList *self) {
+	DNode * current = (void *)self->start;
 	while (current != NULL) {
 		DNode *temp = (void *)current->next;
 		free(current);
 		current = temp;
 	}
-	ODLList->start = NULL;
+	self->start = NULL;
 }
 
 //	newOrderedDoublyLinkedList(void);
@@ -1163,30 +1216,75 @@ void __oDLListClear(OrderedDoublyLinkedList *ODLList) {
 //	Nothing
 //
 //	OUTUP:
-//	OrderedDoublyLinkedList ODLList as a newly built structure.
+//	OrderedDoublyLinkedList self as a newly built structure.
 //	
 //	Description:
 //	Construction function of structure.
 OrderedDoublyLinkedList newOrderedDoublyLinkedList() {
-	OrderedDoublyLinkedList ODLList;
-	ODLList.start = NULL;
-	ODLList.insert = (void *)&__oDLListInsert;
-	ODLList.remove = (void *)&__oDLListRemove;
-	ODLList.removeAtIndex = (void *)&__oDLListRemoveAtIndex;
-	ODLList.getItem = (void *)&__oDLListGetItem;
-	ODLList.lastItem = (void *)&__oDLListLastItem;
-	ODLList.firstItem = (void *)&__oDLListFirstItem;
-	ODLList.isEmpty = (void *)&__oDLListIsEmpty;
-	ODLList.itemAmount = (void *)&__oDLListItemAmout;
-	ODLList.clear = (void *)&__oDLListClear;
-	return ODLList;
+	OrderedDoublyLinkedList self;
+	self.start = NULL;
+	self.insert = (void *)&__oDLListInsert;
+	self.remove = (void *)&__oDLListRemove;
+	self.removeAtIndex = (void *)&__oDLListRemoveAtIndex;
+	self.getItem = (void *)&__oDLListGetItem;
+	self.lastItem = (void *)&__oDLListLastItem;
+	self.firstItem = (void *)&__oDLListFirstItem;
+	self.isEmpty = (void *)&__oDLListIsEmpty;
+	self.itemAmount = (void *)&__oDLListItemAmout;
+	self.clear = (void *)&__oDLListClear;
+	return self;
 }
 
 #pragma endregion
 
-// DOCUMENTING, NEW FEATURES CAN BE ADDED
+// FULLY DOCUMENTED,, NEW FEATURES CAN BE ADDED
 #pragma region Binary Tree
+//
+// OrderedLinkedList
+//
 
+// DEFINITIONS
+#define callbackForTNode void (*function)(struct TNode*, int *counter)
+
+TNode * __bTSearchLowerValue(TNode * pointerNode);									// ===> INTERNAL USE
+TNode * __bTSearchHighValue(TNode* pointerNode);									// 
+int __bTHeightNode(TNode *pointerNode);												//
+void __bTFreeNode(TNode * pointerNode, int *null);									//
+void __bTPrintNode(TNode * pointerNode, int *null);									//
+void __bTCounter(TNode *null, int *counter);										//
+void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
+void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
+void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
+void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);	//
+void __bTInsertNode(TNode** pointerNode, int value);								//
+TNode* __bTRemoveNode(TNode** pointerNode, int value);								//
+
+int __bTLowerValue(BinaryTree *self);				// ===> tree.lowerValue(&tree);
+int __bTHighValue(BinaryTree *self);				// ===> tree.higherValue(&tree);
+int __bTHeight(BinaryTree *self);					// ===> tree.height(&tree);
+bool __bTIsEmpty(BinaryTree *self);					// ===> tree.isEmpty(&tree);
+void __bTClear(BinaryTree *self);					// ===> tree.clear(&tree);
+void __bTPrintInPreOrder(BinaryTree *self);			// ===> tree.printInPreOrder(&tree);
+void __bTPrintInPostOrder(BinaryTree *self);		// ===> tree.printInPostOrder(&tree);
+void __bTPrintInOrder(BinaryTree *self);			// ===> tree.printInOrder(&tree);
+void __bTPrintPerLevel(BinaryTree *self);			// ===> tree.printPerLevel(&tree);
+int __bTItemAmout(BinaryTree *self);				// ===> tree.itemAmount(&tree);
+void __bTInsert(BinaryTree *self, int value);		// ===> tree.insert(&tree, 20);
+bool __bTRemove(BinaryTree *self, int value);		// ===> tree.remove(&tree, 20);
+
+// INTERNAL USE SECTION
+
+//  LIBRARY INTERNAL USE
+//	__bTSearchLowerValue(TNode *pointerNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Return a TNode pointer in the tree.
+//	
+//	Description:
+//	Find a tree item with lower value and return it.
 TNode* __bTSearchLowerValue(TNode* pointerNode) {
 	if (pointerNode == NULL) return NULL;
 	while (pointerNode->left != NULL) {
@@ -1195,11 +1293,17 @@ TNode* __bTSearchLowerValue(TNode* pointerNode) {
 	return pointerNode;
 }
 
-int __bTLowerValue(BinaryTree *BTree) {
-	TNode * Node = (void *)__bTSearchLowerValue((void *)BTree->root);
-	return Node != NULL ? Node->data : false;
-}
-
+//  LIBRARY INTERNAL USE
+//	__bTSearchHighValue(TNode *pointerNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Return a TNode pointer in the tree.
+//	
+//	Description:
+//	Find a tree item with higher value and return it.
 TNode* __bTSearchHighValue(TNode* pointerNode) {
 	if (pointerNode == NULL) return NULL;
 	while (pointerNode->right != NULL) {
@@ -1208,11 +1312,17 @@ TNode* __bTSearchHighValue(TNode* pointerNode) {
 	return pointerNode;
 }
 
-int __bTHighValue(BinaryTree *BTree) {
-	TNode * Node = __bTSearchHighValue((void *)BTree->root);
-	return Node != NULL ? Node->data : false;
-}
-
+//  LIBRARY INTERNAL USE
+//	__bTHeightNode(TNode *pointerNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Return a int as height counter
+//	
+//	Description:
+//	Find the tree height
 int __bTHeightNode(TNode *pointerNode) {
 	if (pointerNode == NULL) return -1;
 	int lHighValue = __bTHeightNode((void *)pointerNode->left);
@@ -1223,29 +1333,70 @@ int __bTHeightNode(TNode *pointerNode) {
 		return rHighValue + 1;
 }
 
-int __bTHeight(BinaryTree *BTree) {
-	int value = __bTHeightNode((void *)BTree->root);
-	return value == -1 ? -1 : value;
-}
-
-bool __bTIsEmpty(BinaryTree *BTree) {
-	return (BTree->root == NULL);
-}
-
+//  LIBRARY INTERNAL USE
+//	__bTFreeNode(TNode *pointerNode, NULL);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * null as NULL
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Frees a tree node.
 void __bTFreeNode(TNode * pointerNode, int *null) {
 	free(pointerNode);
 	pointerNode = NULL;
 }
 
+//  LIBRARY INTERNAL USE
+//	__bTPrintNode(TNode *pointerNode, NULL);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * null as NULL
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints a tree node.
 void __bTPrintNode(TNode * pointerNode, int *null) {
 	printf("%d ", pointerNode->data);
 }
 
+//  LIBRARY INTERNAL USE
+//	__bTCounter(NULL, int * counter);
+//
+//	INPUT: 
+//	TNode *null as NULL.
+//	int * counter as node counter.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Add one more unit to the counter
 void __bTCounter(TNode *null, int *counter) {
 	(*counter)++;
 }
 
-void __bTPreOrder(TNode *pointerNode, int* counter, void * (function)(struct TNode*, int *counter)) {
+//  LIBRARY INTERNAL USE
+//	__bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForTNode as "void (*function)(struct TNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Preorder" and performs the function sent via callback
+void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 	if (pointerNode != NULL) {
 		(void)function((void *)pointerNode, counter);
 		__bTPreOrder((void *)pointerNode->left, counter, function);
@@ -1253,7 +1404,21 @@ void __bTPreOrder(TNode *pointerNode, int* counter, void * (function)(struct TNo
 	}
 }
 
-void __bTPostOrder(TNode *pointerNode, int* counter, void * (function)(struct TNode*, int *counter)) {
+//  LIBRARY INTERNAL USE
+//	__bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForTNode as "void (*function)(struct TNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Postorder" and performs the function sent via callback
+void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 	if (pointerNode != NULL) {
 		__bTPostOrder((void *)pointerNode->left, counter, function);
 		__bTPostOrder((void *)pointerNode->right, counter, function);
@@ -1261,7 +1426,21 @@ void __bTPostOrder(TNode *pointerNode, int* counter, void * (function)(struct TN
 	}
 }
 
-void __bTInOrder(TNode *pointerNode, int* counter, void * (function)(struct TNode*, int *counter)) {
+//  LIBRARY INTERNAL USE
+//	__bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForTNode as "void (*function)(struct TNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Inorder" and performs the function sent via callback
+void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 	if (pointerNode != NULL) {
 		__bTInOrder((void *)pointerNode->left, counter, function);
 		(void)function((void *)pointerNode, counter);
@@ -1269,7 +1448,22 @@ void __bTInOrder(TNode *pointerNode, int* counter, void * (function)(struct TNod
 	}
 }
 
-void __bTPerLevel(TNode *pointerNode, int* counter, int level, void * (function)(struct TNode*, int *counter)) {
+//  LIBRARY INTERNAL USE
+//	__bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//	int level as current level.
+//  callbackForTNode as "void (*function)(struct TNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the level of tree using "Perlevel" and performs the function sent via callback
+void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode) {
 	if (pointerNode == NULL) return;
 	if (level == 0)
 		(void)function((void *)pointerNode, counter);
@@ -1279,103 +1473,348 @@ void __bTPerLevel(TNode *pointerNode, int* counter, int level, void * (function)
 	}
 }
 
-void __bTClear(BinaryTree *BTree) {
-	if (BTree->root != NULL) __bTPostOrder((void *)BTree->root, NULL, (void *)&__bTFreeNode);
-	BTree->root = NULL;
-}
-
-void __bTPrintInPreOrder(BinaryTree *BTree) {
-	if (BTree->root != NULL) __bTPreOrder((void *)BTree->root, NULL, (void *)&__bTPrintNode);
-}
-
-void __bTPrintInPostOrder(BinaryTree *BTree) {
-	if (BTree->root != NULL) __bTPostOrder((void *)BTree->root, NULL, (void *)&__bTPrintNode);
-}
-
-void __bTPrintInOrder(BinaryTree *BTree) {
-	if (BTree->root != NULL) __bTInOrder((void *)BTree->root, NULL, (void *)&__bTPrintNode);
-}
-
-void __bTPrintPerLevel(BinaryTree *BTree) {
-	if (BTree->root != NULL) {
-		int h = __bTHeight((void*)BTree);
-		int i = 0;
-		for (i = 0; i <= h; i++)
-			__bTPerLevel((void *)BTree->root, NULL, i, (void *)&__bTPrintNode);
+//  LIBRARY INTERNAL USE
+//	__bTInsertNode(TNode **pointerNode, int value);
+//
+//	INPUT: 
+//	TNode **pointerNode as pointer to a pointer that points to an node.
+//	int value as item to be added in the tree
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Inserts a new node in the tree.
+void __bTInsertNode(TNode** pointerNode, int value) {
+	if (*pointerNode == NULL) {
+		*pointerNode = malloc(sizeof(TNode));
+		(*pointerNode)->data = value;
+		(*pointerNode)->left = NULL;
+		(*pointerNode)->right = NULL;
+	}
+	else {
+		if (value < (*pointerNode)->data)
+			__bTInsertNode((void *)&(*pointerNode)->left, value);
+		else
+			__bTInsertNode((void *)&(*pointerNode)->right, value);
 	}
 }
 
-int __bTItemAmout(BinaryTree *BTree) {
+//  LIBRARY INTERNAL USE
+//	__bTRemoveNode(TNode **pointerNode, int value);
+//
+//	INPUT: 
+//	TNode **pointerNode as pointer to a pointer that points to an node.
+//	int value as item to be removed from the tree
+//
+//	OUTPUT:
+//	Returns a TNode used in recursive execution.
+//	
+//	Description:
+//	Removes a node from the tree.
+TNode* __bTRemoveNode(TNode** pointerNode, int value) {
+	if ((*pointerNode) == NULL) return NULL;
+	if (value < (*pointerNode)->data)
+		(*pointerNode)->left = (void *)__bTRemoveNode((void *)&((*pointerNode)->left), value);
+	else if (value >(*pointerNode)->data)
+		(*pointerNode)->right = (void *)__bTRemoveNode((void *)&((*pointerNode)->right), value);
+	else {
+		if ((*pointerNode)->left == NULL) {
+			TNode* temp = (void*)(*pointerNode)->right;
+			free((*pointerNode));
+			(*pointerNode) = temp;
+			return temp;
+		}
+		else if ((*pointerNode)->right == NULL) {
+			TNode* temp = (void*)(*pointerNode)->left;
+			free((*pointerNode));
+			(*pointerNode) = temp;
+			return temp;
+		}
+		TNode* temp = (void*)__bTSearchLowerValue((void *)&((*pointerNode)->right));
+		(*pointerNode)->data = temp->data;
+		(*pointerNode)->right = (void *)__bTRemoveNode((void *)&((*pointerNode)->right), temp->data);
+	}
+	return (*pointerNode);
+}
+
+// EXTERNAL USE SECTION
+
+//	__bTLowerValue(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	int response = tree.lowerValue(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as value of lower node.
+//	
+//	Description:
+//	Calls __bTSearchLowerValue(self->root);
+int __bTLowerValue(BinaryTree *self) {
+	TNode * Node = (void *)__bTSearchLowerValue((void *)self->root);
+	return Node != NULL ? Node->data : false;
+}
+
+//	__bTHighValue(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	int response = tree.higherValue(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as value of higher node.
+//	
+//	Description:
+//	Calls __bTSearchHighValue(self->root);
+int __bTHighValue(BinaryTree *self) {
+	TNode * Node = __bTSearchHighValue((void *)self->root);
+	return Node != NULL ? Node->data : false;
+}
+
+//	__bTHeight(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	int response = tree.height(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as height of the tree.
+//	
+//	Description:
+//	Calls __bTHeightNode(self->root);
+int __bTHeight(BinaryTree *self) {
+	int value = __bTHeightNode((void *)self->root);
+	return value == -1 ? -1 : value;
+}
+
+//	__bTIsEmpty(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree list = newBinaryTree();
+//	bool response = tree.isEmpty(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	true / false as response
+//	
+//	Description:
+//	Returns the current state of tree, if it's empty or not.
+bool __bTIsEmpty(BinaryTree *self) {
+	return (self->root == NULL);
+}
+
+//	__bTClear(BinaryTree * self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.clear(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//  Nothing	
+//	
+//	Description:
+//  Clear the tree completely, excluding all nodes.
+//  Calls __bTPostOrder(self->root, NULL, &__bTFreeNode)
+void __bTClear(BinaryTree *self) {
+	if (self->root != NULL) __bTPostOrder((void *)self->root, NULL, (void *)&__bTFreeNode);
+	self->root = NULL;
+}
+
+//	__bTPrintInPreOrder(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.printInPreOrder(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __bTPreOrder(self->root, NULL, &__bTPrintNode);
+void __bTPrintInPreOrder(BinaryTree *self) {
+	if (self->root != NULL) __bTPreOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+}
+
+//	__bTPrintInPostOrder(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.printInPostOrder(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __bTPostOrder(self->root, NULL, &__bTPrintNode);
+void __bTPrintInPostOrder(BinaryTree *self) {
+	if (self->root != NULL) __bTPostOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+}
+
+//	__bTPrintInOrder(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.printInOrder(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __bTInOrder(self->root, NULL, &__bTPrintNode);
+void __bTPrintInOrder(BinaryTree *self) {
+	if (self->root != NULL) __bTInOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+}
+
+//	__bTPrintPerLevel(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.printPerLevel(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __bTPerLevel(self->root, NULL, i, &__bTPrintNode);
+void __bTPrintPerLevel(BinaryTree *self) {
+	if (self->root != NULL) {
+		int h = __bTHeight((void*)self);
+		int i = 0;
+		for (i = 0; i <= h; i++)
+			__bTPerLevel((void *)self->root, NULL, i, (void *)&__bTPrintNode);
+	}
+}
+
+//	__bTItemAmout(BinaryTree *self);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.itemAmout(&tree);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns the amout of itens in the tree.
+//	
+//	Description:
+//	Calls __bTInOrder(self->root, &counter, &__bTCounter);
+int __bTItemAmout(BinaryTree *self) {
 	int counter = 0;
-	__bTInOrder((void *)BTree->root, &counter, (void *)&__bTCounter);
+	__bTInOrder((void *)self->root, &counter, (void *)&__bTCounter);
 	return counter;
 }
 
-void __bTInsertNode(TNode** endPointerNode, int value) {
-	if (*endPointerNode == NULL) {
-		*endPointerNode = malloc(sizeof(TNode));
-		(*endPointerNode)->data = value;
-		(*endPointerNode)->left = NULL;
-		(*endPointerNode)->right = NULL;
-	}
-	else {
-		if (value < (*endPointerNode)->data)
-			__bTInsertNode((void *)&(*endPointerNode)->left, value);
-		else
-			__bTInsertNode((void *)&(*endPointerNode)->right, value);
-	}
+//	__bTInsert(BinaryTree *self, int value);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//	tree.insert(&tree, 20);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//  int value as new node value.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Inserts a new node.
+//	Calls __bTInsertNode(&(self->root), value);
+void __bTInsert(BinaryTree *self, int value) {
+	__bTInsertNode((void*)&(self->root), value);
 }
 
-void __bTInsert(BinaryTree *BTree, int value) {
-	__bTInsertNode((void*)&(BTree->root), value);
+//	__bTRemove(BinaryTree *self, int value);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.remove(&tree, 20);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//  int value as value to be removed from the tree.
+//
+//	OUTPUT:
+//	Nothing working yet. :D
+//	
+//	Description:
+//  Removes a node.
+//	Calls __bTRemoveNode(&(self->root), value);
+bool __bTRemove(BinaryTree *self, int value) {
+	return (__bTRemoveNode((void *)&(self->root), value) != NULL);
 }
 
-TNode* __bTRemoveNode(TNode** endPointerNode, int value) {
-	if ((*endPointerNode) == NULL) return NULL;
-	if (value < (*endPointerNode)->data)
-		(*endPointerNode)->left = (void *)__bTRemoveNode((void *)&((*endPointerNode)->left), value);
-	else if (value >(*endPointerNode)->data)
-		(*endPointerNode)->right = (void *)__bTRemoveNode((void *)&((*endPointerNode)->right), value);
-	else {
-		if ((*endPointerNode)->left == NULL) {
-			TNode* temp = (void*)(*endPointerNode)->right;
-			free((*endPointerNode));
-			(*endPointerNode) = temp;
-			return temp;
-		}
-		else if ((*endPointerNode)->right == NULL) {
-			TNode* temp = (void*)(*endPointerNode)->left;
-			free((*endPointerNode));
-			(*endPointerNode) = temp;
-			return temp;
-		}
-		TNode* temp = (void*)__bTSearchLowerValue((void *)&((*endPointerNode)->right));
-		(*endPointerNode)->data = temp->data;
-		(*endPointerNode)->right = (void *)__bTRemoveNode((void *)&((*endPointerNode)->right), temp->data);
-	}
-	return (*endPointerNode);
-}
-
-bool __bTRemove(BinaryTree *BTree, int value) {
-	return (__bTRemoveNode((void *)&(BTree->root), value) != NULL);
-}
-
+//	newBinaryTree(void);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//
+//	INPUT: 
+//	Nothing
+//
+//	OUTUP:
+//	BinaryTree self as a newly built structure.
+//	
+//	Description:
+//	Construction function of structure.
 BinaryTree newBinaryTree() {
-	BinaryTree BTree;
-	BTree.root = NULL;
-	BTree.insert = (void *)&__bTInsert;
-	BTree.remove = (void *)&__bTRemove;
-	BTree.height = (void *)&__bTHeight;
-	BTree.itemAmount = (void *)&__bTItemAmout;
-	BTree.lowerValue = (void *)&__bTLowerValue;
-	BTree.higherValue = (void *)&__bTHighValue;
-	BTree.isEmpty = (void *)__bTIsEmpty;
-	BTree.clear = (void *)__bTClear;
-	BTree.printInPreOrder = (void *)&__bTPrintInPreOrder;
-	BTree.printInPostOrder = (void *)&__bTPrintInPostOrder;
-	BTree.printInOrder = (void *)&__bTPrintInOrder;
-	BTree.printPerLevel = (void *)&__bTPrintPerLevel;
-	return BTree;
+	BinaryTree self;
+	self.root = NULL;
+	self.insert = (void *)&__bTInsert;
+	self.remove = (void *)&__bTRemove;
+	self.height = (void *)&__bTHeight;
+	self.itemAmount = (void *)&__bTItemAmout;
+	self.lowerValue = (void *)&__bTLowerValue;
+	self.higherValue = (void *)&__bTHighValue;
+	self.isEmpty = (void *)__bTIsEmpty;
+	self.clear = (void *)__bTClear;
+	self.printInPreOrder = (void *)&__bTPrintInPreOrder;
+	self.printInPostOrder = (void *)&__bTPrintInPostOrder;
+	self.printInOrder = (void *)&__bTPrintInOrder;
+	self.printPerLevel = (void *)&__bTPrintPerLevel;
+	return self;
 }
 
 #pragma endregion
@@ -1525,7 +1964,7 @@ RBTNode* __rBTNewNode(int value) {
 void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value) {
 	//RBTNode* tempNode = __rBTNewNode(value); aloca um node a cada execução recursiva
 	if (*endPointerNode == NULL) {
-		RBTNode* tempNode = __rBTNewNode(value);  
+		RBTNode* tempNode = __rBTNewNode(value);
 		tempNode->parent = (void *)parentPoiterNode;
 		*endPointerNode = tempNode;
 		__rBTInsertFixesGuidelines((*endPointerNode), &(*root));
@@ -1599,12 +2038,12 @@ void __rBTFixesCaseFive(RBTNode* pointerNode, RBTNode **root) {
 
 void __rBTFixesCaseFour(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode *grand = __rBTNodeGrandfather(pointerNode);
-	if (((void *)pointerNode == (void *)((RBTNode *)pointerNode->parent)->right) && 
+	if (((void *)pointerNode == (void *)((RBTNode *)pointerNode->parent)->right) &&
 		((void *)pointerNode->parent == (void *)grand->left)) {
 		__rBTNodeRotateLeft((void *)pointerNode->parent, &(*root));
 		pointerNode = (void *)pointerNode->left;
 	}
-	else if (((void *)pointerNode == (void*)((RBTNode *)pointerNode->parent)->left) && 
+	else if (((void *)pointerNode == (void*)((RBTNode *)pointerNode->parent)->left) &&
 		((void *)pointerNode->parent == (void *)grand->right)) {
 		__rBTNodeRotateRight((void *)pointerNode->parent, &(*root));
 		pointerNode = (void *)pointerNode->right;
