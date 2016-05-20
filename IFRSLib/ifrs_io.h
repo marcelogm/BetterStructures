@@ -1,15 +1,15 @@
 #ifdef __MINGW32__
-	#define scanf_function scanf
-	#define clStdin fflush(stdin)
+#define scanf_function scanf
+#define clStdin fflush(stdin)
 #else
-	#ifdef _MSC_VER
-		#define scanf_function scanf_s
-		#define clStdin fflush(stdin)
-	#else
-		#include <stdio_ext.h>
-		#define scanf_function scanf
-		#define clStdin __fpurge(stdin)
-	#endif
+#ifdef _MSC_VER
+#define scanf_function scanf_s
+#define clStdin fflush(stdin)
+#else
+#include <stdio_ext.h>
+#define scanf_function scanf
+#define clStdin __fpurge(stdin)
+#endif
 #endif
 
 #define DEFAULT_STRING_LEN 1024
@@ -46,7 +46,7 @@ void readChar(char *variableAddress, char headerMessage[]);
 
 void readString(char *variableAddress, int stringLength, char headerMessage[]);
 
-// FUNÇÕES SEM OVERLOAD
+// FUNÃ‡Ã•ES SEM OVERLOAD
 
 int readIntRet(char headerMessage[],
 	char errorMessage[]);
@@ -109,7 +109,7 @@ struct String;
 
 typedef struct {
 	char* value;
-	int(*length)();
+	int (*length)(struct String *);
 	char* (*subString)(struct String *, int, int);
 	char* (*upperCase) (struct String *);
 	char* (*lowerCase) (struct String *);
