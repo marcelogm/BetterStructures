@@ -1,7 +1,25 @@
-
 # IFRSLib
 Didactic library in C for input/output processing and data structures handling. 
 The library was designed with the need to facilitate the use of ANSI C language in simple systems and academic algorithms.
+
+# Summary
+1. [ifrs_io.h](https://github.com/marcelogm/IFRSLib/blob/master/README.md#ifrs_ioh)
+  1. [Functions](https://github.com/marcelogm/IFRSLib/blob/master/README.md#functions)
+    - [Reading functions](https://github.com/marcelogm/IFRSLib/blob/master/README.md#reading-functions)
+    - [Writing functions](https://github.com/marcelogm/IFRSLib/blob/master/README.md#writing-functions)
+  2. [Structures](https://github.com/marcelogm/IFRSLib/blob/master/README.md#structures)
+2. [ifrs_struct.h](https://github.com/marcelogm/IFRSLib/blob/master/README.md#ifrs_structh)
+  1. [Structures](https://github.com/marcelogm/IFRSLib/blob/master/README.md#structures-1)
+  2. [Array implementation](https://github.com/marcelogm/IFRSLib/blob/master/README.md#array-implementation)
+    - [Stack](https://github.com/marcelogm/IFRSLib/blob/master/README.md#stack)
+    - [Queue](https://github.com/marcelogm/IFRSLib/blob/master/README.md#queue)
+    - [OrderedList](https://github.com/marcelogm/IFRSLib/blob/master/README.md#orderedlist)
+  3. [Linked-List Implementation](https://github.com/marcelogm/IFRSLib/blob/master/README.md#linked-list-implementation) 
+    - [Stack](https://github.com/marcelogm/IFRSLib/blob/master/README.md#stack-1)
+    - [Queue](https://github.com/marcelogm/IFRSLib/blob/master/README.md#queue-1)
+    - [OrderedLinkedList / OrderedDoublyLinkedList](https://github.com/marcelogm/IFRSLib/blob/master/README.md#orderedlinkedlist--ordereddoublylinkedlist)
+    - [BinaryTree / RedBlackTree](https://github.com/marcelogm/IFRSLib/blob/master/README.md#binarytree--redblacktree)
+
 
 # ifrs_io.h
 # Functions
