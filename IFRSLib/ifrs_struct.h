@@ -1,3 +1,9 @@
+//	IFRSLib 
+//  Author: Marcelo Gomes Martins 
+//  Github: marcelogm
+//  Link: https://github.com/marcelogm/IFRSLib
+//  License: https://github.com/marcelogm/IFRSLib/blob/master/LICENSE
+
 #ifdef __MINGW32__
 #define scanf_function scanf
 #define clStdin fflush(stdin)
@@ -18,7 +24,7 @@
 
 struct StackArray;
 
-typedef struct {
+typedef struct StackArray {
 	int top;
 	int stackArray[MAX_STACK_LEN + 1];
 	bool(*push)(struct Stack *, int);
@@ -34,7 +40,7 @@ StackArray newStackArray();
 
 struct QueueArray;
 
-typedef struct {
+typedef struct QueueArray {
 	int queueArray[MAX_QUEUE_LEN + 1];
 	int front;
 	int back;
@@ -52,7 +58,7 @@ QueueArray newQueueArray();
 
 struct OrderedList;
 
-typedef struct {
+typedef struct OrderedList {
 	int orderedListArray[MAX_ORDERED_LIST_LEN];
 	int endIndex;
 	bool(*insert)(struct OrderedList *, int);
@@ -70,14 +76,14 @@ OrderedList newOrderedList();
 
 struct Node;
 
-typedef struct {
+typedef struct Node {
 	int data;
 	struct Node* next;
 } Node;
 
 struct OrderedLinkedList;
 
-typedef struct {
+typedef struct OrderedLinkedList {
 	struct Node* start;
 	void(*insert)(struct OrderedLinkedList*, int);
 	bool(*remove)(struct OrderedLinkedList*, int);
@@ -94,7 +100,7 @@ OrderedLinkedList newOrderedLinkedList();
 
 struct DNode;
 
-typedef struct {
+typedef struct DNode {
 	struct DNode* previous;
 	int data;
 	struct DNode* next;
@@ -102,7 +108,7 @@ typedef struct {
 
 struct OrderedDoublyLinkedList;
 
-typedef struct {
+typedef struct OrderedDoublyLinkedList {
 	struct DNode* start;
 	void(*insert)(struct OrderedDoublyLinkedList*, int);
 	bool(*remove)(struct OrderedDoublyLinkedList*, int);
@@ -119,7 +125,7 @@ OrderedDoublyLinkedList newOrderedDoublyLinkedList();
 
 struct TNode;
 
-typedef struct {
+typedef struct TNode {
 	struct TNode* left;
 	int data;
 	struct TNode* right;
@@ -127,7 +133,7 @@ typedef struct {
 
 struct BinaryTree;
 
-typedef struct {
+typedef struct BinaryTree {
 	struct TNode* root;
 	void(*insert)(struct BinaryTree*, int);
 	bool(*remove)(struct BinaryTree*, int);
@@ -151,7 +157,7 @@ struct RBTNode;
 #define red 'r'
 #define black 'b'
 
-typedef struct {
+typedef struct RBTNode {
 	struct RBTNode* parent;
 	struct RBTNode* left;
 	int data;
@@ -161,7 +167,7 @@ typedef struct {
 
 struct RedBlackTree;
 
-typedef struct {
+typedef struct RedBlackTree {
 	struct RBTNode* root;
 	void(*insert)(struct RedBlackTree*, int);
 	bool(*remove)(struct RedBlackTree*, int);

@@ -1,15 +1,21 @@
+//	IFRSLib 
+//  Author: Marcelo Gomes Martins 
+//  Github: marcelogm
+//  Link: https://github.com/marcelogm/IFRSLib
+//  License: https://github.com/marcelogm/IFRSLib/blob/master/LICENSE
+
 #ifdef __MINGW32__
-	#define scanf_function scanf
-	#define clStdin fflush(stdin)
+#define scanf_function scanf
+#define clStdin fflush(stdin)
 #else
-	#ifdef _MSC_VER
-		#define scanf_function scanf_s
-		#define clStdin fflush(stdin)
-	#else
-		#include <stdio_ext.h>
-		#define scanf_function scanf
-		#define clStdin __fpurge(stdin)
-	#endif
+#ifdef _MSC_VER
+#define scanf_function scanf_s
+#define clStdin fflush(stdin)
+#else
+#include <stdio_ext.h>
+#define scanf_function scanf
+#define clStdin __fpurge(stdin)
+#endif
 #endif
 
 #define DEFAULT_STRING_LEN 1024
@@ -95,7 +101,7 @@ void printStringArray(char headerMessage[],
 
 struct Scanner;
 
-typedef struct {
+typedef struct Scanner {
 	int(*nextInt)();
 	long(*nextLong)();
 	float(*nextFloat)();
@@ -107,7 +113,7 @@ Scanner newScanner();
 
 struct String;
 
-typedef struct {
+typedef struct String {
 	char* value;
 	int(*length)();
 	char* (*subString)(struct String *, int, int);

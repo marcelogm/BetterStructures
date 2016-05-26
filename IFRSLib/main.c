@@ -1,15 +1,20 @@
-#include <stdio.h>
+//	IFRSLib 
+//  Author: Marcelo Gomes Martins 
+//  Github: marcelogm
+//  Link: https://github.com/marcelogm/IFRSLib
+//  License: https://github.com/marcelogm/IFRSLib/blob/master/LICENSE
+
 #include <stdio.h>
 #include <stdarg.h>
-#include "ifrs_io.h"
-#include "ifrs_struct.h"
 #include <windows.h>
-// New
 #include <stdbool.h>
+
+#include "ifrs_struct.h"
+#include "ifrs_io.h"
 
 #define MAX_LEN 255
 
-int main(){
+int main() {
 	short a;
 	int b;
 	long c;
@@ -66,7 +71,7 @@ int main(){
 	printStringArray("Valores do array:\n",
 		"Elemento do array:\n",
 		3, j);
-	
+
 	//---- PSEUDO OBJETOS ----//
 
 	printf("\n\n\n PSEUDO OBJETOS \n\n\n");
@@ -105,7 +110,7 @@ int main(){
 	printf("SUBSTRING: %s\n", strA.subString((void *)&strA, 0, 5));
 	printf("UPPERCASE: %s\n", strA.upperCase((void *)&strA));
 	printf("LOWERCASE: %s\n", strA.lowerCase((void *)&strA));
-	
+
 	//---- ESTRUTURAS ----//
 
 	printf("\n\n\n ESTRUTURAS DE DADOS \n\n\n");
@@ -282,6 +287,44 @@ int main(){
 		puts("A Arvore Binaria esta vazia.");
 	}
 
-	system("pause");
+	printf("\n RED-BLACK TREE\n\n");
+
+	RedBlackTree RBTree = newRedBlackTree();
+
+	printf("23 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 23);
+	printf("10 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 10);
+	printf("Retira o 23 da Arvore Rubro-Negra\n");
+	RBTree.remove((void *)&RBTree, 23);
+	printf("4 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 4);
+	printf("2 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 2);
+	printf("6 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 6);
+	printf("15 enviado para a Arvore Rubro-Negra\n");
+	RBTree.insert((void *)&RBTree, 15);
+	printf("Altura da Arvore Rubro-Negra: %d\n", RBTree.height((void*)&RBTree));
+	printf("Quantidade de itens da Arvore Rubro-Negra: %d\n", RBTree.itemAmount((void*)&RBTree));
+	printf("Menor item da Arvore Rubro-Negra: %d\n", RBTree.lowerValue((void*)&RBTree));
+	printf("Maior item da Arvore Rubro-Negra: %d\n", RBTree.higherValue((void*)&RBTree));
+	puts("PreOrder");
+	RBTree.printInPreOrder((void*)&RBTree);
+	puts("\nPostOrder");
+	RBTree.printInPostOrder((void*)&RBTree);
+	puts("\nInOrder");
+	RBTree.printInOrder((void*)&RBTree);
+	puts("\nPerLevel");
+	RBTree.printPerLevel((void*)&RBTree);
+
+	puts("\nLimpa estrutura");
+	RBTree.clear((void*)&RBTree);
+
+	if (RBTree.isEmpty((void *)&RBTree) == TRUE) {
+		puts("A Arvore Rubro-Negra esta vazia.");
+	}
+	puts("Press any key to continue...");
+	getchar();
 	return 0;
 }

@@ -1,3 +1,9 @@
+//	IFRSLib 
+//  Author: Marcelo Gomes Martins 
+//  Github: marcelogm
+//  Link: https://github.com/marcelogm/IFRSLib
+//  License: https://github.com/marcelogm/IFRSLib/blob/master/LICENSE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,12 +21,24 @@
 // StackArray
 //
 
+#pragma region DEFINITION
+
 // DEFINITIONS
-bool __stackAEmpty(StackArray *self);				// ===> stack.isEmpty(&stack);
-bool __stackAFull(StackArray *self);				// ===> stack.isFull(&stack);
-bool __stackAPush(StackArray *self, int value);	// ===> stack.push(&stack, 20);
-int __stackAPop(StackArray *self);				// ===> stack.pop(&stack);
-int __stackALastItem(StackArray *self);			// ===> stack.getValue(&stack); CAN CHANGE
+
+bool __stackAEmpty(StackArray *self);
+// ===> stack.isEmpty(&stack);
+bool __stackAFull(StackArray *self);
+// ===> stack.isFull(&stack);
+bool __stackAPush(StackArray *self, int value);
+// ===> stack.push(&stack, 20);
+int __stackAPop(StackArray *self);
+// ===> stack.pop(&stack);
+int __stackALastItem(StackArray *self);
+// ===> stack.getValue(&stack); CAN CHANGE
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
 
 //	__stackAEmpty(StackArray *self);
 //
@@ -166,6 +184,8 @@ StackArray newStackArray() {
 
 #pragma endregion
 
+#pragma endregion
+
 // IMPLEMENTING
 #pragma region Stack (Linked Node implementation)
 	// TODO
@@ -177,13 +197,25 @@ StackArray newStackArray() {
 // QueueArray
 //
 
+#pragma region DEFINITION
+
 // DEFINITIONS
-bool __queueAEmpty(QueueArray *self);				// ===> queue.isEmpty(&queue);
-bool __queueAFull(QueueArray *self);				// ===> queue.isFull(&queue);
-int __dequeueA(QueueArray *self);					// ===> queue.dequeue(&queue);
-bool __enqueueA(QueueArray *self, int value);		// ===> queue.enqueue(&queue, 20);
-int __queueALastItem(QueueArray *self);			// ===> queue.lastItem(&queue);
-int __queueAFirstItem(QueueArray *self);			// ===> queue.firstItem(&queue);
+bool __queueAEmpty(QueueArray *self);
+// ===> queue.isEmpty(&queue);
+bool __queueAFull(QueueArray *self);
+// ===> queue.isFull(&queue);
+int __dequeueA(QueueArray *self);
+// ===> queue.dequeue(&queue);
+bool __enqueueA(QueueArray *self, int value);
+// ===> queue.enqueue(&queue, 20);
+int __queueALastItem(QueueArray *self);
+// ===> queue.lastItem(&queue);
+int __queueAFirstItem(QueueArray *self);
+// ===> queue.firstItem(&queue);
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
 
 //	__queueAEmpty(QueueArray *self);
 //
@@ -351,6 +383,8 @@ QueueArray newQueueArray() {
 
 #pragma endregion
 
+#pragma endregion
+
 // IMPLEMENTING
 #pragma region Queue (Linked Node implementation)
 // TODO
@@ -362,16 +396,31 @@ QueueArray newQueueArray() {
 // OrderedList
 //
 
+#pragma region DEFINITION
+
 // DEFINITIONS
-bool __oListIsEmpty(OrderedList *self);						// ===> list.isEmpty(&list);
-bool __oListIsFull(OrderedList *self);						// ===> list.isFull(&list);
-bool __oListInsert(OrderedList *self, int value);			// ===> list.insert(&list, 20);
-bool __oListRemove(OrderedList *self, int value);			// ===> list.remove(&list, 20);
-bool __oListRemoveAtIndex(OrderedList *self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oListGetItem(OrderedList *self, int index);			// ===> list.getItem(&list, 3);
-int __oListLastItem(OrderedList *self);						// ===> list.lastItem(&list);
-int __oListFirtItem(OrderedList *self);						// ===> list.firstItem(&list);
-int __oListItemAmout(OrderedList *self);					// ===> list.itemAmout(&list);
+bool __oListIsEmpty(OrderedList *self);
+// ===> list.isEmpty(&list);
+bool __oListIsFull(OrderedList *self);
+// ===> list.isFull(&list);
+bool __oListInsert(OrderedList *self, int value);
+// ===> list.insert(&list, 20);
+bool __oListRemove(OrderedList *self, int value);
+// ===> list.remove(&list, 20);
+bool __oListRemoveAtIndex(OrderedList *self, int index);
+// ===> list.removeAtIndex(&list, 3);
+int __oListGetItem(OrderedList *self, int index);
+// ===> list.getItem(&list, 3);
+int __oListLastItem(OrderedList *self);
+// ===> list.lastItem(&list);
+int __oListFirtItem(OrderedList *self);
+// ===> list.firstItem(&list);
+int __oListItemAmout(OrderedList *self);
+// ===> list.itemAmout(&list);
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
 
 //	__oListIsAEmpty(OrderedList *self);
 //
@@ -622,22 +671,39 @@ OrderedList newOrderedList() {
 
 #pragma endregion
 
+#pragma endregion
+
 // FULLY DOCUMENTED, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Linked Node implementation)
 //
 // OrderedLinkedList
 //
 
+#pragma region DEFINITION
+
 // DEFINITIONS
-bool __oLListIsEmpty(OrderedLinkedList *self);						// ===> list.isEmpty(&list);
-void __oLListInsert(OrderedLinkedList * self, int value);			// ===> list.insert(&list, 20);
-bool __oLListRemove(OrderedLinkedList * self, int value);			// ===>	list.remove(&list, 20);
-bool __oLListRemoveAtIndex(OrderedLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oLListGetItem(OrderedLinkedList * self, int index);			// ===> list.getItem(&list, 3);
-int __oLListLastItem(OrderedLinkedList * self);						// ===> list.lastItem(&list);
-int __oLListFirstItem(OrderedLinkedList * self);					// ===> list.firstItem(&list);
-int __oLListItemAmout(OrderedLinkedList * self);					// ===> list.itemAmout(&list);
-void __oLListClear(OrderedLinkedList * self);						// ===> list.clear(&list);
+bool __oLListIsEmpty(OrderedLinkedList *self);
+// ===> list.isEmpty(&list);
+void __oLListInsert(OrderedLinkedList * self, int value);
+// ===> list.insert(&list, 20);
+bool __oLListRemove(OrderedLinkedList * self, int value);
+// ===>	list.remove(&list, 20);
+bool __oLListRemoveAtIndex(OrderedLinkedList * self, int index);
+// ===> list.removeAtIndex(&list, 3);
+int __oLListGetItem(OrderedLinkedList * self, int index);
+// ===> list.getItem(&list, 3);
+int __oLListLastItem(OrderedLinkedList * self);
+// ===> list.lastItem(&list);
+int __oLListFirstItem(OrderedLinkedList * self);
+// ===> list.firstItem(&list);
+int __oLListItemAmout(OrderedLinkedList * self);
+// ===> list.itemAmout(&list);
+void __oLListClear(OrderedLinkedList * self);
+// ===> list.clear(&list);
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
 
 //	__oLListIsAEmpty(OrderedLinkedList *self);
 //
@@ -796,7 +862,7 @@ int __oLListGetItem(OrderedLinkedList *self, int index) {
 		Node *current = (void *)self->start;
 		int count = 0;
 		while (current != NULL) {
-			// Return an item
+			// Returns an item
 			if (count == index)	return current->data;
 			// Next item
 			current = (void *)current->next;
@@ -930,27 +996,45 @@ OrderedLinkedList newOrderedLinkedList() {
 	self.clear = (void *)&__oLListClear;
 	return self;
 }
+#pragma endregion
 
 #pragma endregion
 
-// FULLY DOCUMENTED,, NEW FEATURES CAN BE ADDED
+// FULLY DOCUMENTED, NEW FEATURES CAN BE ADDED
 #pragma region Ordered List (Doubly Linked Node implementation)
 //
 // OrderedLinkedList
 //
 
-// DEFINITIONS
-void __oDLListInsert(OrderedDoublyLinkedList * self, int value);		// ===> list.insert(&list, 20);
-bool __oDLListRemove(OrderedDoublyLinkedList * self, int value);		// ===> list.remove(&list, 20);
-bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);	// ===> list.removeAtIndex(&list, 3);
-int __oDLListGetItem(OrderedDoublyLinkedList * self, int index);		// ===> list.getItem(&list, 3);
-int __oDLListLastItem(OrderedDoublyLinkedList * self);					// ===> list.lastItem(&list);
-int __oDLListFirstItem(OrderedDoublyLinkedList * self);					// ===> list.firstItem(&list);
-bool __oDLListIsEmpty(OrderedDoublyLinkedList * self);					// ===> list.isEmpty(&list);
-int __oDLListItemAmout(OrderedDoublyLinkedList * self);					// ===> list.itemAmout(&list);
-void __oDLListClear(OrderedDoublyLinkedList * self);					// ===> list.clear(&list);
+#pragma region DEFINITION
 
-DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);			// ===> INTERNAL USE
+// DEFINITIONS
+// EXTERNAL USE
+void __oDLListInsert(OrderedDoublyLinkedList * self, int value);
+// ===> list.insert(&list, 20);
+bool __oDLListRemove(OrderedDoublyLinkedList * self, int value);
+// ===> list.remove(&list, 20);
+bool __oDLListRemoveAtIndex(OrderedDoublyLinkedList * self, int index);
+// ===> list.removeAtIndex(&list, 3);
+int __oDLListGetItem(OrderedDoublyLinkedList * self, int index);
+// ===> list.getItem(&list, 3);
+int __oDLListLastItem(OrderedDoublyLinkedList * self);
+// ===> list.lastItem(&list);
+int __oDLListFirstItem(OrderedDoublyLinkedList * self);
+// ===> list.firstItem(&list);
+bool __oDLListIsEmpty(OrderedDoublyLinkedList * self);
+// ===> list.isEmpty(&list);
+int __oDLListItemAmout(OrderedDoublyLinkedList * self);
+// ===> list.itemAmout(&list);
+void __oDLListClear(OrderedDoublyLinkedList * self);
+// ===> list.clear(&list);
+
+// INTERNAL USE
+DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
 
 //  LIBRARY INTERNAL USE
 //	__oDLListFind(OrderedDoublyLinkedList * self, int value);
@@ -960,7 +1044,7 @@ DNode* __oDLListFind(OrderedDoublyLinkedList *self, int value);			// ===> INTERN
 //  int value as reference to find a node.
 //
 //	OUTPUT:
-//	Return a DNode pointer in the list.
+//	Returns a DNode pointer in the list.
 //	
 //	Description:
 //	Find a list item and return it.
@@ -1237,94 +1321,116 @@ OrderedDoublyLinkedList newOrderedDoublyLinkedList() {
 
 #pragma endregion
 
-// FULLY DOCUMENTED,, NEW FEATURES CAN BE ADDED
+#pragma endregion
+
+// FULLY DOCUMENTED, NEW FEATURES CAN BE ADDED
 #pragma region Binary Tree
 //
 // OrderedLinkedList
 //
 
-// DEFINITIONS
+#pragma region DEFINITION
+
+#define NIL_TNode &sentinelForTNode
+#define RESET_SENTINEL_TNODE			\
+sentinelForTNode.data = 0;			\
+sentinelForTNode.left = NIL_TNode;		\
+sentinelForTNode.right = NIL_TNode;		
+TNode sentinelForTNode = { NIL_TNode, 0, NIL_TNode };
 #define callbackForTNode void (*function)(struct TNode*, int *counter)
 
-TNode * __bTSearchLowerValue(TNode * pointerNode);									// ===> INTERNAL USE
-TNode * __bTSearchHighValue(TNode* pointerNode);									// 
-int __bTHeightNode(TNode *pointerNode);												//
-void __bTFreeNode(TNode * pointerNode, int *null);									//
-void __bTPrintNode(TNode * pointerNode, int *null);									//
-void __bTCounter(TNode *null, int *counter);										//
-void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
-void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
-void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);				//
-void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);	//
-void __bTInsertNode(TNode** pointerNode, int value);								//
-TNode* __bTRemoveNode(TNode** pointerNode, int value);								//
+// DEFINITIONS
+// EXTERNAL USE
+int __bTLowerValue(BinaryTree *self);
+// ===> tree.lowerValue(&tree);
+int __bTHighValue(BinaryTree *self);
+// ===> tree.higherValue(&tree);
+int __bTHeight(BinaryTree *self);
+// ===> tree.height(&tree);
+bool __bTIsEmpty(BinaryTree *self);
+// ===> tree.isEmpty(&tree);
+void __bTClear(BinaryTree *self);
+// ===> tree.clear(&tree);
+void __bTPrintInPreOrder(BinaryTree *self);
+// ===> tree.printInPreOrder(&tree);
+void __bTPrintInPostOrder(BinaryTree *self);
+// ===> tree.printInPostOrder(&tree);
+void __bTPrintInOrder(BinaryTree *self);
+// ===> tree.printInOrder(&tree);
+void __bTPrintPerLevel(BinaryTree *self);
+// ===> tree.printPerLevel(&tree);
+int __bTItemAmout(BinaryTree *self);
+// ===> tree.itemAmount(&tree);
+void __bTInsert(BinaryTree *self, int value);
+// ===> tree.insert(&tree, 20);
+bool __bTRemove(BinaryTree *self, int value);
+// ===> tree.remove(&tree, 20);
 
-int __bTLowerValue(BinaryTree *self);				// ===> tree.lowerValue(&tree);
-int __bTHighValue(BinaryTree *self);				// ===> tree.higherValue(&tree);
-int __bTHeight(BinaryTree *self);					// ===> tree.height(&tree);
-bool __bTIsEmpty(BinaryTree *self);					// ===> tree.isEmpty(&tree);
-void __bTClear(BinaryTree *self);					// ===> tree.clear(&tree);
-void __bTPrintInPreOrder(BinaryTree *self);			// ===> tree.printInPreOrder(&tree);
-void __bTPrintInPostOrder(BinaryTree *self);		// ===> tree.printInPostOrder(&tree);
-void __bTPrintInOrder(BinaryTree *self);			// ===> tree.printInOrder(&tree);
-void __bTPrintPerLevel(BinaryTree *self);			// ===> tree.printPerLevel(&tree);
-int __bTItemAmout(BinaryTree *self);				// ===> tree.itemAmount(&tree);
-void __bTInsert(BinaryTree *self, int value);		// ===> tree.insert(&tree, 20);
-bool __bTRemove(BinaryTree *self, int value);		// ===> tree.remove(&tree, 20);
+// INTERNAL USE
+TNode * __bTSearchLowerValue(TNode * pointerNode);
+TNode * __bTSearchHighValue(TNode* pointerNode);
+int __bTHeightNode(TNode *pointerNode);
+void __bTFreeNode(TNode * pointerNode, int *null);
+void __bTPrintNode(TNode * pointerNode, int *null);
+void __bTCounter(TNode *null, int *counter);
+void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);
+void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);
+void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);
+void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);
+void __bTInsertNode(TNode** pointerNode, int value);
+TNode* __bTRemoveNode(TNode** pointerNode, int value);
+#pragma endregion
 
-// INTERNAL USE SECTION
+#pragma region INTERNAL USE SECTION
 
-//  LIBRARY INTERNAL USE
 //	__bTSearchLowerValue(TNode *pointerNode);
 //
 //	INPUT: 
 //	TNode *pointerNode as pointer to first node.
 //
 //	OUTPUT:
-//	Return a TNode pointer in the tree.
+//	Returns a TNode pointer in the tree.
 //	
 //	Description:
 //	Find a tree item with lower value and return it.
 TNode* __bTSearchLowerValue(TNode* pointerNode) {
-	if (pointerNode == NULL) return NULL;
-	while (pointerNode->left != NULL) {
+	if (pointerNode == NIL_TNode) return NIL_TNode;
+	while (pointerNode->left != NIL_TNode) {
 		pointerNode = (void *)pointerNode->left;
 	}
 	return pointerNode;
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTSearchHighValue(TNode *pointerNode);
 //
 //	INPUT: 
 //	TNode *pointerNode as pointer to first node.
 //
 //	OUTPUT:
-//	Return a TNode pointer in the tree.
+//	Returns a TNode pointer in the tree.
 //	
 //	Description:
 //	Find a tree item with higher value and return it.
 TNode* __bTSearchHighValue(TNode* pointerNode) {
-	if (pointerNode == NULL) return NULL;
-	while (pointerNode->right != NULL) {
+	if (pointerNode == NIL_TNode) return NIL_TNode;
+	while (pointerNode->right != NIL_TNode) {
 		pointerNode = (void *)pointerNode->right;
 	}
 	return pointerNode;
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTHeightNode(TNode *pointerNode);
 //
 //	INPUT: 
 //	TNode *pointerNode as pointer to first node.
 //
 //	OUTPUT:
-//	Return a int as height counter
+//	Returns a int as height counter
 //	
 //	Description:
 //	Find the tree height
 int __bTHeightNode(TNode *pointerNode) {
-	if (pointerNode == NULL) return -1;
+	if (pointerNode == NIL_TNode) return -1;
 	int lHighValue = __bTHeightNode((void *)pointerNode->left);
 	int rHighValue = __bTHeightNode((void *)pointerNode->right);
 	if (lHighValue > rHighValue)
@@ -1333,12 +1439,11 @@ int __bTHeightNode(TNode *pointerNode) {
 		return rHighValue + 1;
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTFreeNode(TNode *pointerNode, NULL);
 //
 //	INPUT: 
 //	TNode *pointerNode as pointer to node.
-//	int * null as NULL
+//	int * null as null.
 //
 //	OUTPUT:
 //	Nothing
@@ -1350,7 +1455,6 @@ void __bTFreeNode(TNode * pointerNode, int *null) {
 	pointerNode = NULL;
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTPrintNode(TNode *pointerNode, NULL);
 //
 //	INPUT: 
@@ -1366,11 +1470,10 @@ void __bTPrintNode(TNode * pointerNode, int *null) {
 	printf("%d ", pointerNode->data);
 }
 
-//  LIBRARY INTERNAL USE
-//	__bTCounter(NULL, int * counter);
+//	__bTCounter(NIL_TNode, int * counter);
 //
 //	INPUT: 
-//	TNode *null as NULL.
+//	TNode *null as NIL_TNode.
 //	int * counter as node counter.
 //
 //	OUTPUT:
@@ -1382,7 +1485,6 @@ void __bTCounter(TNode *null, int *counter) {
 	(*counter)++;
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);
 //
 //	INPUT: 
@@ -1397,14 +1499,13 @@ void __bTCounter(TNode *null, int *counter) {
 //	Description:
 //	Visits each node in the tree using "Preorder" and performs the function sent via callback
 void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode) {
-	if (pointerNode != NULL) {
+	if (pointerNode != NIL_TNode) {
 		(void)function((void *)pointerNode, counter);
 		__bTPreOrder((void *)pointerNode->left, counter, function);
 		__bTPreOrder((void *)pointerNode->right, counter, function);
 	}
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);
 //
 //	INPUT: 
@@ -1419,14 +1520,13 @@ void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 //	Description:
 //	Visits each node in the tree using "Postorder" and performs the function sent via callback
 void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode) {
-	if (pointerNode != NULL) {
+	if (pointerNode != NIL_TNode) {
 		__bTPostOrder((void *)pointerNode->left, counter, function);
 		__bTPostOrder((void *)pointerNode->right, counter, function);
 		(void)function((void *)pointerNode, counter);
 	}
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);
 //
 //	INPUT: 
@@ -1441,14 +1541,13 @@ void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 //	Description:
 //	Visits each node in the tree using "Inorder" and performs the function sent via callback
 void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode) {
-	if (pointerNode != NULL) {
+	if (pointerNode != NIL_TNode) {
 		__bTInOrder((void *)pointerNode->left, counter, function);
 		(void)function((void *)pointerNode, counter);
 		__bTInOrder((void *)pointerNode->right, counter, function);
 	}
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode);
 //
 //	INPUT: 
@@ -1464,7 +1563,7 @@ void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode) {
 //	Description:
 //	Visits each node in the level of tree using "Perlevel" and performs the function sent via callback
 void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode) {
-	if (pointerNode == NULL) return;
+	if (pointerNode == NIL_TNode) return;
 	if (level == 0)
 		(void)function((void *)pointerNode, counter);
 	else if (level > 0) {
@@ -1473,7 +1572,6 @@ void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode)
 	}
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTInsertNode(TNode **pointerNode, int value);
 //
 //	INPUT: 
@@ -1486,11 +1584,11 @@ void __bTPerLevel(TNode *pointerNode, int* counter, int level, callbackForTNode)
 //	Description:
 //	Inserts a new node in the tree.
 void __bTInsertNode(TNode** pointerNode, int value) {
-	if (*pointerNode == NULL) {
+	if (*pointerNode == NIL_TNode) {
 		*pointerNode = malloc(sizeof(TNode));
 		(*pointerNode)->data = value;
-		(*pointerNode)->left = NULL;
-		(*pointerNode)->right = NULL;
+		(*pointerNode)->left = NIL_TNode;
+		(*pointerNode)->right = NIL_TNode;
 	}
 	else {
 		if (value < (*pointerNode)->data)
@@ -1500,7 +1598,6 @@ void __bTInsertNode(TNode** pointerNode, int value) {
 	}
 }
 
-//  LIBRARY INTERNAL USE
 //	__bTRemoveNode(TNode **pointerNode, int value);
 //
 //	INPUT: 
@@ -1513,19 +1610,21 @@ void __bTInsertNode(TNode** pointerNode, int value) {
 //	Description:
 //	Removes a node from the tree.
 TNode* __bTRemoveNode(TNode** pointerNode, int value) {
-	if ((*pointerNode) == NULL) return NULL;
+	// DO NOT TOUCH THIS.
+	// IF YOU TOUCH HERE, OPTIMIZE AND MAKE IT WORK.
+	if ((*pointerNode) == NIL_TNode) return NIL_TNode;
 	if (value < (*pointerNode)->data)
 		(*pointerNode)->left = (void *)__bTRemoveNode((void *)&((*pointerNode)->left), value);
-	else if (value >(*pointerNode)->data)
+	else if (value > (*pointerNode)->data)
 		(*pointerNode)->right = (void *)__bTRemoveNode((void *)&((*pointerNode)->right), value);
 	else {
-		if ((*pointerNode)->left == NULL) {
+		if ((*pointerNode)->left == NIL_TNode) {
 			TNode* temp = (void*)(*pointerNode)->right;
 			free((*pointerNode));
 			(*pointerNode) = temp;
 			return temp;
 		}
-		else if ((*pointerNode)->right == NULL) {
+		else if ((*pointerNode)->right == NIL_TNode) {
 			TNode* temp = (void*)(*pointerNode)->left;
 			free((*pointerNode));
 			(*pointerNode) = temp;
@@ -1537,8 +1636,9 @@ TNode* __bTRemoveNode(TNode** pointerNode, int value) {
 	}
 	return (*pointerNode);
 }
+#pragma endregion
 
-// EXTERNAL USE SECTION
+#pragma region EXTERNAL USE SECTION
 
 //	__bTLowerValue(BinaryTree *self);
 //
@@ -1557,7 +1657,7 @@ TNode* __bTRemoveNode(TNode** pointerNode, int value) {
 //	Calls __bTSearchLowerValue(self->root);
 int __bTLowerValue(BinaryTree *self) {
 	TNode * Node = (void *)__bTSearchLowerValue((void *)self->root);
-	return Node != NULL ? Node->data : false;
+	return Node != NIL_TNode ? Node->data : false;
 }
 
 //	__bTHighValue(BinaryTree *self);
@@ -1577,7 +1677,7 @@ int __bTLowerValue(BinaryTree *self) {
 //	Calls __bTSearchHighValue(self->root);
 int __bTHighValue(BinaryTree *self) {
 	TNode * Node = __bTSearchHighValue((void *)self->root);
-	return Node != NULL ? Node->data : false;
+	return Node != NIL_TNode ? Node->data : false;
 }
 
 //	__bTHeight(BinaryTree *self);
@@ -1615,7 +1715,7 @@ int __bTHeight(BinaryTree *self) {
 //	Description:
 //	Returns the current state of tree, if it's empty or not.
 bool __bTIsEmpty(BinaryTree *self) {
-	return (self->root == NULL);
+	return (self->root == NIL_TNode);
 }
 
 //	__bTClear(BinaryTree * self);
@@ -1633,10 +1733,10 @@ bool __bTIsEmpty(BinaryTree *self) {
 //	
 //	Description:
 //  Clear the tree completely, excluding all nodes.
-//  Calls __bTPostOrder(self->root, NULL, &__bTFreeNode)
+//  Calls __bTPostOrder(self->root, NIL_TNode, &__bTFreeNode)
 void __bTClear(BinaryTree *self) {
-	if (self->root != NULL) __bTPostOrder((void *)self->root, NULL, (void *)&__bTFreeNode);
-	self->root = NULL;
+	if (self->root != NIL_TNode) __bTPostOrder((void *)self->root, 0, (void *)&__bTFreeNode);
+	self->root = NIL_TNode;
 }
 
 //	__bTPrintInPreOrder(BinaryTree *self);
@@ -1654,9 +1754,9 @@ void __bTClear(BinaryTree *self) {
 //	
 //	Description:
 //	Prints the entire tree.
-//	Calls __bTPreOrder(self->root, NULL, &__bTPrintNode);
+//	Calls __bTPreOrder(self->root, NIL_TNode, &__bTPrintNode);
 void __bTPrintInPreOrder(BinaryTree *self) {
-	if (self->root != NULL) __bTPreOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+	if (self->root != NIL_TNode) __bTPreOrder((void *)self->root, 0, (void *)&__bTPrintNode);
 }
 
 //	__bTPrintInPostOrder(BinaryTree *self);
@@ -1674,9 +1774,9 @@ void __bTPrintInPreOrder(BinaryTree *self) {
 //	
 //	Description:
 //	Prints the entire tree.
-//	Calls __bTPostOrder(self->root, NULL, &__bTPrintNode);
+//	Calls __bTPostOrder(self->root, NIL_TNode, &__bTPrintNode);
 void __bTPrintInPostOrder(BinaryTree *self) {
-	if (self->root != NULL) __bTPostOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+	if (self->root != NIL_TNode) __bTPostOrder((void *)self->root, 0, (void *)&__bTPrintNode);
 }
 
 //	__bTPrintInOrder(BinaryTree *self);
@@ -1694,9 +1794,9 @@ void __bTPrintInPostOrder(BinaryTree *self) {
 //	
 //	Description:
 //	Prints the entire tree.
-//	Calls __bTInOrder(self->root, NULL, &__bTPrintNode);
+//	Calls __bTInOrder(self->root, NIL_TNode, &__bTPrintNode);
 void __bTPrintInOrder(BinaryTree *self) {
-	if (self->root != NULL) __bTInOrder((void *)self->root, NULL, (void *)&__bTPrintNode);
+	if (self->root != NIL_TNode) __bTInOrder((void *)self->root, 0, (void *)&__bTPrintNode);
 }
 
 //	__bTPrintPerLevel(BinaryTree *self);
@@ -1714,13 +1814,13 @@ void __bTPrintInOrder(BinaryTree *self) {
 //	
 //	Description:
 //	Prints the entire tree.
-//	Calls __bTPerLevel(self->root, NULL, i, &__bTPrintNode);
+//	Calls __bTPerLevel(self->root, NIL_TNode, i, &__bTPrintNode);
 void __bTPrintPerLevel(BinaryTree *self) {
-	if (self->root != NULL) {
+	if (self->root != NIL_TNode) {
 		int h = __bTHeight((void*)self);
 		int i = 0;
 		for (i = 0; i <= h; i++)
-			__bTPerLevel((void *)self->root, NULL, i, (void *)&__bTPrintNode);
+			__bTPerLevel((void *)self->root, 0, i, (void *)&__bTPrintNode);
 	}
 }
 
@@ -1783,7 +1883,7 @@ void __bTInsert(BinaryTree *self, int value) {
 //  Removes a node.
 //	Calls __bTRemoveNode(&(self->root), value);
 bool __bTRemove(BinaryTree *self, int value) {
-	return (__bTRemoveNode((void *)&(self->root), value) != NULL);
+	return (__bTRemoveNode((void *)&(self->root), value) != NIL_TNode);
 }
 
 //	newBinaryTree(void);
@@ -1801,7 +1901,7 @@ bool __bTRemove(BinaryTree *self, int value) {
 //	Construction function of structure.
 BinaryTree newBinaryTree() {
 	BinaryTree self;
-	self.root = NULL;
+	self.root = NIL_TNode;
 	self.insert = (void *)&__bTInsert;
 	self.remove = (void *)&__bTRemove;
 	self.height = (void *)&__bTHeight;
@@ -1816,19 +1916,105 @@ BinaryTree newBinaryTree() {
 	self.printPerLevel = (void *)&__bTPrintPerLevel;
 	return self;
 }
+#pragma endregion
 
 #pragma endregion
 
-// IMPLEMENTING
+// FULLY DOCUMENTED, NEW FEATURES CAN BE ADDED
 #pragma region Red-Black Tree
-// Definitions
-void __rBTInsertFixesGuidelines(RBTNode *pointerNode, RBTNode **root);
-RBTNode* __rBTNodeBrother(RBTNode* pointerNode);
+//
+// Red-Black Tree
+//
+
+#pragma region DEFINITION
+
+#define NIL_RBTNode &sentinelForRBTNode
+#define RESET_SENTINEL_RBTNODE			\
+sentinelForRBTNode.color = black;		\
+sentinelForRBTNode.data = 0;			\
+sentinelForRBTNode.left = NIL_RBTNode;	\
+sentinelForRBTNode.right = NIL_RBTNode;	\
+sentinelForRBTNode.parent = NIL_RBTNode
+RBTNode sentinelForRBTNode = { NIL_RBTNode, NIL_RBTNode, 0, black, NIL_RBTNode };
+#define callbackForRBTNode void (*function)(struct RBTNode*, int *counter)
+
+// DEFINITIONS
+// EXTERNAL USE
+int __rBTLowerValue(RedBlackTree *self);
+// ===> tree.lowerValue(&tree);
+int __rBTHigherValue(RedBlackTree *self);
+// ===> tree.higherValue(&tree);
+int __rBTHeight(RedBlackTree *self);
+// ===> tree.height(&tree);
+bool __rBTIsEmpty(RedBlackTree *self);
+// ===> tree.isEmpty(&tree);
+void __rBTClear(RedBlackTree *self);
+// ===> tree.clear(&tree);
+void __rBTPrintInPreOrder(RedBlackTree *self);
+// ===> tree.printInPreOrder(&tree);
+void __rBTPrintInPostOrder(RedBlackTree *self);
+// ===> tree.printInPostOrder(&tree);
+void __rBTPrintInOrder(RedBlackTree *self);
+// ===> tree.printInOrder(&tree);
+void __rBTPrintPerLevel(RedBlackTree *self);
+// ===> tree.printPerLevel(&tree);
+int __rBTItemAmout(RedBlackTree *self);
+// ===> tree.itemAmount(&tree);
+void __rBTInsert(RedBlackTree *self, int value);
+// ===> tree.insert(&tree, 20);
+bool __rBTRemove(RedBlackTree *self, int value);
+// ===> tree.remove(&tree, 20);
+
+// INTERNAL USE
+int __rBTHeightNode(RBTNode *pointerNode);
+void __rBTFreeNode(RBTNode * pointerNode, int *null);
+void __rBTPrintNode(RBTNode * pointerNode, int *null);
+void __rBTCounter(RBTNode *null, int *counter);
+void __rBTPreOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+void __rBTPostOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+void __rBTInOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+void __rBTPerLevel(RBTNode *pointerNode, int* counter, int level, callbackForRBTNode);
+// NODE MANIPULATION
+void __rBTNodeRotateLeft(RBTNode* pointerNode, RBTNode** root);
+void __rBTNodeRotateRight(RBTNode* pointerNode, RBTNode** root);
+RBTNode* __rBTSearchHighValue(RBTNode* pointerNode);
+RBTNode* __rBTSearchLowerValue(RBTNode* pointerNode);
+RBTNode* __rBTNodeUncle(RBTNode* pointerNode);
 RBTNode* __rBTNodeGrandfather(RBTNode* pointerNode);
+RBTNode* __rBTNodeBrother(RBTNode* pointerNode);
+RBTNode* __rBTNewNode(int value);
+RBTNode* __rBTPredecessor(RBTNode *pointerNode);
+// INSERT
+void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value);
+void __rBTInsertFixesCaseFive(RBTNode* pointerNode, RBTNode **root);
+void __rBTInsertFixesCaseFour(RBTNode* pointerNode, RBTNode **root);
+void __rBTInsertFixesCaseThree(RBTNode* pointerNode, RBTNode **root);
+void __rBTInsertFixesGuidelines(RBTNode *pointerNode, RBTNode **root);
+// REMOVE
+RBTNode* __rBTRemoveFixupRightBrother(RBTNode *pointerNode, RBTNode ** root);
+RBTNode* __rBTRemoveFixupLeftBrother(RBTNode *pointerNode, RBTNode ** root);
+void __rBTRemoveFixup(RBTNode *pointerNode, RBTNode ** root);
+void __rBTRemoveFixesGuidelines(RBTNode* pointerNode, RBTNode** root);
+void __rBTRemoveNode(RBTNode* endPointerNode, RBTNode** root, int value);
 
+#pragma endregion
 
+#pragma region INTERNAL USE SECTION
+
+#pragma region FUNCTIONS
+
+//	__rBTHeightNode(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Returns a int as height counter
+//	
+//	Description:
+//	Find the tree height
 int __rBTHeightNode(RBTNode *pointerNode) {
-	if (pointerNode == NULL) return -1;
+	if (pointerNode == NIL_RBTNode) return -1;
 	int lHighValue = __rBTHeightNode((void *)pointerNode->left);
 	int rHighValue = __rBTHeightNode((void *)pointerNode->right);
 	if (lHighValue > rHighValue)
@@ -1837,50 +2023,130 @@ int __rBTHeightNode(RBTNode *pointerNode) {
 		return rHighValue + 1;
 }
 
-int __rBTHeight(RedBlackTree *BTree) {
-	int value = __rBTHeightNode((void *)BTree->root);
-	return value == -1 ? -1 : value;
-}
-
+//	__rBTFreeNode(RBTNode *pointerNode, NULL);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * null as NULL
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Frees a tree node.
 void __rBTFreeNode(RBTNode * pointerNode, int *null) {
 	free(pointerNode);
-	pointerNode = NULL;
 }
 
+//	__rBTPrintNode(RBTNode *pointerNode, NULL);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * null as NULL
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints a tree node.
 void __rBTPrintNode(RBTNode * pointerNode, int *null) {
 	printf("%d ", pointerNode->data);
 }
 
+//	__rBTCounter(NULL, int * counter);
+//
+//	INPUT: 
+//	RBTNode *null as NULL.
+//	int * counter as node counter.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Add one more unit to the counter
 void __rBTCounter(RBTNode *null, int *counter) {
 	(*counter)++;
 }
 
-void __rBTPreOrder(RBTNode *pointerNode, int* counter, void * (function)(struct RBTNode*, int *counter)) {
-	if (pointerNode != NULL) {
+//	__rBTPreOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForRBTNode as "void (*function)(struct RBTNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Preorder" and performs the function sent via callback
+void __rBTPreOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode) {
+	if (pointerNode != NIL_RBTNode) {
 		(void)function((void *)pointerNode, counter);
 		__rBTPreOrder((void *)pointerNode->left, counter, function);
 		__rBTPreOrder((void *)pointerNode->right, counter, function);
 	}
 }
 
-void __rBTPostOrder(RBTNode *pointerNode, int* counter, void * (function)(struct RBTNode*, int *counter)) {
-	if (pointerNode != NULL) {
+//	__rBTPostOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForRBTNode as "void (*function)(struct RBTNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Postorder" and performs the function sent via callback
+void __rBTPostOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode) {
+	if (pointerNode != NIL_RBTNode) {
 		__rBTPostOrder((void *)pointerNode->left, counter, function);
 		__rBTPostOrder((void *)pointerNode->right, counter, function);
 		(void)function((void *)pointerNode, counter);
 	}
 }
 
-void __rBTInOrder(RBTNode *pointerNode, int* counter, void * (function)(struct RBTNode*, int *counter)) {
-	if (pointerNode != NULL) {
+//	__rBTInOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//  callbackForRBTNode as "void (*function)(struct RBTNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the tree using "Inorder" and performs the function sent via callback
+void __rBTInOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode) {
+	if (pointerNode != NIL_RBTNode) {
 		__rBTInOrder((void *)pointerNode->left, counter, function);
 		(void)function((void *)pointerNode, counter);
 		__rBTInOrder((void *)pointerNode->right, counter, function);
 	}
 }
 
-void __rBTPerLevel(RBTNode *pointerNode, int* counter, int level, void * (function)(struct RBTNode*, int *counter)) {
-	if (pointerNode == NULL) return;
+//	__rBTPerLevel(RBTNode *pointerNode, int* counter, int level, callbackForRBTNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * counter as node counter. (if it's needed)
+//	int level as current level.
+//  callbackForRBTNode as "void (*function)(struct RBTNode*, int *counter)"
+//	More about callback: https://en.wikipedia.org/wiki/Callback_%28computer_programming%29
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Visits each node in the level of tree using "Perlevel" and performs the function sent via callback
+void __rBTPerLevel(RBTNode *pointerNode, int* counter, int level, callbackForRBTNode) {
+	if (pointerNode == NIL_RBTNode) return;
 	if (level == 0)
 		(void)function((void *)pointerNode, counter);
 	else if (level > 0) {
@@ -1889,81 +2155,210 @@ void __rBTPerLevel(RBTNode *pointerNode, int* counter, int level, void * (functi
 	}
 }
 
-void __rBTPrintInPreOrder(RedBlackTree *RBTree) {
-	if (RBTree->root != NULL) __rBTPreOrder((void *)RBTree->root, NULL, (void *)&__rBTPrintNode);
+#pragma endregion
+
+#pragma region NODE MANIPULATION
+
+//	__rBTNodeRotateLeft(RBTNode *pointerNode, RBTNode** root);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to the node that will be rotated.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Performs left rotation in the node.
+void __rBTNodeRotateLeft(RBTNode* pointerNode, RBTNode** root) {
+	RBTNode* temp = (RBTNode*)pointerNode->right;
+	pointerNode->right = temp->left;
+	if (temp->left != NIL_RBTNode)
+		((RBTNode*)temp->left)->parent = (void *)pointerNode;
+	temp->parent = pointerNode->parent;
+	if (pointerNode->parent == NIL_RBTNode) *root = temp;
+	else
+		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
+			((RBTNode*)pointerNode->parent)->left = (void *)temp;
+		else
+			((RBTNode*)pointerNode->parent)->right = (void *)temp;
+	temp->left = (void *)pointerNode;
+	pointerNode->parent = (void *)temp;
 }
 
-void __rBTPrintInPostOrder(RedBlackTree *RBTree) {
-	if (RBTree->root != NULL) __rBTPostOrder((void *)RBTree->root, NULL, (void *)&__rBTPrintNode);
+//	__rBTNodeRotateRight(RBTNode *pointerNode, RBTNode** root);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to the node that will be rotated.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Performs right rotation in the node.
+void __rBTNodeRotateRight(RBTNode* pointerNode, RBTNode** root) {
+	RBTNode* temp = (RBTNode*)pointerNode->left;
+	pointerNode->left = temp->right;
+	if (temp->right != NIL_RBTNode)
+		((RBTNode*)temp->right)->parent = (void *)pointerNode;
+	temp->parent = pointerNode->parent;
+	if (pointerNode->parent == NIL_RBTNode) *root = temp;
+	else
+		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
+			((RBTNode*)pointerNode->parent)->left = (void *)temp;
+		else
+			((RBTNode*)pointerNode->parent)->right = (void *)temp;
+	temp->right = (void *)pointerNode;
+	pointerNode->parent = (void *)temp;
 }
 
-void __rBTPrintInOrder(RedBlackTree *RBTree) {
-	if (RBTree->root != NULL) __rBTInOrder((void *)RBTree->root, NULL, (void *)&__rBTPrintNode);
-}
-
-void __rBTPrintPerLevel(RedBlackTree *RBTree) {
-	if (RBTree->root != NULL) {
-		int h = __rBTHeight((void*)RBTree);
-		int i = 0;
-		for (i = 0; i <= h; i++)
-			__rBTPerLevel((void *)RBTree->root, NULL, i, (void *)&__rBTPrintNode);
-	}
-}
-
-int __rBTClear(RedBlackTree *RBTree) {
-	if (RBTree->root != NULL) __rBTPostOrder((void *)RBTree->root, NULL, (void *)&__rBTFreeNode);
-	RBTree->root = NULL;
-}
-
+//	__rBTSearchHighValue(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Find a tree item with higher value and return it.
 RBTNode* __rBTSearchHighValue(RBTNode* pointerNode) {
-	if (pointerNode == NULL) return NULL;
-	while (pointerNode->right != NULL) {
+	if (pointerNode == NIL_RBTNode) return NIL_RBTNode;
+	while (pointerNode->right != NIL_RBTNode) {
 		pointerNode = (void *)pointerNode->right;
 	}
 	return pointerNode;
 }
 
-int __rBTHigherValue(RedBlackTree *BTree) {
-	RBTNode * Node = (void *)__rBTSearchHighValue((void *)BTree->root);
-	return Node != NULL ? Node->data : false;
-}
-
+//	__rBTSearchLowerValue(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to first node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Find a tree item with lower value and return it.
 RBTNode* __rBTSearchLowerValue(RBTNode* pointerNode) {
-	if (pointerNode == NULL) return NULL;
-	while (pointerNode->left != NULL) {
+	if (pointerNode == NIL_RBTNode) return NIL_RBTNode;
+	while (pointerNode->left != NIL_RBTNode) {
 		pointerNode = (void *)pointerNode->left;
 	}
 	return pointerNode;
 }
 
-int __rBTLowerValue(RedBlackTree *RBTree) {
-	RBTNode * Node = (void *)__rBTSearchLowerValue((void *)RBTree->root);
-	return Node != NULL ? Node->data : false;
+//	__rBTNodeUncle(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to a node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Returns the RBTNode's uncle.
+RBTNode* __rBTNodeUncle(RBTNode* pointerNode) {
+	RBTNode* grand = __rBTNodeGrandfather(pointerNode);
+	if (grand == NIL_RBTNode)
+		return NIL_RBTNode;
+	if (pointerNode->parent == grand->left)
+		return (void *)grand->right;
+	else
+		return (void *)grand->left;
 }
 
-int __rBTItemAmout(RedBlackTree *RBTree) {
-	int counter = 0;
-	__rBTInOrder((void *)RBTree->root, &counter, (void *)&__rBTCounter);
-	return counter;
+//	__rBTNodeGrandfather(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to a node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Returns the RBTNode's grandfather.
+RBTNode* __rBTNodeGrandfather(RBTNode* pointerNode) {
+	if ((pointerNode != NIL_RBTNode) && (pointerNode->parent != NIL_RBTNode))
+		return (void *)((RBTNode*)pointerNode->parent)->parent;
+	else
+		return (void *)NIL_RBTNode;
 }
 
-bool __rBTIsEmpty(RedBlackTree *RBTree) {
-	return (RBTree->root == NULL);
+//	__rBTNodeBrother(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to a node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Returns the RBTNode's brother.
+RBTNode* __rBTNodeBrother(RBTNode* pointerNode) {
+	if ((pointerNode == NIL_RBTNode) || (pointerNode->parent == NIL_RBTNode))
+		return NIL_RBTNode;
+	if (pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
+		return (RBTNode *)((RBTNode*)pointerNode->parent)->right;
+	else
+		return (RBTNode *)((RBTNode*)pointerNode->parent)->left;
 }
 
+//	__rBTNewNode(int value);
+//
+//	INPUT: 
+//	int value as new node value.
+//
+//	OUTPUT:
+//	Returns a pointer to a new RBTNode.
+//	
+//	Description:
+//	Returns the new RBTNode.
 RBTNode* __rBTNewNode(int value) {
 	RBTNode* tempNode = malloc(sizeof(RBTNode));
 	tempNode->data = value;
-	tempNode->left = NULL;
-	tempNode->right = NULL;
+	tempNode->left = NIL_RBTNode;
+	tempNode->right = NIL_RBTNode;
 	tempNode->color = red;
-	tempNode->parent = NULL;
+	tempNode->parent = NIL_RBTNode;
 	return tempNode;
 }
 
+//	__rBTPredecessor(RBTNode *pointerNode);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to a node.
+//
+//	OUTPUT:
+//	Returns a RBTNode pointer in the tree.
+//	
+//	Description:
+//	Returns the lower RBTNode in the right subtree.
+RBTNode* __rBTPredecessor(RBTNode *pointerNode) {
+	return __rBTSearchLowerValue(pointerNode->right);
+}
+
+#pragma endregion
+
+#pragma region INSERT
+
+//	__rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value);
+//
+//	INPUT: 
+//	RBTNode** pointerNode as pointer to a pointer that points to an node.
+//  RBTNode* parentPoiterNode as pointer to parent node.
+//  RBTNode** root as pointer to root's reference.
+//	int value as item to be added in the tree
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Inserts a new node in the tree.
+//  Calls __rBTInsertFixesGuidelines((*endPointerNode), &(*root));
 void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNode** root, int value) {
-	//RBTNode* tempNode = __rBTNewNode(value); aloca um node a cada execução recursiva
-	if (*endPointerNode == NULL) {
+	if (*endPointerNode == NIL_RBTNode) {
 		RBTNode* tempNode = __rBTNewNode(value);
 		tempNode->parent = (void *)parentPoiterNode;
 		*endPointerNode = tempNode;
@@ -1977,66 +2372,40 @@ void __rBTInsertNode(RBTNode** endPointerNode, RBTNode* parentPoiterNode, RBTNod
 	}
 }
 
-void __rBTNodeRotateLeft(RBTNode* pointerNode, RBTNode** root) {
-	RBTNode* temp = (RBTNode*)pointerNode->right;
-	pointerNode->right = temp->left;
-	if (temp->left != NULL)
-		((RBTNode*)temp->left)->parent = (void *)pointerNode;
-	temp->parent = pointerNode->parent;
-	if (pointerNode->parent == NULL) *root = temp;
-	else
-		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
-			((RBTNode*)pointerNode->parent)->left = (void *)temp;
-		else
-			((RBTNode*)pointerNode->parent)->right = (void *)temp;
-	temp->left = (void *)pointerNode;
-	pointerNode->parent = (void *)temp;
-}
-
-void __rBTNodeRotateRight(RBTNode* pointerNode, RBTNode** root) {
-	RBTNode* temp = (RBTNode*)pointerNode->left;
-	pointerNode->left = temp->right;
-	if (temp->right != NULL)
-		((RBTNode*)temp->right)->parent = (void *)pointerNode;
-	temp->parent = pointerNode->parent;
-	if (pointerNode->parent == NULL) *root = temp;
-	else
-		if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
-			((RBTNode*)pointerNode->parent)->left = (void *)temp;
-		else
-			((RBTNode*)pointerNode->parent)->right = (void *)temp;
-	temp->right = (void *)pointerNode;
-	pointerNode->parent = (void *)temp;
-}
-
-RBTNode* __rBTNodeUncle(RBTNode* pointerNode) {
-	RBTNode* grand = __rBTNodeGrandfather(pointerNode);
-	if (grand == NULL)
-		return NULL;
-	if (pointerNode->parent == grand->left)
-		return (void *)grand->right;
-	else
-		return (void *)grand->left;
-}
-
-RBTNode* __rBTNodeGrandfather(RBTNode* pointerNode) {
-	if ((pointerNode != NULL) && (pointerNode->parent != NULL))
-		return (void *)((RBTNode*)pointerNode->parent)->parent;
-	else
-		return (void *)NULL;
-}
-
-void __rBTFixesCaseFive(RBTNode* pointerNode, RBTNode **root) {
+//	__rBTInsertFixesCaseFive(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs fixes for five case.
+void __rBTInsertFixesCaseFive(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode * grand = __rBTNodeGrandfather(pointerNode);
 	((RBTNode*)pointerNode->parent)->color = black;
 	grand->color = red;
-	if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)// && (pointerNode->parent == grand->left))
+	if ((void *)pointerNode == (void *)((RBTNode*)pointerNode->parent)->left)
 		__rBTNodeRotateRight(grand, &(*root));
 	else
 		__rBTNodeRotateLeft(grand, &(*root));
 }
 
-void __rBTFixesCaseFour(RBTNode* pointerNode, RBTNode **root) {
+//	__rBTInsertFixesCaseFour(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs fixes for four case.
+//  Calls __rBTInsertFixesCaseFive(pointerNode, &(*root));
+void __rBTInsertFixesCaseFour(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode *grand = __rBTNodeGrandfather(pointerNode);
 	if (((void *)pointerNode == (void *)((RBTNode *)pointerNode->parent)->right) &&
 		((void *)pointerNode->parent == (void *)grand->left)) {
@@ -2048,10 +2417,22 @@ void __rBTFixesCaseFour(RBTNode* pointerNode, RBTNode **root) {
 		__rBTNodeRotateRight((void *)pointerNode->parent, &(*root));
 		pointerNode = (void *)pointerNode->right;
 	}
-	__rBTFixesCaseFive(pointerNode, &(*root));
+	__rBTInsertFixesCaseFive(pointerNode, &(*root));
 }
 
-void __rBTFixesCaseThree(RBTNode* pointerNode, RBTNode **root) {
+//	__rBTInsertFixesCaseThree(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs fixes for three case.
+//  Calls __rBTInsertFixesGuidelines(grand, (void*)&(*root));
+void __rBTInsertFixesCaseThree(RBTNode* pointerNode, RBTNode **root) {
 	RBTNode* uncle = __rBTNodeUncle(pointerNode), *grand;
 	((RBTNode*)pointerNode->parent)->color = black;
 	uncle->color = black;
@@ -2060,49 +2441,491 @@ void __rBTFixesCaseThree(RBTNode* pointerNode, RBTNode **root) {
 	__rBTInsertFixesGuidelines(grand, (void*)&(*root));
 }
 
+//	__rBTInsertFixesGuidelines(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs fixes.
+//  Calls fixes for each case.
 void __rBTInsertFixesGuidelines(RBTNode *pointerNode, RBTNode **root) {
-	if (pointerNode->parent == NULL)
+	if (pointerNode->parent == NIL_RBTNode)
 		pointerNode->color = black;
 	else if (((RBTNode*)pointerNode->parent)->color == black) {
 		return;
 	}
-	else if ((__rBTNodeUncle(pointerNode) != NULL) && (((RBTNode *)__rBTNodeUncle(pointerNode))->color == red))
-		__rBTFixesCaseThree(pointerNode, &(*root));
+	else if ((__rBTNodeUncle(pointerNode) != NIL_RBTNode) &&
+		(((RBTNode *)__rBTNodeUncle(pointerNode))->color == red))
+		__rBTInsertFixesCaseThree(pointerNode, &(*root));
 	else {
-		__rBTFixesCaseFour(pointerNode, &(*root));
+		__rBTInsertFixesCaseFour(pointerNode, &(*root));
 	}
 }
 
-void __rBTInsert(RedBlackTree *RBTree, int value) {
-	__rBTInsertNode((void *)&(RBTree->root), NULL, (void *)&(RBTree->root), value);
+#pragma endregion
+
+#pragma region REMOVE
+
+//	__rBTRemoveFixupRightBrother(RBTNode *pointerNode, RBTNode ** root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Returns a pointer to RBTNode.
+//	
+//	Description:
+//  Performs fixes for right bother case.
+RBTNode* __rBTRemoveFixupRightBrother(RBTNode *pointerNode, RBTNode ** root) {
+	RBTNode *brother = ((RBTNode *)pointerNode->parent)->right;
+	// RED BROTHER
+	if (brother->color == red) {
+		brother->color = black;
+		((RBTNode *)pointerNode->parent)->color = red;
+		__rBTNodeRotateLeft(pointerNode->parent, &(*root));
+		brother = ((RBTNode *)pointerNode->parent)->right;
+	}
+	// BLACK BROTHER WITH TWO BLACK SONS
+	if (((RBTNode *)brother->left)->color == black &&
+		((RBTNode *)brother->right)->color == black) {
+		brother->color = red;
+		pointerNode = pointerNode->parent;
+	}
+	// BLACK BROTHER WITH ONE RED SON
+	else {
+		if (((RBTNode *)brother->right)->color == black) {
+			((RBTNode *)brother->left)->color = black;
+			brother->color = red;
+			__rBTNodeRotateRight(brother, &(*root));
+			brother = ((RBTNode *)pointerNode->parent)->right;
+		}
+		brother->color = ((RBTNode *)pointerNode->parent)->color;
+		((RBTNode *)pointerNode->parent)->color = black;
+		((RBTNode *)brother->right)->color = black;
+		__rBTNodeRotateLeft(pointerNode->parent, &(*root));
+		pointerNode = *root;
+	}
+	return pointerNode;
 }
 
-
-
-RBTNode* __rBTRemoveNode(RBTNode** endPointerNode, int value) {
-	// REMOVE
+//	__rBTRemoveFixupLeftBrother(RBTNode *pointerNode, RBTNode ** root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Returns a pointer to RBTNode.
+//	
+//	Description:
+//  Performs fixes for left bother case.
+RBTNode* __rBTRemoveFixupLeftBrother(RBTNode *pointerNode, RBTNode ** root) {
+	RBTNode *brother = ((RBTNode *)pointerNode->parent)->left;
+	// RED BROTHER
+	if (brother->color == red) {
+		brother->color = black;
+		((RBTNode *)pointerNode->parent)->color = red;
+		__rBTNodeRotateRight(pointerNode->parent, &(*root));
+		brother = ((RBTNode *)pointerNode->parent)->left;
+	}
+	// BLACK BROTHER WITH TWO BLACK SONS
+	if (((RBTNode *)brother->right)->color == black && ((RBTNode *)brother->left)->color == black) {
+		brother->color = red;
+		pointerNode = pointerNode->parent;
+	}
+	// BLACK BROTHER WITH ONE RED SON
+	else {
+		if (((RBTNode *)brother->left)->color == black) {
+			((RBTNode *)brother->right)->color = black;
+			brother->color = red;
+			__rBTNodeRotateLeft(brother, &(*root));
+			brother = ((RBTNode *)pointerNode->parent)->left;
+		}
+		brother->color = ((RBTNode *)pointerNode->parent)->color;
+		((RBTNode *)pointerNode->parent)->color = black;
+		((RBTNode *)brother->left)->color = black;
+		__rBTNodeRotateRight(pointerNode->parent, &(*root));
+		pointerNode = *root;
+	}
+	return pointerNode;
 }
 
-
-bool __rBTRemove(RedBlackTree *RBTree, int value) {
-
+//	__rBTRemoveFixup(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs remotion's fixes.
+void __rBTRemoveFixup(RBTNode *pointerNode, RBTNode ** root) {
+	// IF BLACK AND NOT ROOT 
+	while (pointerNode != *root && pointerNode->color == black)
+		if (pointerNode == ((RBTNode *)pointerNode->parent)->left)
+			pointerNode = __rBTRemoveFixupRightBrother(pointerNode, &(*root));
+		else
+			pointerNode = __rBTRemoveFixupLeftBrother(pointerNode, &(*root));
+	pointerNode->color = black;
 }
 
+//	__rBTRemoveFixesGuidelines(RBTNode* pointerNode, RBTNode **root);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to a node.
+//  RBTNode** root as pointer to root's reference.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Performs fixes.
+//  Calls fixes for each case.
+void __rBTRemoveFixesGuidelines(RBTNode* pointerNode, RBTNode** root) {
+	RBTNode *local, *temp;
+	// NULL, RETURN;
+	if (!pointerNode || pointerNode == NIL_RBTNode) return;
+	// AT LEAST ONE NULL NODE
+	if (pointerNode->left == NIL_RBTNode || pointerNode->right == NIL_RBTNode)
+		temp = pointerNode;
+	// NO NULL NODE, TREE'S CENTER: TAKE THE LOWEST OF THE MAJORS (__rBTPredecessor)
+	else temp = __rBTPredecessor(pointerNode);
+	if (temp->left != NIL_RBTNode) local = temp->left;
+	else local = temp->right;
+	// EXCHANGE PARENT
+	local->parent = temp->parent;
+	// IF NOT A ROOT
+	if (temp->parent != NIL_RBTNode)
+		if (temp == ((RBTNode*)temp->parent)->left)
+			((RBTNode*)temp->parent)->left = local;
+		else ((RBTNode*)temp->parent)->right = local;
+		// IS ROOT
+	else *root = local;
+	// EXCHANGE VALUES
+	if (temp != pointerNode) pointerNode->data = temp->data;
+	// IF BLACK NODE ON THE EDGE
+	if (temp->color == black) __rBTRemoveFixup(local, &(*root));
+	RESET_SENTINEL_RBTNODE;
+	free(temp);
+}
+
+//	__rBTRemoveNode(RBTNode* endPointerNode, RBTNode** root, int value);
+//
+//	INPUT: 
+//	RBTNode* pointerNode as pointer to an node.
+//  RBTNode** root as pointer to root's reference.
+//	int value as value to be removed from the tree.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Remove a node in the tree.
+//  Calls __rBTRemoveFixesGuidelines(endPointerNode, &(*root));
+void __rBTRemoveNode(RBTNode* endPointerNode, RBTNode** root, int value) {
+	if (endPointerNode == NIL_RBTNode || !endPointerNode) return;
+	if (value == endPointerNode->data) {
+		__rBTRemoveFixesGuidelines(endPointerNode, &(*root));
+	}
+	else {
+		if (value < (endPointerNode)->data)
+			__rBTRemoveNode((void *)endPointerNode->left, &(*root), value);
+		else
+			__rBTRemoveNode((void *)endPointerNode->right, &(*root), value);
+	}
+}
+
+#pragma endregion
+
+#pragma endregion
+
+#pragma region EXTERNAL USE SECTION
+
+//	__rBTLowerValue(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	int response = tree.lowerValue(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as value of lower node.
+//	
+//	Description:
+//	Calls __rBTSearchLowerValue(self->root);
+int __rBTLowerValue(RedBlackTree *self) {
+	RBTNode * Node = (void *)__rBTSearchLowerValue((void *)self->root);
+	return Node != NIL_RBTNode ? Node->data : false;
+}
+
+//	__rBTHigherValue(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	int response = tree.higherValue(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as value of higher node.
+//	
+//	Description:
+//	Calls __rBTSearchHighValue(self->root);
+int __rBTHigherValue(RedBlackTree *self) {
+	RBTNode * Node = (void *)__rBTSearchHighValue((void *)self->root);
+	return Node != NIL_RBTNode ? Node->data : false;
+}
+
+//	__rBTHeight(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	int response = tree.height(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns an int as height of the tree.
+//	
+//	Description:
+//	Calls __rBTHeightNode(self->root);
+int __rBTHeight(RedBlackTree *self) {
+	int value = __rBTHeightNode((void *)self->root);
+	return value == -1 ? -1 : value;
+}
+
+//	__bTIsEmpty(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree list = newRedBlackTree();
+//	bool response = tree.isEmpty(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	true / false as response
+//	
+//	Description:
+//	Returns the current state of tree, if it's empty or not.
+bool __rBTIsEmpty(RedBlackTree *self) {
+	return (self->root == NIL_RBTNode);
+}
+
+//	__rBTClear(RedBlackTree * self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.clear(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//  Nothing	
+//	
+//	Description:
+//  Clear the tree completely, excluding all nodes.
+//  Calls __rBTPostOrder(self->root, NIL_RBTNode, &__rBTFreeNode)
+void __rBTClear(RedBlackTree *self) {
+	if (self->root != NIL_RBTNode) __rBTPostOrder((void *)self->root, 0, (void *)&__rBTFreeNode);
+	self->root = NIL_RBTNode;
+}
+
+//	__rBTPrintInPreOrder(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printInPreOrder(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __rBTPreOrder(self->root, NIL_RBTNode, &__rBTPrintNode);
+void __rBTPrintInPreOrder(RedBlackTree *self) {
+	if (self->root != NIL_RBTNode) __rBTPreOrder((void *)self->root, 0, (void *)&__rBTPrintNode);
+}
+
+//	__rBTPrintInPostOrder(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printInPostOrder(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __rBTPostOrder(self->root, NIL_RBTNode, &__rBTPrintNode);
+void __rBTPrintInPostOrder(RedBlackTree *self) {
+	if (self->root != NIL_RBTNode) __rBTPostOrder((void *)self->root, 0, (void *)&__rBTPrintNode);
+}
+
+//	__rBTPrintInOrder(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printInOrder(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __rBTInOrder(self->root, NIL_RBTNode, &__rBTPrintNode);
+void __rBTPrintInOrder(RedBlackTree *self) {
+	if (self->root != NIL_RBTNode) __rBTInOrder((void *)self->root, 0, (void *)&__rBTPrintNode);
+}
+
+//	__rBTPrintPerLevel(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printPerLevel(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree.
+//	Calls __rBTPerLevel(self->root, NIL_RBTNode, i, &__rBTPrintNode);
+void __rBTPrintPerLevel(RedBlackTree *self) {
+	if (self->root != NIL_RBTNode) {
+		int h = __rBTHeight((void*)self);
+		int i = 0;
+		for (i = 0; i <= h; i++)
+			__rBTPerLevel((void *)self->root, 0, i, (void *)&__rBTPrintNode);
+	}
+}
+
+//	__rBTItemAmout(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.itemAmout(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Returns the amout of itens in the tree.
+//	
+//	Description:
+//	Calls __rBTInOrder(self->root, &counter, &__rBTCounter);
+int __rBTItemAmout(RedBlackTree *self) {
+	int counter = 0;
+	__rBTInOrder((void *)self->root, (void *)&counter, (void *)&__rBTCounter);
+	return counter;
+}
+
+//	__rBTInsert(RedBlackTree *self, int value);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//	tree.insert(&tree, 20);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//  int value as new node value.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//  Inserts a new node.
+//	Calls __rBTInsertNode(&(self->root), NIL_RBTNode, &(self->root), value);
+void __rBTInsert(RedBlackTree *self, int value) {
+	__rBTInsertNode((void *)&(self->root), NIL_RBTNode, (void *)&(self->root), value);
+}
+
+//	__rBTRemove(RedBlackTree *self, int value);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.remove(&tree, 20);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//  int value as value to be removed from the tree.
+//
+//	OUTPUT:
+//	Nothing working yet. :D
+//	
+//	Description:
+//  Removes a node.
+//	Calls __rBTRemoveNode(self->root, &(self->root), value);
+bool __rBTRemove(RedBlackTree *self, int value) {
+	__rBTRemoveNode(self->root, &(self->root), value);
+	return true;
+}
+
+//	newRedBlackTree(void);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//
+//	INPUT: 
+//	Nothing
+//
+//	OUTUP:
+//	RedBlackTree self as a newly built structure.
+//	
+//	Description:
+//	Construction function of structure.
 RedBlackTree newRedBlackTree() {
-	RedBlackTree RBTree;
-	RBTree.root = NULL;
-	RBTree.insert = (void *)&__rBTInsert;
-	RBTree.remove = (void *)&__rBTRemove;
-	RBTree.height = (void *)&__rBTHeight;
-	RBTree.itemAmount = (void *)&__rBTItemAmout;
-	RBTree.lowerValue = (void *)&__rBTLowerValue;
-	RBTree.higherValue = (void *)&__rBTHigherValue;
-	RBTree.isEmpty = (void *)&__rBTIsEmpty;
-	RBTree.clear = (void *)&__rBTClear;
-	RBTree.printInPreOrder = (void *)&__rBTPrintInPreOrder;
-	RBTree.printInPostOrder = (void *)&__rBTPrintInPostOrder;
-	RBTree.printInOrder = (void *)&__rBTPrintInOrder;
-	RBTree.printPerLevel = (void *)&__rBTPrintPerLevel;
-	return RBTree;
+	RedBlackTree self;
+	self.root = NIL_RBTNode;
+	self.insert = (void *)&__rBTInsert;
+	self.remove = (void *)&__rBTRemove;
+	self.height = (void *)&__rBTHeight;
+	self.itemAmount = (void *)&__rBTItemAmout;
+	self.lowerValue = (void *)&__rBTLowerValue;
+	self.higherValue = (void *)&__rBTHigherValue;
+	self.isEmpty = (void *)&__rBTIsEmpty;
+	self.clear = (void *)&__rBTClear;
+	self.printInPreOrder = (void *)&__rBTPrintInPreOrder;
+	self.printInPostOrder = (void *)&__rBTPrintInPostOrder;
+	self.printInOrder = (void *)&__rBTPrintInOrder;
+	self.printPerLevel = (void *)&__rBTPrintPerLevel;
+	return self;
 }
+#pragma endregion
+
 #pragma endregion

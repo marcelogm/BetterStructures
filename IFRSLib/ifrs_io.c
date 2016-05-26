@@ -1,15 +1,13 @@
+//	IFRSLib 
+//  Author: Marcelo Gomes Martins 
+//  Github: marcelogm
+//  Link: https://github.com/marcelogm/IFRSLib
+//  License: https://github.com/marcelogm/IFRSLib/blob/master/LICENSE
+
 //
 // DEPRECATED DOCUMENTATION AND IMPLEMENTATION
 // NEW FEATURES WILL BE ADD
 //
-
-/*
-* IFRS - Osório
-* Marcelo M. (marcelogm)
-* LIB de auxílio para valores primitivos,
-* ponteiros e estruturas simples
-* de gravação e leitura.
-*/
 
 #include <stdio.h>
 #include <stdlib.h>
