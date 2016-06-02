@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "ifrs_io.h"
 #include "ifrs_struct.h"
 
 //
@@ -1351,6 +1350,10 @@ bool __bTIsEmpty(BinaryTree *self);
 // ===> tree.isEmpty(&tree);
 void __bTClear(BinaryTree *self);
 // ===> tree.clear(&tree);
+bool __bTContains(BinaryTree *self, int value);
+// ===> tree.contains(&tree, 5);
+void __bTPrintSearch(BinaryTree *self, int value);
+// ===> tree.printSearch(&tree, 5);
 void __bTPrintInPreOrder(BinaryTree *self);
 // ===> tree.printInPreOrder(&tree);
 void __bTPrintInPostOrder(BinaryTree *self);
@@ -1373,6 +1376,8 @@ int __bTHeightNode(TNode *pointerNode);
 void __bTFreeNode(TNode * pointerNode, int *null);
 void __bTPrintNode(TNode * pointerNode, int *null);
 void __bTCounter(TNode *null, int *counter);
+bool __bTContainsNode(TNode* pointerNode, int value);
+void __bTPrintSearchNode(TNode *pointerNode, int value);
 void __bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);
 void __bTPostOrder(TNode *pointerNode, int* counter, callbackForTNode);
 void __bTInOrder(TNode *pointerNode, int* counter, callbackForTNode);
@@ -1467,7 +1472,7 @@ void __bTFreeNode(TNode * pointerNode, int *null) {
 //	Description:
 //	Prints a tree node.
 void __bTPrintNode(TNode * pointerNode, int *null) {
-	printf("%d ", pointerNode->data);
+	printf("[%d] ", pointerNode->data);
 }
 
 //	__bTCounter(NIL_TNode, int * counter);
@@ -1483,6 +1488,53 @@ void __bTPrintNode(TNode * pointerNode, int *null) {
 //	Add one more unit to the counter
 void __bTCounter(TNode *null, int *counter) {
 	(*counter)++;
+}
+
+//	__bTContainsNode(TNode* pointerNode, int value);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to a node.
+//	int value as searched value
+//
+//	OUTPUT:
+//	true / false as response
+//	
+//	Description:
+//	Returns true if the tree contains this value
+bool __bTContainsNode(TNode* pointerNode, int value) {
+	if (pointerNode == NIL_TNode) 
+		return false;
+	else if (pointerNode->data == value) 
+		return true;
+	else 
+		if (value < pointerNode->data)
+			return __bTContainsNode((void *)pointerNode->left, value);
+		else
+			return __bTContainsNode((void *)pointerNode->right, value);
+}
+
+//	__bTPrintSearchNode(TNode *pointerNode, int value);
+//
+//	INPUT: 
+//	TNode *pointerNode as pointer to node.
+//	int value as searched value.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints a the entire war to a node.
+void __bTPrintSearchNode(TNode *pointerNode, int value) {
+	printf("[%d] ", pointerNode->data);
+	if (pointerNode->data == value)
+		return;
+	else {
+		printf("> ");
+		if (value < pointerNode->data)
+			__bTPrintSearchNode((void *)pointerNode->left, value);
+		else
+			__bTPrintSearchNode((void *)pointerNode->right, value);
+	}
 }
 
 //	__bTPreOrder(TNode *pointerNode, int* counter, callbackForTNode);
@@ -1739,6 +1791,49 @@ void __bTClear(BinaryTree *self) {
 	self->root = NIL_TNode;
 }
 
+//	__bTContais(BinaryTree *self, int value);
+//
+//	Using:
+//	BinaryTree list = newBinaryTree();
+//  ...
+//	bool response = tree.contais(&tree, 5);
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//	int value as item to search in the tree
+//
+//	OUTPUT:
+//	true / false as response
+//	
+//	Description:
+//	Returns true if contains a value
+bool __bTContains(BinaryTree *self, int value) {
+	return __bTContainsNode((void *)self->root, value);
+}
+
+//	__bTPrintSearch(BinaryTree *self, int value);
+//
+//	Using:
+//	BinaryTree tree = newBinaryTree();
+//  ...
+//	tree.printSearch(&tree, 15);
+//
+//
+//	INPUT: 
+//	BinaryTree *self as self indicator.
+//  int value as searched value.
+//
+//	OUTPUT:
+//  true / false
+//	
+//	Description:
+//	Prints the entire way to a node.
+//	Calls __bTPrintSearchNode(self->root, value);
+void __bTPrintSearch(BinaryTree *self, int value) {
+	if (__bTContainsNode(self->root, value)) 
+		__bTPrintSearchNode((void *)self->root, value);
+}
+
 //	__bTPrintInPreOrder(BinaryTree *self);
 //
 //	Using:
@@ -1883,7 +1978,11 @@ void __bTInsert(BinaryTree *self, int value) {
 //  Removes a node.
 //	Calls __bTRemoveNode(&(self->root), value);
 bool __bTRemove(BinaryTree *self, int value) {
-	return (__bTRemoveNode((void *)&(self->root), value) != NIL_TNode);
+	if (__bTContainsNode(self->root, value))
+		__bTRemoveNode((void *)&(self->root), value);
+	else
+		return false;
+	return true;
 }
 
 //	newBinaryTree(void);
@@ -1908,8 +2007,10 @@ BinaryTree newBinaryTree() {
 	self.itemAmount = (void *)&__bTItemAmout;
 	self.lowerValue = (void *)&__bTLowerValue;
 	self.higherValue = (void *)&__bTHighValue;
-	self.isEmpty = (void *)__bTIsEmpty;
-	self.clear = (void *)__bTClear;
+	self.isEmpty = (void *)&__bTIsEmpty;
+	self.clear = (void *)&__bTClear;
+	self.contains = (void *)&__bTContains;
+	self.printSearch = (void *)&__bTPrintSearch;
 	self.printInPreOrder = (void *)&__bTPrintInPreOrder;
 	self.printInPostOrder = (void *)&__bTPrintInPostOrder;
 	self.printInOrder = (void *)&__bTPrintInOrder;
@@ -1950,6 +2051,12 @@ bool __rBTIsEmpty(RedBlackTree *self);
 // ===> tree.isEmpty(&tree);
 void __rBTClear(RedBlackTree *self);
 // ===> tree.clear(&tree);
+bool __rBTContains(RedBlackTree *self, int value);
+// ===> tree.contains(&tree, 5);
+void __rBTPrintSearch(RedBlackTree *self, int value);
+// ===> tree.printSearch(&tree, 5);
+void __rBTPrintTaggedInOrder(RedBlackTree *self);
+// ===> tree.printWithColor(&tree);
 void __rBTPrintInPreOrder(RedBlackTree *self);
 // ===> tree.printInPreOrder(&tree);
 void __rBTPrintInPostOrder(RedBlackTree *self);
@@ -1968,8 +2075,11 @@ bool __rBTRemove(RedBlackTree *self, int value);
 // INTERNAL USE
 int __rBTHeightNode(RBTNode *pointerNode);
 void __rBTFreeNode(RBTNode * pointerNode, int *null);
+void __rBTPrintTaggedNode(RBTNode * pointerNode, int *null);
 void __rBTPrintNode(RBTNode * pointerNode, int *null);
 void __rBTCounter(RBTNode *null, int *counter);
+bool __rBTContainsNode(RBTNode* pointerNode, int value);
+void __rBTPrintSearchNode(RBTNode *pointerNode, int value);
 void __rBTPreOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
 void __rBTPostOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
 void __rBTInOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
@@ -2050,7 +2160,22 @@ void __rBTFreeNode(RBTNode * pointerNode, int *null) {
 //	Description:
 //	Prints a tree node.
 void __rBTPrintNode(RBTNode * pointerNode, int *null) {
-	printf("%d ", pointerNode->data);
+	printf("[%d] ", pointerNode->data);
+}
+
+//	__rBTPrintTaggedNode(RBTNode *pointerNode, NULL);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int * null as NULL
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints a tree node with a color tag.
+void __rBTPrintTaggedNode(RBTNode * pointerNode, int *null) {
+	printf("[%d](%c) ", pointerNode->data, pointerNode->color);
 }
 
 //	__rBTCounter(NULL, int * counter);
@@ -2066,6 +2191,53 @@ void __rBTPrintNode(RBTNode * pointerNode, int *null) {
 //	Add one more unit to the counter
 void __rBTCounter(RBTNode *null, int *counter) {
 	(*counter)++;
+}
+
+//	 __rBTContainsNode(RBTNode* pointerNode, int value);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to a node.
+//	int value as searched value
+//
+//	OUTPUT:
+//	true / false as response
+//	
+//	Description:
+//	Returns true if the tree contains this value
+bool __rBTContainsNode(RBTNode* pointerNode, int value) {
+	if (pointerNode == NIL_RBTNode)
+		return false;
+	else if (pointerNode->data == value)
+		return true;
+	else
+		if (value < pointerNode->data)
+			return __rBTContainsNode((void *)pointerNode->left, value);
+		else
+			return __rBTContainsNode((void *)pointerNode->right, value);
+}
+
+//	__rBTPrintSearchNode(RBTNode *pointerNode, int value);
+//
+//	INPUT: 
+//	RBTNode *pointerNode as pointer to node.
+//	int value as searched value.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints a the entire war to a node.
+void __rBTPrintSearchNode(RBTNode *pointerNode, int value) {
+	printf("[%d] ", pointerNode->data);
+	if (pointerNode->data == value)
+		return;
+	else {
+		printf("> ");
+		if (value < pointerNode->data)
+			__rBTPrintSearchNode((void *)pointerNode->left, value);
+		else
+			__rBTPrintSearchNode((void *)pointerNode->right, value);
+	}
 }
 
 //	__rBTPreOrder(RBTNode *pointerNode, int* counter, callbackForRBTNode);
@@ -2748,6 +2920,69 @@ void __rBTClear(RedBlackTree *self) {
 	self->root = NIL_RBTNode;
 }
 
+//	__rBTContains(RedBlackTree * self, int value);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.clear(&tree, 15);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//  int value as searched value.
+//
+//	OUTPUT:
+//  true / false 	
+//	
+//	Description:
+//  Returns true if value exists in tree content.
+bool __rBTContains(RedBlackTree *self, int value) {
+	return __rBTContainsNode((void *)self->root, value);
+}
+
+//	__rBTPrintSearch(RedBlackTree *self, int value);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printSearch(&tree, 15);
+//
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//  int value as searched value.
+//
+//	OUTPUT:
+//  true / false
+//	
+//	Description:
+//	Prints the entire way to a node.
+//	Calls __rBTPrintSearchNode(self->root, value);
+void __rBTPrintSearch(RedBlackTree *self, int value) {
+	if (__rBTContainsNode(self->root, value))
+		__rBTPrintSearchNode((void *)self->root, value);
+}
+
+//	__rBTPrintTaggedInOrder(RedBlackTree *self);
+//
+//	Using:
+//	RedBlackTree tree = newRedBlackTree();
+//  ...
+//	tree.printWithColor(&tree);
+//
+//	INPUT: 
+//	RedBlackTree *self as self indicator.
+//
+//	OUTPUT:
+//	Nothing
+//	
+//	Description:
+//	Prints the entire tree with color tag.
+//	Calls __rBTInOrder(self->root, NIL_RBTNode, &__rBTPrintTaggedNode);
+void __rBTPrintTaggedInOrder(RedBlackTree *self) { //__rBTPrintTaggedNode
+	if (self->root != NIL_RBTNode) __rBTInOrder((void *)self->root, 0, (void *)&__rBTPrintTaggedNode);
+}
+
 //	__rBTPrintInPreOrder(RedBlackTree *self);
 //
 //	Using:
@@ -2886,13 +3121,15 @@ void __rBTInsert(RedBlackTree *self, int value) {
 //  int value as value to be removed from the tree.
 //
 //	OUTPUT:
-//	Nothing working yet. :D
+//	true / false
 //	
 //	Description:
 //  Removes a node.
 //	Calls __rBTRemoveNode(self->root, &(self->root), value);
 bool __rBTRemove(RedBlackTree *self, int value) {
-	__rBTRemoveNode(self->root, &(self->root), value);
+	if (__rBTContainsNode(self->root,value))
+		__rBTRemoveNode(self->root, &(self->root), value);
+	else return false;
 	return true;
 }
 
@@ -2920,6 +3157,9 @@ RedBlackTree newRedBlackTree() {
 	self.higherValue = (void *)&__rBTHigherValue;
 	self.isEmpty = (void *)&__rBTIsEmpty;
 	self.clear = (void *)&__rBTClear;
+	self.contains = (void *)&__rBTContains;
+	self.printSearch = (void *)&__rBTPrintSearch;
+	self.printWithColor = (void *)&__rBTPrintTaggedInOrder;
 	self.printInPreOrder = (void *)&__rBTPrintInPreOrder;
 	self.printInPostOrder = (void *)&__rBTPrintInPostOrder;
 	self.printInOrder = (void *)&__rBTPrintInOrder;

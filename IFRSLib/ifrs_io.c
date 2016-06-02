@@ -12,9 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ifrs_io.h"
-#include "ifrs_struct.h"
 #include <stdbool.h>
+#include "ifrs_io.h"
 
 /*
 * FUNÇÕES PARA ENTRADA DE DADOS

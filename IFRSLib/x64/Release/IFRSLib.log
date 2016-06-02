@@ -1,4 +1,0 @@
-﻿  ifrs_struct.c
-ifrs_struct.c(2183): warning C4133: 'function': incompatible types - from 'RBTNode *' to 'RBTNode *'
-  IFRSLib.vcxproj -> C:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\x64\Release\IFRSLib.exe
-  IFRSLib.vcxproj -> C:\Users\marce\documents\visual studio 2015\Projects\IFRSLib\x64\Release\IFRSLib.pdb (Full PDB)

@@ -143,6 +143,8 @@ typedef struct BinaryTree {
 	int(*lowerValue)(struct BinaryTree*);
 	int(*higherValue)(struct BinaryTree*);
 	void(*clear)(struct BinaryTree *);
+	bool(*contains)(struct BinaryTree *, int);
+	void(*printSearch)(struct BinaryTree *, int);
 	void(*printInPreOrder)(struct BinaryTree *);
 	void(*printInPostOrder)(struct BinaryTree *);
 	void(*printInOrder)(struct BinaryTree *);
@@ -177,6 +179,9 @@ typedef struct RedBlackTree {
 	int(*lowerValue)(struct RedBlackTree*);
 	int(*higherValue)(struct RedBlackTree*);
 	void(*clear)(struct RedBlackTree *);
+	bool(*contains)(struct RedBlackTree *, int);
+	void(*printSearch)(struct RedBlackTree *, int);
+	void(*printWithColor)(struct RedBlackTree *);
 	void(*printInPreOrder)(struct RedBlackTree *);
 	void(*printInPostOrder)(struct RedBlackTree *);
 	void(*printInOrder)(struct RedBlackTree *);
