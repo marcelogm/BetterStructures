@@ -212,6 +212,7 @@ Available functions:
 - isEmpty(self) (Returns bool)
 - itemAmout(self) (Returns int)
 - clear(self)
+
 NEW
 - contains(self, value) (Returns bool)
 - printSearch(self, value)
@@ -246,6 +247,7 @@ Available functions:
 - printInPostOrder(self)
 - printInOrder(self)
 - printPerLevel(self)
+
 NEW
 - contains(self, value) (Returns bool)
 - printSearch(self, value)
