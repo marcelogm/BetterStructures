@@ -1,4 +1,4 @@
-# IFRSLib
+# IFRSLib (deprecated)
 Didactic library in C for input/output processing and data structures handling. 
 The library was designed with the need to facilitate the use of ANSI C language in simple systems and academic algorithms.
 
